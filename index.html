@@ -209,23 +209,13 @@ nav {
 .province-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 .province-section .section-eyebrow { color: var(--blue-light); }
 .province-section .section-title { color: white; }
-.province-section .section-desc { color: rgba(255,255,255,0.6); }
-.province-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2rem; }
-.province-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 0.75rem 1rem; text-align: center; transition: all 0.2s; cursor: pointer; font-family: inherit; width: 100%; color: inherit; }
-.province-chip:hover, .province-chip.is-selected { background: rgba(26,126,255,0.2); border-color: rgba(26,126,255,0.4); }
-.province-chip .p-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue-light); margin-bottom: 3px; }
-.province-chip .p-name { font-size: 11px; font-weight: 600; color: white; }
-.cov-callout { pointer-events: none; }
-.cov-callout line { stroke: rgba(255,255,255,0.72); stroke-width: 1.5; stroke-linecap: round; }
-.cov-callout circle { fill: rgba(255,255,255,0.9); }
-.cov-callout text { fill: rgba(255,255,255,0.92); font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; }
-.cov-prov { cursor: pointer; }
-.cov-prov.is-selected path { fill: rgba(61,155,255,0.92); stroke: #fff; stroke-width: 1.6; }
+.coverage-copy { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.25rem; }
+.coverage-copy p { color: rgba(255,255,255,0.72); font-size: 0.95rem; line-height: 1.75; margin: 0; }
 .nepal-map-wrap { display: flex; align-items: center; justify-content: center; }
 .nepal-svg-container { background: none; border: none; padding: 0; width: 100%; }
-.cov-prov path { fill: rgba(26,126,255,0.28); stroke: rgba(186,220,255,0.7); stroke-width: 1.1; stroke-linejoin: round; }
-.cov-prov.is-hq path { fill: rgba(26,126,255,0.55); stroke: #3D9BFF; }
-.cov-prov.is-selected path { fill: rgba(61,155,255,0.92); stroke: #fff; stroke-width: 1.6; }
+.cov-prov path { fill: rgba(26,126,255,0.28); stroke: rgba(186,220,255,0.7); stroke-width: 1.1; stroke-linejoin: round; transition: fill 0.45s, stroke 0.45s; }
+.cov-prov.is-hq path { fill: rgba(26,126,255,0.4); }
+.cov-prov.is-lit path { fill: rgba(125,186,255,0.95); stroke: #fff; stroke-width: 1.8; }
 .cov-link { stroke: rgba(61,155,255,0.35); stroke-width: 1.2; stroke-dasharray: 4 6; }
 .cov-pulse { display: none; }
 
@@ -547,8 +537,6 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
   .nav-item[data-menu="products"].open .nav-dropdown,
   .nav-item[data-menu="products"]:hover .nav-dropdown { display: flex; }
   .feature-grid { grid-template-columns: 1fr; }
-  .province-grid { grid-template-columns: repeat(2,1fr); }
-  .nepal-map-wrap { display: none; }
   .feature-panel.active { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: repeat(2,1fr); }
   .stat-item:nth-child(2) { border-right: none; }
@@ -614,8 +602,8 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
       <div>
         <div class="hero-eyebrow"><span class="pulse"></span>Nepal's Trusted CBS Provider</div>
         <h1 class="hero-title">Transforming Financial Institutions Through Smart Digital Banking Solutions</h1>
-        <p class="hero-lead">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology</p>
-        <p class="hero-desc">Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations</p>
+        <p class="hero-lead">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology.</p>
+        <p class="hero-desc">Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations.</p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="navigate('contact')">Schedule a Demo →</button>
           <button class="btn-ghost" onclick="navigate('products')">View Products</button>
@@ -718,81 +706,70 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
   <section class="province-section" id="coverage">
     <div class="province-inner">
       <div>
-        <div class="section-eyebrow">Coverage</div>
-        <h2 class="section-title">All 7 Provinces.<br>One Platform.</h2>
-        <p class="section-desc">From the Terai plains to the mountain districts, Premium Technologies has active deployments across every province in Nepal.</p>
-        <div class="province-grid">
-          <button type="button" class="province-chip" data-province="Koshi" data-clients="80" onclick="selectProvince('Koshi')"><div class="p-num">Province 1</div><div class="p-name">Koshi</div></button>
-          <button type="button" class="province-chip" data-province="Madhesh" data-clients="70" onclick="selectProvince('Madhesh')"><div class="p-num">Province 2</div><div class="p-name">Madhesh</div></button>
-          <button type="button" class="province-chip" data-province="Bagmati" data-clients="120" onclick="selectProvince('Bagmati')"><div class="p-num">Province 3</div><div class="p-name">Bagmati</div></button>
-          <button type="button" class="province-chip" data-province="Gandaki" data-clients="55" onclick="selectProvince('Gandaki')"><div class="p-num">Province 4</div><div class="p-name">Gandaki</div></button>
-          <button type="button" class="province-chip" data-province="Lumbini" data-clients="65" onclick="selectProvince('Lumbini')"><div class="p-num">Province 5</div><div class="p-name">Lumbini</div></button>
-          <button type="button" class="province-chip" data-province="Karnali" data-clients="25" onclick="selectProvince('Karnali')"><div class="p-num">Province 6</div><div class="p-name">Karnali</div></button>
-          <button type="button" class="province-chip" data-province="Sudurpashchim" data-clients="35" onclick="selectProvince('Sudurpashchim')"><div class="p-num">Province 7</div><div class="p-name">Sudurpashchim</div></button>
+        <div class="section-eyebrow">Our Nationwide Coverage</div>
+        <h2 class="section-title">Empowering Financial Institutions Across All 7 Provinces of Nepal</h2>
+        <div class="coverage-copy">
+          <p>Premium Technologies brings secure, future-ready banking technology to cooperatives, microfinance institutions, and financial organizations across all seven provinces of Nepal.</p>
+          <p>PremiumCBS sits at the center, alongside SMS Banking, Mobile Banking, Mobile Collector, and more. From implementation and training to ongoing support, we help institutions in major cities and emerging communities deliver smarter digital services.</p>
         </div>
       </div>
       <div class="nepal-map-wrap">
         <div class="nepal-svg-container">
-                    <svg id="coverageMap" viewBox="-48 -36 630 390" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" role="img" aria-label="Nepal, all seven provinces">
+                    <svg id="coverageMap" viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" role="img" aria-label="Nepal, all seven provinces">
                         <line class="cov-link" x1="74.7" y1="108.1" x2="142.3" y2="103.9"/>
                         <line class="cov-link" x1="142.3" y1="103.9" x2="176.3" y2="181.5"/>
                         <line class="cov-link" x1="176.3" y1="181.5" x2="255.3" y2="165.5"/>
                         <line class="cov-link" x1="255.3" y1="165.5" x2="335.5" y2="213.9"/>
                         <line class="cov-link" x1="335.5" y1="213.9" x2="359.5" y2="263.9"/>
                         <line class="cov-link" x1="359.5" y1="263.9" x2="434.7" y2="248.5"/>
-                        <g class="cov-prov" data-name="Sudurpashchim" onclick="selectProvince('Sudurpashchim')">
+                        <g class="cov-prov" data-name="Sudurpashchim">
                           <path d="M73.5,25.5L82.1,41.0L98.7,40.8L101.7,42.4L102.1,49.5L112.5,45.6L121.7,48.8L115.6,63.7L121.6,70.6L119.5,75.4L121.6,82.0L118.1,86.9L112.7,87.8L110.6,84.4L104.3,88.2L102.0,91.1L103.1,97.8L107.7,100.9L98.5,109.6L108.6,125.8L105.1,126.3L99.8,115.4L86.3,115.6L77.1,110.9L73.0,113.4L80.2,119.8L82.7,117.9L86.2,121.7L86.4,118.7L91.2,132.0L78.1,150.2L48.5,130.4L44.6,131.9L45.5,139.6L29.7,125.7L19.2,121.2L18.2,115.0L22.8,108.9L23.3,102.4L30.9,99.8L29.5,94.5L32.4,95.6L33.5,88.2L29.1,79.5L32.7,78.9L39.0,69.3L36.5,58.9L44.0,55.9L50.1,45.3L59.0,41.8L66.9,33.4L68.0,27.8L73.5,25.5Z"/>
                           <text x="74.7" y="84.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Sudur</text><text x="74.7" y="96.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Pashchim</text>
                           <circle class="cov-pulse" cx="74.7" cy="108.1" r="9"/>
                           <circle cx="74.7" cy="108.1" r="3.5" fill="#10B981"/>
                 
                         </g>
-                        <g class="cov-prov" data-name="Karnali" onclick="selectProvince('Karnali')">
+                        <g class="cov-prov" data-name="Karnali">
                           <path d="M111.4,12.1L132.9,20.5L139.8,18.6L139.4,26.0L145.8,31.7L143.8,37.7L166.2,44.6L171.7,50.8L170.5,53.0L176.8,53.2L174.6,58.0L178.3,57.9L182.7,63.0L189.2,61.9L198.1,68.8L201.9,67.4L209.5,71.1L208.9,75.2L217.6,81.1L220.5,90.8L233.2,99.5L229.6,102.8L229.6,110.2L222.7,117.7L221.7,124.0L209.5,128.1L189.9,120.9L179.1,122.3L171.9,118.3L167.0,125.0L170.2,130.3L166.5,133.4L162.7,132.3L168.1,137.3L158.4,141.1L154.4,148.3L155.2,155.2L159.6,160.1L157.2,165.3L151.4,160.2L139.6,159.3L134.0,166.5L118.4,155.6L119.7,151.8L92.9,133.8L86.4,118.7L86.2,121.7L82.7,117.9L80.2,119.8L73.0,113.5L77.1,110.9L86.3,115.6L99.8,115.4L105.1,126.3L108.7,125.6L98.5,109.6L107.7,100.9L103.1,97.8L102.0,91.1L104.3,88.2L110.6,84.4L112.7,87.8L118.1,86.9L121.6,82.0L119.5,75.4L121.6,70.6L115.6,63.7L121.7,48.8L112.5,45.6L102.1,49.5L101.7,42.4L90.3,39.0L89.4,32.2L97.7,28.0L98.4,13.7L106.9,17.2L107.5,13.3L111.3,12.1Z"/>
                           <text x="142.3" y="89.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Karnali</text>
                           <circle class="cov-pulse" cx="142.3" cy="103.9" r="9"/>
                           <circle cx="142.3" cy="103.9" r="3.5" fill="#10B981"/>
                 
                         </g>
-                        <g class="cov-prov" data-name="Lumbini" onclick="selectProvince('Lumbini')">
+                        <g class="cov-prov" data-name="Lumbini">
                           <path d="M173.4,119.3L179.1,122.3L189.9,120.9L201.6,126.4L199.9,134.2L191.6,134.4L191.8,139.6L188.0,138.7L186.0,145.7L198.6,159.4L204.0,158.5L218.2,168.3L225.9,168.8L228.9,176.9L219.2,181.2L254.1,186.4L251.8,193.6L233.2,195.7L234.3,199.5L241.3,199.4L240.0,203.3L246.4,210.4L245.8,219.9L229.5,212.4L216.1,211.7L217.3,216.2L211.1,221.7L204.2,213.4L177.3,210.2L178.5,204.5L175.7,195.4L160.2,198.3L137.8,181.9L131.7,181.5L126.8,186.3L102.6,171.2L100.6,165.8L96.4,164.8L93.0,167.7L86.8,152.6L77.7,149.2L92.4,131.4L119.7,151.8L118.4,155.6L134.0,166.5L139.6,159.3L151.4,160.2L157.2,165.3L159.6,160.1L155.2,155.2L154.4,148.2L158.4,141.1L168.1,137.3L162.7,132.3L169.2,131.6L167.0,125.0L173.4,119.3Z"/>
                           <text x="176.3" y="167.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Lumbini</text>
                           <circle class="cov-pulse" cx="176.3" cy="181.5" r="9"/>
                           <circle cx="176.3" cy="181.5" r="3.5" fill="#10B981"/>
                 
                         </g>
-                        <g class="cov-prov" data-name="Gandaki" onclick="selectProvince('Gandaki')">
+                        <g class="cov-prov" data-name="Gandaki">
                           <path d="M250.3,87.1L264.4,93.2L262.1,96.9L263.7,106.2L267.2,106.9L265.9,116.5L276.7,119.3L279.8,126.1L289.7,127.1L293.7,133.9L303.4,138.3L310.9,136.9L315.3,130.8L323.6,134.5L323.0,140.8L317.8,146.0L318.3,153.4L309.8,162.1L309.3,168.2L302.6,168.9L300.7,176.5L296.8,179.4L298.9,189.2L293.1,189.5L289.3,184.8L278.9,188.6L280.5,193.3L278.0,196.6L264.7,201.0L259.3,206.8L247.9,207.4L250.6,209.6L246.2,214.6L245.4,208.5L239.9,203.2L241.3,199.4L234.3,199.5L233.2,195.7L251.8,193.6L254.1,186.4L219.2,181.2L228.9,176.9L225.9,168.8L218.2,168.3L204.0,158.5L198.6,159.4L188.0,149.6L185.7,142.0L188.3,138.5L191.7,139.9L191.6,134.4L199.9,134.2L201.6,126.4L209.5,128.1L221.7,124.0L222.7,117.7L229.6,110.2L229.6,102.8L233.4,101.1L232.0,95.7L240.4,92.6L241.3,89.1L250.2,87.1Z"/>
                           <text x="255.3" y="151.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Gandaki</text>
                           <circle class="cov-pulse" cx="255.3" cy="165.5" r="9"/>
                           <circle cx="255.3" cy="165.5" r="3.5" fill="#10B981"/>
                 
                         </g>
-                        <g class="cov-prov is-hq" data-name="Bagmati" onclick="selectProvince('Bagmati')">
+                        <g class="cov-prov" data-name="Bagmati">
                           <path d="M354.2,150.7L356.4,160.7L362.3,164.3L370.6,182.3L378.7,181.6L376.2,170.6L382.4,165.0L385.2,178.4L395.7,183.0L400.9,179.6L403.9,181.5L405.3,193.2L402.6,200.2L393.7,205.8L384.5,218.3L385.6,224.6L383.4,227.2L387.1,226.5L394.5,231.9L389.5,236.7L392.9,237.3L392.3,246.4L386.7,249.5L377.6,243.0L370.8,242.4L367.6,235.8L354.9,230.9L349.3,234.8L341.6,234.4L341.6,232.2L322.5,227.3L317.0,219.7L307.5,219.5L299.4,214.6L285.8,212.9L284.5,218.0L280.4,220.1L269.8,218.1L261.1,209.1L254.1,214.8L248.3,213.8L250.6,209.3L247.9,207.4L259.3,206.8L264.7,201.0L278.0,196.6L280.5,193.3L278.9,188.6L289.3,184.8L293.1,189.5L298.9,189.3L296.8,179.4L300.7,176.5L302.6,168.9L309.3,168.2L309.6,162.4L315.9,153.8L334.3,158.0L342.0,154.2L347.6,156.2L348.0,159.4L354.2,150.7Z"/>
                           <text x="335.5" y="199.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Bagmati</text>
                           <circle class="cov-pulse" cx="335.5" cy="213.9" r="9"/>
                           <circle cx="335.5" cy="213.9" r="5" fill="#1A7EFF"/>
                           <text x="335.5" y="225.9" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="Inter,sans-serif">HQ</text>
                         </g>
-                        <g class="cov-prov" data-name="Madhesh" onclick="selectProvince('Madhesh')">
+                        <g class="cov-prov" data-name="Madhesh">
                           <path d="M286.0,212.8L316.9,219.7L322.5,227.3L341.6,232.2L341.6,234.4L349.3,234.8L354.9,230.9L361.2,232.8L367.6,235.9L370.8,242.4L385.2,247.4L386.7,249.8L384.5,251.5L380.6,249.5L385.8,253.1L394.1,250.1L399.8,251.5L404.3,255.4L402.8,258.1L405.6,258.5L406.2,264.5L421.7,264.8L426.1,259.7L431.3,263.5L430.3,272.8L424.4,280.2L414.7,282.9L391.1,269.7L384.2,271.7L372.9,266.5L362.3,273.0L362.4,270.4L355.5,267.5L355.5,257.8L349.6,252.6L331.7,261.4L324.5,260.3L323.2,252.8L313.2,253.8L315.4,251.6L309.9,249.7L309.6,246.7L290.6,240.9L293.4,229.0L289.4,221.4L281.2,219.5L286.0,212.8Z"/>
                           <text x="359.5" y="249.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Madhesh</text>
                           <circle class="cov-pulse" cx="359.5" cy="263.9" r="9"/>
                           <circle cx="359.5" cy="263.9" r="3.5" fill="#10B981"/>
                 
                         </g>
-                        <g class="cov-prov" data-name="Koshi" onclick="selectProvince('Koshi')">
+                        <g class="cov-prov" data-name="Koshi">
                           <path d="M405.8,169.3L409.0,172.0L415.2,169.7L416.0,174.2L433.1,180.0L440.9,188.8L455.6,186.0L457.5,188.7L464.2,185.7L467.1,189.5L473.8,189.8L480.2,179.9L482.2,182.7L501.8,186.5L492.8,210.6L494.1,221.4L489.4,236.0L498.2,245.0L501.3,259.4L495.9,281.7L491.9,286.8L483.5,278.6L481.2,281.9L477.6,279.7L476.3,283.6L471.0,282.0L466.7,285.7L458.4,281.7L452.6,283.9L451.0,287.9L436.2,281.0L435.0,271.9L425.0,278.5L430.3,272.8L431.5,266.1L426.1,259.7L421.7,264.8L407.6,265.0L404.2,261.1L405.6,258.5L402.8,258.1L404.1,255.1L399.8,251.5L394.1,250.1L386.0,253.2L380.6,249.6L384.5,251.5L393.0,245.4L392.9,237.3L389.5,236.7L394.5,231.9L387.1,226.5L383.4,227.2L385.6,224.6L384.5,218.3L393.7,205.8L403.3,198.9L405.3,193.2L401.8,177.7L405.7,169.2Z"/>
                           <text x="434.7" y="234.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Koshi</text>
                           <circle class="cov-pulse" cx="434.7" cy="248.5" r="9"/>
                           <circle cx="434.7" cy="248.5" r="3.5" fill="#10B981"/>
                 
-                        </g>
-                        <g class="cov-callout" id="covCallout" visibility="hidden">
-                          <line id="covCalloutLine" x1="0" y1="0" x2="0" y2="0"/>
-                          <circle id="covCalloutDot" r="3.2" fill="#10B981"/>
-                          <text id="covCalloutCount"></text>
                         </g>
                       </svg>
         </div>
@@ -1851,47 +1828,24 @@ function navigate(page, section) {
 }
 
 // ── COVERAGE ──
-function selectProvince(name) {
-  document.querySelectorAll('.province-chip[data-province]').forEach(chip => {
-    chip.classList.toggle('is-selected', chip.dataset.province === name);
-  });
-  document.querySelectorAll('.cov-prov').forEach(prov => {
-    prov.classList.toggle('is-selected', prov.dataset.name === name);
-  });
-  const chip = document.querySelector('.province-chip[data-province="' + name + '"]');
-  const count = chip ? chip.dataset.clients : '';
-  const spot = {
-    Sudurpashchim: { x: 74.7, y: 108.1, lx: 2, ly: 78, anchor: 'end' },
-    Karnali: { x: 142.3, y: 103.9, lx: 150, ly: -8, anchor: 'middle' },
-    Lumbini: { x: 176.3, y: 181.5, lx: 8, ly: 210, anchor: 'end' },
-    Gandaki: { x: 255.3, y: 165.5, lx: 248, ly: -6, anchor: 'middle' },
-    Bagmati: { x: 335.5, y: 213.9, lx: 390, ly: 118, anchor: 'start' },
-    Madhesh: { x: 359.5, y: 263.9, lx: 390, ly: 338, anchor: 'start' },
-    Koshi: { x: 434.7, y: 248.5, lx: 548, ly: 230, anchor: 'start' }
-  }[name];
-  const callout = document.getElementById('covCallout');
-  if (!spot || !callout) return;
-  const line = document.getElementById('covCalloutLine');
-  const gap = spot.anchor === 'end' ? 8 : spot.anchor === 'start' ? -8 : 0;
-  const yGap = spot.anchor === 'middle' ? 8 : 0;
-  line.setAttribute('x1', spot.x);
-  line.setAttribute('y1', spot.y);
-  line.setAttribute('x2', spot.lx + gap);
-  line.setAttribute('y2', spot.ly + yGap);
-  const dot = document.getElementById('covCalloutDot');
-  dot.setAttribute('cx', spot.x);
-  dot.setAttribute('cy', spot.y);
-  const label = document.getElementById('covCalloutCount');
-  label.setAttribute('x', spot.lx);
-  label.setAttribute('y', spot.ly);
-  label.setAttribute('text-anchor', spot.anchor);
-  label.textContent = count;
-  callout.removeAttribute('visibility');
+function initCoverageBlink() {
+  const nodes = [...document.querySelectorAll('#coverageMap .cov-prov')];
+  if (!nodes.length) return;
+  let i = 0;
+  const tick = () => {
+    nodes.forEach(n => n.classList.remove('is-lit'));
+    nodes[i].classList.add('is-lit');
+    i = (i + 1) % nodes.length;
+  };
+  tick();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(tick, 1400);
 }
+window.addEventListener('load', initCoverageBlink);
 
 // ── STAT COUNTERS ──
 function animateCounters() {
-  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:450,s:'+'},{id:'s3',t:7,s:'/7'},{id:'s4',t:30,s:'+'}];
+  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:500,s:'+'},{id:'s3',t:7,s:'/7'},{id:'s4',t:30,s:'+'}];
   data.forEach(c => {
     const el = document.getElementById(c.id); if(!el) return;
     let cur=0; const inc=c.t/60;
