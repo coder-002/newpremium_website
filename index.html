@@ -311,6 +311,49 @@ nav .brand-logo { height: 40px; }
 .mockup-row-val { font-size: 11px; font-weight: 600; color: white; }
 .mockup-row-ok { color: var(--emerald); }
 
+.app-stage { position: relative; display: flex; flex-direction: column; align-items: center; }
+.app-stage-glow {
+  position: absolute; width: 260px; height: 260px; border-radius: 50%; top: 12%;
+  background: radial-gradient(circle, rgba(255,180,29,0.42) 0%, rgba(26,126,255,0.16) 48%, transparent 72%);
+  filter: blur(6px); pointer-events: none;
+}
+.app-slides { position: relative; width: min(100%, 360px); height: 470px; }
+.app-slide {
+  position: absolute; inset: 0; margin: 0; opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  pointer-events: none;
+}
+.app-slide.is-active { opacity: 1; transform: none; pointer-events: auto; z-index: 1; }
+.app-slide img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 28px 36px rgba(0,0,0,0.45)); }
+.app-slide.is-active img { animation: hero-float 6s ease-in-out 0.7s infinite; }
+.app-stage-bar {
+  position: relative; display: flex; align-items: center; gap: 0.65rem;
+  margin-top: -0.25rem; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 6px 8px;
+}
+.app-caption { min-width: 148px; text-align: center; }
+.app-caption strong { display: block; color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 700; }
+.app-caption span { color: rgba(255,255,255,0.55); font-size: 0.72rem; }
+.app-nav {
+  width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--gold); color: var(--navy);
+  font-size: 1.15rem; line-height: 1; font-weight: 700; cursor: pointer;
+}
+.app-nav:hover { background: #E6A010; }
+.app-dots { display: flex; gap: 8px; margin-top: 0.85rem; }
+.app-dots button {
+  width: 8px; height: 8px; padding: 0; border: none; border-radius: 99px;
+  background: rgba(255,255,255,0.28); cursor: pointer; transition: width 0.25s ease, background 0.25s ease;
+}
+.app-dots button.is-active { width: 22px; background: var(--gold); }
+@media (max-width: 900px) {
+  .app-slides { height: 400px; width: min(100%, 300px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-slide { transition: none; }
+  .app-slide.is-active img { animation: none; }
+}
+
 /* Feature matrix */
 .feature-matrix { background: var(--surface); }
 .feature-tabs { display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
@@ -1113,26 +1156,24 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <p class="page-hero-desc">Premium Technologies, in collaboration with mBank Technologies Pvt. Ltd. and DevanaSoft Pvt. Ltd., delivers a complete mobile banking and payment solution designed to help cooperatives and financial institutions provide secure, convenient, and anytime-anywhere banking services to their members.</p>
         <p class="page-hero-desc">With digital transformation becoming essential for modern financial services, our mobile banking platform enables institutions to extend their services beyond branches and deliver a faster, smarter, and more connected banking experience.</p>
       </div>
-      <div>
-        <div class="cbs-mockup">
-          <div class="cbs-mockup-bar">
-            <div class="mockup-dot" style="background:#FF5F57;"></div>
-            <div class="mockup-dot" style="background:#FFBD2E;"></div>
-            <div class="mockup-dot" style="background:#27C93F;"></div>
-            <span class="mockup-url">Mobile banking · Member app</span>
-          </div>
-          <div class="cbs-mockup-body">
-            <div class="mockup-header"><div class="mockup-title">Member services</div><div class="mockup-badge">● Live</div></div>
-            <div class="mockup-grid">
-              <div class="mockup-stat"><div class="mockup-stat-val">Balance</div><div class="mockup-stat-lbl">Account inquiry</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">Bills</div><div class="mockup-stat-lbl">Utility payments</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">QR</div><div class="mockup-stat-lbl">Cashless pay</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">ATM</div><div class="mockup-stat-lbl">Cardless cash</div></div>
-            </div>
-            <div class="mockup-row"><span class="mockup-row-label">Wallets</span><span class="mockup-row-val mockup-row-ok">eSewa · Khalti · IME Pay</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">ConnectIPS</span><span class="mockup-row-val mockup-row-ok">✓ Direct bank transfer</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Alerts</span><span class="mockup-row-val">Deposits, loans, transactions</span></div>
-          </div>
+      <div class="app-stage" data-app-slider>
+        <div class="app-stage-glow" aria-hidden="true"></div>
+        <div class="app-slides">
+          <figure class="app-slide is-active" data-name="mBank" data-note="mBank Technologies">
+            <img src="mBank.png" alt="mBank app on a phone">
+          </figure>
+          <figure class="app-slide" data-name="SMART" data-note="DevanaSoft">
+            <img src="smart.png" alt="SMART digital banking app on a phone">
+          </figure>
+        </div>
+        <div class="app-stage-bar">
+          <button type="button" class="app-nav" data-dir="-1" aria-label="Previous app">‹</button>
+          <div class="app-caption"><strong>mBank</strong><span>mBank Technologies</span></div>
+          <button type="button" class="app-nav" data-dir="1" aria-label="Next app">›</button>
+        </div>
+        <div class="app-dots">
+          <button type="button" class="is-active" aria-label="Show mBank"></button>
+          <button type="button" aria-label="Show SMART"></button>
         </div>
       </div>
     </div>
@@ -1833,8 +1874,40 @@ function initCoverageBlink() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   setInterval(tick, 1400);
 }
+function initAppSlider() {
+  const root = document.querySelector('[data-app-slider]');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+  const slides = [...root.querySelectorAll('.app-slide')];
+  const dots = [...root.querySelectorAll('.app-dots button')];
+  const title = root.querySelector('.app-caption strong');
+  const note = root.querySelector('.app-caption span');
+  let index = 0;
+  const show = (n) => {
+    index = (n + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const on = i === index;
+      slide.classList.toggle('is-active', on);
+      slide.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    const current = slides[index];
+    title.textContent = current.getAttribute('data-name');
+    note.textContent = current.getAttribute('data-note');
+  };
+  show(0);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(() => show(index + 1), 3500);
+  root.querySelectorAll('.app-nav').forEach(btn => {
+    btn.addEventListener('click', () => show(index + Number(btn.dataset.dir)));
+  });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+}
+
 window.addEventListener('load', initCoverageBlink);
 window.addEventListener('load', typeEyebrow);
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAppSlider);
+else initAppSlider();
 
 // ── STAT COUNTERS ──
 function animateCounters() {
