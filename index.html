@@ -8,9 +8,9 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #0A2540; --navy-mid: #0E3260; --blue: #1A7EFF; --blue-light: #3D9BFF;
+  --navy: #061A5F; --navy-mid: #0C2780; --blue: #1A7EFF; --blue-light: #3D9BFF;
   --emerald: #10B981; --surface: #F7F9FC; --surface2: #EEF2F8;
-  --text: #111827; --muted: #6B7280; --border: #E2E8F0; --white: #fff; --gold: #F59E0B;
+  --text: #111827; --muted: #6B7280; --border: #E2E8F0; --white: #fff; --gold: #FFB41D;
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
@@ -65,12 +65,12 @@ nav .brand-logo { height: 40px; }
 .nav-toggle span { display: block; height: 2px; background: white; border-radius: 2px; }
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 .nav-cta {
-  background: var(--blue); color: white; padding: 9px 20px;
+  background: var(--gold); color: var(--navy); padding: 9px 20px;
   border-radius: 8px; font-size: 14px; font-weight: 600;
   text-decoration: none; cursor: pointer; border: none;
   transition: background 0.2s; white-space: nowrap;
 }
-.nav-cta:hover { background: var(--blue-light); }
+.nav-cta:hover { background: #E6A010; }
 
 /* SHARED */
 .section { padding: 6rem 2rem; }
@@ -79,12 +79,12 @@ nav .brand-logo { height: 40px; }
 .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -1px; line-height: 1.15; margin-bottom: 1rem; }
 .section-desc { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 560px; }
 .btn-primary {
-  background: var(--blue); color: white; padding: 14px 28px; border-radius: 10px;
+  background: var(--gold); color: var(--navy); padding: 14px 28px; border-radius: 10px;
   font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex;
   align-items: center; gap: 8px; cursor: pointer; border: none;
-  transition: all 0.2s; box-shadow: 0 4px 20px rgba(26,126,255,0.35);
+  transition: all 0.2s; box-shadow: 0 4px 20px rgba(255,180,29,0.35);
 }
-.btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+.btn-primary:hover { background: #E6A010; transform: translateY(-1px); }
 .btn-ghost {
   background: transparent; color: white; padding: 14px 28px; border-radius: 10px;
   font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex;
@@ -177,13 +177,14 @@ nav .brand-logo { height: 40px; }
 .product-card:hover { border-color: rgba(26,126,255,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(10,37,64,0.1); }
 .product-card:hover::before { transform: scaleX(1); }
 .product-card.featured { grid-column: span 2; background: var(--navy); border-color: transparent; }
+.product-card.featured::before { transform: scaleX(1); background: var(--gold); height: 4px; }
 .product-card.featured .product-desc { color: rgba(255,255,255,0.6); }
 .product-card.featured .product-title { color: white; }
 .product-card.featured .product-feature-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
 .product-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 1.25rem; }
 .product-icon svg { width: 26px; height: 26px; display: block; }
 .product-card.featured .product-icon { background: rgba(26,126,255,0.2); }
-.product-card.featured .product-icon.product-icon-logo { width: fit-content; height: auto; display: inline-flex; background: transparent; padding: 0; }
+.product-card.featured .product-icon.product-icon-logo { width: fit-content; height: auto; display: inline-flex; background: transparent; padding: 0; border-radius: 0; }
 .product-icon-logo .product-logo { height: 46px; width: auto; display: block; }
 .product-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem; }
 .product-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1.25rem; }
@@ -193,10 +194,10 @@ nav .brand-logo { height: 40px; }
 .product-card.featured .product-link { color: var(--blue-light); }
 .product-card-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .product-demo {
-  background: var(--blue); color: white; border: none; border-radius: 8px;
+  background: var(--gold); color: var(--navy); border: none; border-radius: 8px;
   padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
 }
-.product-demo:hover { background: var(--blue-light); }
+.product-demo:hover { background: #E6A010; }
 
 /* Why section */
 .why-section { background: white; }
@@ -280,11 +281,12 @@ nav .brand-logo { height: 40px; }
 .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 80% 40%, rgba(26,126,255,0.14) 0%, transparent 65%); }
 .page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
 .page-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
-.cbs-hero-logo { height: 64px; width: auto; display: block; margin-bottom: 1.4rem; }
+.cbs-hero-logo { height: 56px; width: auto; display: block; margin-bottom: 1.4rem; background: transparent; }
 .cbs-detail-shot { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35)); }
 .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.25rem; font-size: 12px; font-weight: 600; color: var(--emerald); }
 .page-hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 800; color: white; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.25rem; }
 .page-hero-desc { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+.page-hero-desc + .page-hero-desc { margin-top: -1.15rem; }
 .page-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 /* CBS UI mockup */
@@ -320,6 +322,9 @@ nav .brand-logo { height: 40px; }
 .feature-item-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; }
 .feature-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
 .feature-item-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.feature-list { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+.feature-list li { margin-bottom: 0.2rem; }
+.page-hero-lead { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; color: rgba(255,255,255,0.92); font-size: 1.15rem; line-height: 1.45; margin: -0.35rem 0 1.15rem; }
 .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
 
 /* Architecture */
@@ -665,8 +670,8 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <div class="product-card" onclick="navigate('mobile')">
           <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></div>
           <div class="product-title">Mobile Banking</div>
-          <div class="product-desc">The representative's phone records deposits, loans, and fees on the visit, prints the deposit slip on a POS, and syncs to Premium CBS over office Wi-Fi — no collection sheet, Excel export, or USB.</div>
-          <div class="product-features"><span class="product-feature-tag">Deposit Collections</span><span class="product-feature-tag">Loan Collections</span><span class="product-feature-tag">POS Slip</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <div class="product-desc">A complete mobile banking and payment solution, built with mBank Technologies and DevanaSoft, so members can check accounts, pay bills, transfer funds, and pay by QR anytime.</div>
+          <div class="product-features"><span class="product-feature-tag">Account Access</span><span class="product-feature-tag">Utility Payments</span><span class="product-feature-tag">QR Payments</span><span class="product-feature-tag">Cardless ATM</span></div>
           <span class="product-link">Explore Mobile Banking →</span>
         </div>
         <div class="product-card" onclick="navigate('atm')">
@@ -877,8 +882,8 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <div class="product-card" onclick="navigate('mobile')">
           <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></div>
           <div class="product-title">Mobile Banking</div>
-          <div class="product-desc">Field staff post deposits, loans, and fees on the phone and print the slip on the spot. Collections sync to CBS over Wi-Fi.</div>
-          <div class="product-features"><span class="product-feature-tag">Deposit Collections</span><span class="product-feature-tag">POS Slip</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <div class="product-desc">Secure mobile banking and payments for members: balances, bills, wallets, QR, and cardless ATM withdrawals.</div>
+          <div class="product-features"><span class="product-feature-tag">Account Access</span><span class="product-feature-tag">Utility Payments</span><span class="product-feature-tag">QR Payments</span></div>
           <span class="product-link">Explore Mobile Banking →</span>
         </div>
         <div class="product-card" onclick="navigate('atm')">
@@ -1068,7 +1073,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
       <h2 class="section-title">Connects with the tools<br>your institution already uses.</h2>
       <div class="integrations-grid">
         <div class="integration-chip"><div class="integration-icon">🏧</div><div class="integration-name">SCT ATM Network</div><div class="integration-type">Card switching</div></div>
-        <div class="integration-chip"><div class="integration-icon">📱</div><div class="integration-name">Mobile Banking</div><div class="integration-type">Field collection</div></div>
+        <div class="integration-chip"><div class="integration-icon">📱</div><div class="integration-name">Mobile Banking</div><div class="integration-type">Member payments</div></div>
         <div class="integration-chip"><div class="integration-icon">💬</div><div class="integration-name">SMS Gateway</div><div class="integration-type">Alert delivery</div></div>
         <div class="integration-chip"><div class="integration-icon">📋</div><div class="integration-name">Tablet Banking</div><div class="integration-type">Field collection</div></div>
         <div class="integration-chip"><div class="integration-icon">🖨️</div><div class="integration-name">Passbook Printer</div><div class="integration-type">Branch hardware</div></div>
@@ -1102,9 +1107,11 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     <div class="page-hero-grid"></div>
     <div class="page-hero-inner">
       <div>
-        <div class="page-hero-badge">📱 Field collection · POS slip · Wi-Fi sync</div>
-        <h1 class="page-hero-title">Mobile Banking<br>for the representative on the route.</h1>
-        <p class="page-hero-desc">Collections used to live on a sheet until the marketing representative got back to the office. Posting then risked a wrong account number, a wrong amount, a slow queue, a lost sheet, and an irregular record. A mobile app that only copies the sheet is not enough. This one records the collection in a simple way, posts it so it is harder to miss, and prints the deposit slip on the spot — reliable for the institution and for the member.</p>
+        <div class="page-hero-badge">📱 mBank Technologies · DevanaSoft</div>
+        <h1 class="page-hero-title">Mobile Banking</h1>
+        <p class="page-hero-lead">Empowering Financial Institutions with Smart &amp; Seamless Digital Banking Experiences</p>
+        <p class="page-hero-desc">Premium Technologies, in collaboration with mBank Technologies Pvt. Ltd. and DevanaSoft Pvt. Ltd., delivers a complete mobile banking and payment solution designed to help cooperatives and financial institutions provide secure, convenient, and anytime-anywhere banking services to their members.</p>
+        <p class="page-hero-desc">With digital transformation becoming essential for modern financial services, our mobile banking platform enables institutions to extend their services beyond branches and deliver a faster, smarter, and more connected banking experience.</p>
       </div>
       <div>
         <div class="cbs-mockup">
@@ -1112,19 +1119,19 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
             <div class="mockup-dot" style="background:#FF5F57;"></div>
             <div class="mockup-dot" style="background:#FFBD2E;"></div>
             <div class="mockup-dot" style="background:#27C93F;"></div>
-            <span class="mockup-url">Collector app · Today's route</span>
+            <span class="mockup-url">Mobile banking · Member app</span>
           </div>
           <div class="cbs-mockup-body">
-            <div class="mockup-header"><div class="mockup-title">Member collection</div><div class="mockup-badge">● Posting</div></div>
+            <div class="mockup-header"><div class="mockup-title">Member services</div><div class="mockup-badge">● Live</div></div>
             <div class="mockup-grid">
-              <div class="mockup-stat"><div class="mockup-stat-val">Deposit</div><div class="mockup-stat-lbl">Savings product</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">Loan</div><div class="mockup-stat-lbl">Installment</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">Fee</div><div class="mockup-stat-lbl">Collected</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">POS</div><div class="mockup-stat-lbl">Slip ready</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Balance</div><div class="mockup-stat-lbl">Account inquiry</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Bills</div><div class="mockup-stat-lbl">Utility payments</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">QR</div><div class="mockup-stat-lbl">Cashless pay</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">ATM</div><div class="mockup-stat-lbl">Cardless cash</div></div>
             </div>
-            <div class="mockup-row"><span class="mockup-row-label">Account</span><span class="mockup-row-val mockup-row-ok">✓ Selected, not typed</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Deposit slip</span><span class="mockup-row-val mockup-row-ok">✓ Printed on POS</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Sync</span><span class="mockup-row-val">Office Wi-Fi</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Wallets</span><span class="mockup-row-val mockup-row-ok">eSewa · Khalti · IME Pay</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">ConnectIPS</span><span class="mockup-row-val mockup-row-ok">✓ Direct bank transfer</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Alerts</span><span class="mockup-row-val">Deposits, loans, transactions</span></div>
           </div>
         </div>
       </div>
@@ -1133,27 +1140,15 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
 
   <section class="section feature-matrix">
     <div class="section-inner">
-      <div class="section-eyebrow">Features</div>
-      <h2 class="section-title">The collection is posted<br>before the representative leaves.</h2>
+      <div class="section-eyebrow">Key Features</div>
+      <h2 class="section-title">Banking that reaches members<br>beyond the branch.</h2>
       <div class="feature-grid">
-        <div class="feature-item"><div class="feature-item-icon">💵</div><div class="feature-item-title">Deposit collections</div><div class="feature-item-desc">The representative posts the deposit on the phone against the member's account. The figure is not copied from a sheet later, which is where account numbers and amounts usually go wrong.</div></div>
-        <div class="feature-item"><div class="feature-item-icon">📘</div><div class="feature-item-title">Deposit and loan product information</div><div class="feature-item-desc">Deposit and loan products from the institution are on the phone, so the collector picks the product the member actually holds instead of writing a name from memory.</div></div>
-        <div class="feature-item"><div class="feature-item-icon">📋</div><div class="feature-item-title">Loan collections</div><div class="feature-item-desc">Loan installments are collected and posted on the visit. The repayment does not wait in a bag of sheets until the office has time to enter it.</div></div>
-        <div class="feature-item"><div class="feature-item-icon">🧾</div><div class="feature-item-title">Fee collections</div><div class="feature-item-desc">Fees follow the same screen as deposits and loans, so they are recorded with the visit and not dropped when the sheet is rewritten.</div></div>
-        <div class="feature-item"><div class="feature-item-icon">📶</div><div class="feature-item-title">Sync directly over Wi-Fi</div><div class="feature-item-desc">At the office the phone syncs straight into Premium CBS over Wi-Fi. There is no Excel file to export and no USB cable to a computer.</div></div>
-        <div class="feature-item"><div class="feature-item-icon">🖨️</div><div class="feature-item-title">Bill printing from a POS</div><div class="feature-item-desc">A POS device prints the deposit slip as the transaction is posted. The member holds the slip, and the institution holds the posted entry.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section arch-section">
-    <div class="section-inner">
-      <div class="section-eyebrow">How it works</div>
-      <h2 class="section-title">Record it once. The member sees the slip.</h2>
-      <div class="why-points" style="margin-top:2rem;max-width:720px;">
-        <div class="why-point"><div class="why-check">1</div><div><div class="why-point-title">Select the member and the product</div><div class="why-point-desc">The representative opens the account and the deposit, loan, or fee product on the phone. Nothing is written on a collection sheet to be interpreted later.</div></div></div>
-        <div class="why-point"><div class="why-check">2</div><div><div class="why-point-title">Post and print together</div><div class="why-point-desc">The amount is posted in front of the member and the POS prints the deposit slip immediately. Both sides can see that the account and the amount match.</div></div></div>
-        <div class="why-point"><div class="why-check">3</div><div><div class="why-point-title">Sync on the office Wi-Fi</div><div class="why-point-desc">The day's collections move into Premium CBS over Wi-Fi. Staff do not export a spreadsheet or join a USB stick to a computer.</div></div></div>
+        <div class="feature-item"><div class="feature-item-icon">👤</div><div class="feature-item-title">Account Access &amp; Inquiry</div><ul class="feature-list feature-item-desc"><li>Balance &amp; Account Statement</li><li>Loan Due &amp; Loan Statement</li><li>Cheque Book Request</li><li>Balance Transfer</li></ul></div>
+        <div class="feature-item"><div class="feature-item-icon">💡</div><div class="feature-item-title">Digital Payments &amp; Utility Services</div><ul class="feature-list feature-item-desc"><li>NTC &amp; Ncell Recharge / Bill Payments</li><li>Electricity &amp; Drinking Water Payments</li><li>Insurance Premium Payments</li><li>DishHome / Sim TV Recharge</li><li>Flight, Internet, Movie &amp; Hotel Booking Services</li></ul></div>
+        <div class="feature-item"><div class="feature-item-icon">👛</div><div class="feature-item-title">Wallet &amp; Fund Transfer Integration</div><ul class="feature-list feature-item-desc"><li>Wallet Loading (eSewa, Khalti, IME Pay, PrabhuPay &amp; more)</li><li>ConnectIPS Direct Bank Transfer</li><li>Inter-bank Fund Transfer Services</li></ul></div>
+        <div class="feature-item"><div class="feature-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1A7EFF" stroke-width="1.75"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3.5v3.5H14zM18 18h3v3h-3z"/></svg></div><div class="feature-item-title">QR Payment Solution</div><ul class="feature-list feature-item-desc"><li>Secure QR-based Payments</li><li>Digital Payment Acceptance</li><li>Fast &amp; Cashless Transactions</li></ul></div>
+        <div class="feature-item"><div class="feature-item-icon">🏧</div><div class="feature-item-title">Cardless ATM Banking</div><ul class="feature-list feature-item-desc"><li>Cardless Cash Withdrawal</li><li>Secure OTP-Based ATM Transactions</li></ul></div>
+        <div class="feature-item"><div class="feature-item-icon">🔔</div><div class="feature-item-title">Alerts &amp; Notifications</div><ul class="feature-list feature-item-desc"><li>Deposit &amp; Withdrawal Alerts</li><li>Loan Due Notifications</li><li>Transaction Updates</li><li>Personalized Messages &amp; Announcements</li></ul></div>
       </div>
     </div>
   </section>
