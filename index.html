@@ -133,18 +133,30 @@ nav {
 .hero-lead { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.02rem, 1.35vw, 1.2rem); font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.45; margin-bottom: 1rem; max-width: 540px; }
 .hero-desc { color: rgba(255,255,255,0.6); font-size: 0.98rem; line-height: 1.7; margin-bottom: 2rem; max-width: 540px; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-.hero-visual { display: flex; align-items: center; justify-content: center; }
-.hero-shot { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35)); }
+.hero-visual { display: flex; align-items: center; justify-content: center; animation: hero-zoom-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.35s both; }
+.hero-shot { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35)); animation: hero-float 6s ease-in-out 2.25s infinite; }
+.hero-eyebrow, .hero-title, .hero-lead, .hero-desc, .hero-actions { animation: hero-rise 0.7s ease both; }
+.hero-eyebrow { animation-delay: 0.05s; }
+.hero-title { animation-delay: 0.16s; }
+.hero-lead { animation-delay: 0.3s; }
+.hero-desc { animation-delay: 0.42s; }
+.hero-actions { animation-delay: 0.54s; }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hero-zoom-in { from { opacity: 0; transform: scale(0.72); } to { opacity: 1; transform: scale(1); } }
+@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-title, .hero-lead, .hero-desc, .hero-actions, .hero-visual, .hero-shot { animation: none; }
+}
 
 /* Stats bar */
 .stats-bar { background: white; border-bottom: 1px solid var(--border); }
-.stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); }
+.stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
 .stat-item { padding: 2.5rem 2rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .stat-item:last-child { border-right: none; }
 .stat-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -2px; }
 .stat-number .plus { color: var(--blue); }
 .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; text-align: center; }
-.stat-sublabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--emerald); letter-spacing: 1px; text-transform: uppercase; }
+.stat-sublabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--emerald); letter-spacing: 0.3px; text-transform: uppercase; }
 
 /* Products overview */
 .products-section { background: var(--surface); }
@@ -534,7 +546,9 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
   .province-chip.all { grid-column: span 2; }
   .nepal-map-wrap { display: none; }
   .feature-panel.active { grid-template-columns: 1fr; }
-  .stats-inner { grid-template-columns: repeat(3,1fr); }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
   .timeline::before { left: 20px; }
   .timeline-item { grid-template-columns: 40px 1fr; }
   .timeline-content-left { display: none; }
@@ -609,11 +623,12 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     </div>
   </section>
 
-  <div class="stats-bar">
+  <div class="stats-bar" id="stats">
     <div class="stats-inner">
-      <div class="stat-item"><div class="stat-number" id="s1">12<span class="plus">+</span></div><div class="stat-label">Years of Industry Experience</div><div class="stat-sublabel">Est. 2015 · Kathmandu</div></div>
-      <div class="stat-item"><div class="stat-number" id="s2">450<span class="plus">+</span></div><div class="stat-label">Institutions Served Nationwide</div><div class="stat-sublabel">Cooperatives · MFIs · Credit Unions</div></div>
-      <div class="stat-item"><div class="stat-number" id="s3">7<span class="plus">/7</span></div><div class="stat-label">Provinces Covered</div><div class="stat-sublabel">Full nationwide coverage</div></div>
+      <div class="stat-item"><div class="stat-number" id="s1">12<span class="plus">+</span></div><div class="stat-label">Years of Experience</div><div class="stat-sublabel">Est. 2015 · Kathmandu</div></div>
+      <div class="stat-item"><div class="stat-number" id="s2">450<span class="plus">+</span></div><div class="stat-label">Clients</div><div class="stat-sublabel">Cooperatives · Microfinance · BFIs</div></div>
+      <div class="stat-item"><div class="stat-number" id="s3">7<span class="plus">/7</span></div><div class="stat-label">Provinces Covered</div><div class="stat-sublabel">Nationwide coverage</div></div>
+      <div class="stat-item"><div class="stat-number" id="s4">30<span class="plus">+</span></div><div class="stat-label">Expert Team</div><div class="stat-sublabel">Specialists on the ground</div></div>
     </div>
   </div>
 
@@ -627,7 +642,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <div class="product-card featured" onclick="navigate('cbs')">
           <div class="product-icon">🏦</div>
           <div class="product-title">Premium CBS — Core Banking System</div>
-          <div class="product-desc">The backbone of your institution. A fully integrated, multi-branch core banking platform purpose-built for Nepal's cooperatives and microfinances. NRB-compliant, real-time, and built to handle deposits, loans, GL, and MIS reporting.</div>
+          <div class="product-desc">Premium CBS is an advanced cloud-ready Core Banking Solution designed to help cooperatives, microfinance institutions, and financial organizations simplify operations, improve efficiency, and deliver better digital banking experiences.<br><br>Built with the latest technology frameworks, Premium CBS provides high performance, enhanced security, scalability, and long-term sustainability to support the evolving needs of modern financial institutions.</div>
           <div class="product-features">
             <span class="product-feature-tag">Multi-Branch</span><span class="product-feature-tag">Deposit & Savings</span><span class="product-feature-tag">Loan & EMI</span><span class="product-feature-tag">Share Management</span><span class="product-feature-tag">NRB Reports</span><span class="product-feature-tag">GL & Accounting</span><span class="product-feature-tag">Member KYC</span><span class="product-feature-tag">Audit Trail</span>
           </div>
@@ -1735,9 +1750,10 @@ const TRANSLATIONS = {
     'hero-lead': 'Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology',
     'hero-desc': 'Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations',
     'hero-demo': 'Schedule a Demo →', 'hero-products': 'View Products',
-    'stat1-label': 'Years of Industry Experience', 'stat1-sub': 'Est. 2015 · Kathmandu',
-    'stat2-label': 'Institutions Served Nationwide', 'stat2-sub': 'Cooperatives · MFIs · Credit Unions',
-    'stat3-label': 'Provinces Covered', 'stat3-sub': 'Full nationwide coverage',
+    'stat1-label': 'Years of Experience', 'stat1-sub': 'Est. 2015 · Kathmandu',
+    'stat2-label': 'Clients', 'stat2-sub': 'Cooperatives · Microfinance · BFIs',
+    'stat3-label': 'Provinces Covered', 'stat3-sub': 'Nationwide coverage',
+    'stat4-label': 'Expert Team', 'stat4-sub': 'Specialists on the ground',
     'cta-title': 'Ready to modernize your institution?',
     'cta-desc': 'Join 450+ cooperatives and microfinances across Nepal who have upgraded to Premium CBS.',
     'cta-demo': 'Schedule a Free Demo', 'cta-phone': '📞 +977 9801-130700',
@@ -1748,9 +1764,10 @@ const TRANSLATIONS = {
     'hero-title': "नेपालका वित्तीय<br><span class='accent'>संस्थाहरूको लागि</span><br>निर्मित ब्याङ्किङ प्रणाली।",
     'hero-desc': 'प्रिमियम टेक्नोलोजीजले सहकारी, लघुवित्त र क्रेडिट युनियनहरूलाई सबै ७ प्रदेशमा सञ्चालन गर्दछ।',
     'hero-demo': 'डेमो तालिका गर्नुहोस् →', 'hero-products': 'उत्पादनहरू हेर्नुहोस्',
-    'stat1-label': 'वर्षको उद्योग अनुभव', 'stat1-sub': 'स्थापना २०१२ · काठमाडौं',
-    'stat2-label': 'देशभर सेवा गरिएका संस्थाहरू', 'stat2-sub': 'सहकारी · लघुवित्त · क्रेडिट युनियन',
-    'stat3-label': 'प्रदेशहरू समेटिएका', 'stat3-sub': 'पूर्ण राष्ट्रव्यापी कवरेज',
+    'stat1-label': 'वर्षको अनुभव', 'stat1-sub': 'स्थापना २०१५ · काठमाडौं',
+    'stat2-label': 'ग्राहकहरू', 'stat2-sub': 'सहकारी · लघुवित्त · BFI',
+    'stat3-label': 'प्रदेश समेटिएका', 'stat3-sub': 'राष्ट्रव्यापी कवरेज',
+    'stat4-label': 'विशेषज्ञ टोली', 'stat4-sub': 'मैदानमा विशेषज्ञहरू',
     'cta-title': 'आफ्नो संस्था आधुनिकीकरण गर्न तयार हुनुहुन्छ?',
     'cta-desc': 'नेपालभरका ५००+ सहकारी र लघुवित्तहरूसँग सामेल हुनुहोस् जसले Premium CBS मा अपग्रेड गरेका छन्।',
     'cta-demo': 'नि:शुल्क डेमो तालिका गर्नुहोस्', 'cta-phone': '📞 +977 9801-130700',
@@ -1827,7 +1844,7 @@ function navigate(page, section) {
 
 // ── STAT COUNTERS ──
 function animateCounters() {
-  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:450,s:'+'},{id:'s3',t:7,s:'/7'}];
+  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:450,s:'+'},{id:'s3',t:7,s:'/7'},{id:'s4',t:30,s:'+'}];
   data.forEach(c => {
     const el = document.getElementById(c.id); if(!el) return;
     let cur=0; const inc=c.t/60;
