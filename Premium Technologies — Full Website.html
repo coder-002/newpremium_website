@@ -128,9 +128,10 @@ nav {
 }
 .hero-eyebrow .pulse { width: 6px; height: 6px; background: var(--emerald); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 800; color: white; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+.hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.85rem, 2.6vw, 2.45rem); font-weight: 800; color: white; line-height: 1.15; letter-spacing: -0.6px; margin-bottom: 0.9rem; }
 .hero-title .accent { color: var(--blue-light); }
-.hero-desc { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; }
+.hero-lead { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.02rem, 1.35vw, 1.2rem); font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.45; margin-bottom: 1rem; max-width: 540px; }
+.hero-desc { color: rgba(255,255,255,0.6); font-size: 0.98rem; line-height: 1.7; margin-bottom: 2rem; max-width: 540px; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .hero-visual { display: flex; align-items: center; justify-content: center; }
 .hero-shot { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35)); }
@@ -594,8 +595,9 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     <div class="hero-inner">
       <div>
         <div class="hero-eyebrow"><span class="pulse"></span>Nepal's Trusted CBS Provider</div>
-        <h1 class="hero-title">The Banking OS<br><span class="accent">Built for Nepal's</span><br>Financial Institutions.</h1>
-        <p class="hero-desc">Premium Technologies powers cooperatives, microfinances, and credit unions across all 7 provinces — with a complete suite of core banking, mobile, ATM, and digital channel solutions.</p>
+        <h1 class="hero-title">Transforming Financial Institutions Through Smart Digital Banking Solutions</h1>
+        <p class="hero-lead">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology</p>
+        <p class="hero-desc">Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations</p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="navigate('contact')">Schedule a Demo →</button>
           <button class="btn-ghost" onclick="navigate('products')">View Products</button>
@@ -1729,8 +1731,9 @@ const TRANSLATIONS = {
   en: {
     'nav-home': 'Home', 'nav-products': "Products <span class='nav-caret'>▾</span>", 'nav-cbs': 'Premium CBS', 'nav-about': 'About Us', 'nav-contact': 'Contact',
     'hero-eyebrow': "Nepal's Trusted CBS Provider",
-    'hero-title': "The Banking OS<br><span class='accent'>Built for Nepal's</span><br>Financial Institutions.",
-    'hero-desc': "Premium Technologies powers cooperatives, microfinances, and credit unions across all 7 provinces — with a complete suite of core banking, mobile, ATM, and digital channel solutions.",
+    'hero-title': 'Transforming Financial Institutions Through Smart Digital Banking Solutions',
+    'hero-lead': 'Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology',
+    'hero-desc': 'Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations',
     'hero-demo': 'Schedule a Demo →', 'hero-products': 'View Products',
     'stat1-label': 'Years of Industry Experience', 'stat1-sub': 'Est. 2015 · Kathmandu',
     'stat2-label': 'Institutions Served Nationwide', 'stat2-sub': 'Cooperatives · MFIs · Credit Unions',
