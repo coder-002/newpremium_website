@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Premium Technologies Pvt. Ltd. — Core Banking System Nepal</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Tiro+Devanagari+Nepali:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0A2540; --navy-mid: #0E3260; --blue: #1A7EFF; --blue-light: #3D9BFF;
+  --emerald: #10B981; --surface: #F7F9FC; --surface2: #EEF2F8;
+  --text: #111827; --muted: #6B7280; --border: #E2E8F0; --white: #fff; --gold: #F59E0B;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,37,64,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 2rem; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
+.nav-logo-mark {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue), #0A56C8);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: white; font-size: 16px;
+}
+.nav-logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 15px; line-height: 1.2; }
+.nav-logo-sub { font-size: 10px; color: rgba(255,255,255,0.45); font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500;
+  padding: 6px 14px; border-radius: 6px; transition: all 0.2s; cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: white; background: rgba(255,255,255,0.08); }
+.nav-item { position: relative; }
+.nav-caret { font-size: 9px; margin-left: 4px; opacity: 0.7; }
+.nav-dropdown {
+  display: none; position: absolute; top: 100%; left: 0; min-width: 230px;
+  padding-top: 10px; list-style: none; z-index: 120;
+}
+.nav-dropdown::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 10px; }
+.nav-dropdown-panel {
+  background: #0E3260; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 0.4rem; box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+.nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown, .nav-item.open .nav-dropdown { display: block; }
+.nav-dropdown a { display: block; white-space: nowrap; }
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px; padding: 10px; cursor: pointer;
+  background: transparent; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+}
+.nav-toggle span { display: block; height: 2px; background: white; border-radius: 2px; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-cta {
+  background: var(--blue); color: white; padding: 9px 20px;
+  border-radius: 8px; font-size: 14px; font-weight: 600;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: background 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--blue-light); }
+
+/* SHARED */
+.section { padding: 6rem 2rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -1px; line-height: 1.15; margin-bottom: 1rem; }
+.section-desc { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+.btn-primary {
+  background: var(--blue); color: white; padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex;
+  align-items: center; gap: 8px; cursor: pointer; border: none;
+  transition: all 0.2s; box-shadow: 0 4px 20px rgba(26,126,255,0.35);
+}
+.btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: white; padding: 14px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex;
+  align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+.btn-outline {
+  background: transparent; color: var(--blue); padding: 13px 28px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+  border: 2px solid var(--blue); cursor: pointer; transition: all 0.2s; text-decoration: none;
+}
+.btn-outline:hover { background: var(--blue); color: white; }
+
+/* ── PAGE: HOME ── */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 68px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,126,255,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(16,185,129,0.07) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  position: relative; z-index: 2; width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(26,126,255,0.15); border: 1px solid rgba(26,126,255,0.3);
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue-light);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.hero-eyebrow .pulse { width: 6px; height: 6px; background: var(--emerald); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 800; color: white; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.5rem; }
+.hero-title .accent { color: var(--blue-light); }
+.hero-desc { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-visual { display: flex; align-items: center; justify-content: center; }
+.hero-map { width: 100%; max-width: 520px; }
+.hero-map-frame { background: none; border: none; padding: 0; }
+.hero-prov path { fill: rgba(26,126,255,0.28); stroke: rgba(186,220,255,0.75); stroke-width: 1.15; stroke-linejoin: round; transition: fill 0.45s, stroke 0.45s; }
+.hero-prov.is-hq path { fill: rgba(26,126,255,0.42); }
+.hero-prov.is-active path { fill: rgba(61,155,255,0.92); stroke: #fff; stroke-width: 1.6; }
+.hero-prov.is-hq.is-active path { fill: #1A7EFF; }
+.hero-link { stroke: rgba(61,155,255,0.4); stroke-width: 1.4; stroke-dasharray: 5 7; animation: hero-dash 2.2s linear infinite; }
+@keyframes hero-dash { to { stroke-dashoffset: -48; } }
+.hero-pulse { fill: none; stroke: #10B981; stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.hero-prov.is-active .hero-pulse { animation: hero-ping 1.5s ease-out infinite; }
+@keyframes hero-ping { 0% { opacity: 0.8; transform: scale(0.45); } 100% { opacity: 0; transform: scale(2.2); } }
+.hero-map-status { display: flex; align-items: center; gap: 8px; margin-top: 0.7rem; color: white; font-family: 'Plus Jakarta Sans', sans-serif; }
+.hero-map-live { width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; flex-shrink: 0; }
+.hero-map-name { font-weight: 700; font-size: 14px; }
+.hero-map-sub { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px; color: rgba(255,255,255,0.45); text-transform: uppercase; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-link { animation: none; }
+  .hero-prov.is-active .hero-pulse { animation: none; opacity: 0.5; }
+}
+
+/* Stats bar */
+.stats-bar { background: white; border-bottom: 1px solid var(--border); }
+.stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); }
+.stat-item { padding: 2.5rem 2rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.stat-item:last-child { border-right: none; }
+.stat-number { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3rem; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -2px; }
+.stat-number .plus { color: var(--blue); }
+.stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; text-align: center; }
+.stat-sublabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--emerald); letter-spacing: 1px; text-transform: uppercase; }
+
+/* Products overview */
+.products-section { background: var(--surface); }
+.products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
+.products-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.product-card {
+  background: white; border-radius: 16px; border: 1px solid var(--border);
+  padding: 2rem; transition: all 0.25s; position: relative; overflow: hidden; cursor: pointer;
+}
+.product-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,var(--blue),var(--blue-light)); transform:scaleX(0); transform-origin:left; transition: transform 0.3s; }
+.product-card:hover { border-color: rgba(26,126,255,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(10,37,64,0.1); }
+.product-card:hover::before { transform: scaleX(1); }
+.product-card.featured { grid-column: span 2; background: var(--navy); border-color: transparent; }
+.product-card.featured .product-desc { color: rgba(255,255,255,0.6); }
+.product-card.featured .product-title { color: white; }
+.product-card.featured .product-feature-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+.product-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 1.25rem; }
+.product-card.featured .product-icon { background: rgba(26,126,255,0.2); }
+.product-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem; }
+.product-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1.25rem; }
+.product-features { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.product-feature-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px; background: var(--surface2); color: var(--muted); }
+.product-link { font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.product-card.featured .product-link { color: var(--blue-light); }
+.product-card-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.product-demo {
+  background: var(--blue); color: white; border: none; border-radius: 8px;
+  padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.product-demo:hover { background: var(--blue-light); }
+
+/* Why section */
+.why-section { background: white; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.why-visual { background: var(--navy); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden; }
+.why-visual-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(26,126,255,0.15) 0%, transparent 60%); }
+.why-pillars { display: flex; flex-direction: column; gap: 1rem; position: relative; }
+.pillar-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+.pillar-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.pillar-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 0.95rem; margin-bottom: 3px; }
+.pillar-desc { color: rgba(255,255,255,0.55); font-size: 0.82rem; line-height: 1.5; }
+.why-points { display: flex; flex-direction: column; gap: 1.75rem; }
+.why-point { display: flex; gap: 1rem; align-items: flex-start; }
+.why-check { width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0; background: rgba(16,185,129,0.1); display: flex; align-items: center; justify-content: center; color: var(--emerald); font-size: 14px; margin-top: 2px; }
+.why-point-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+.why-point-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.6; }
+
+/* Province section */
+.province-section { background: var(--navy); padding: 5rem 2rem; }
+.province-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.province-section .section-eyebrow { color: var(--blue-light); }
+.province-section .section-title { color: white; }
+.province-section .section-desc { color: rgba(255,255,255,0.6); }
+.province-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2rem; }
+.province-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 0.75rem 1rem; text-align: center; transition: all 0.2s; }
+.province-chip:hover { background: rgba(26,126,255,0.2); border-color: rgba(26,126,255,0.4); }
+.province-chip .p-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue-light); margin-bottom: 3px; }
+.province-chip .p-name { font-size: 11px; font-weight: 600; color: white; }
+.province-chip.all { grid-column: span 4; background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0.9rem; }
+.province-chip.all .p-name { color: var(--emerald); font-size: 13px; }
+.nepal-map-wrap { display: flex; align-items: center; justify-content: center; }
+.nepal-svg-container { background: none; border: none; padding: 0; width: 100%; }
+.cov-prov path { fill: rgba(26,126,255,0.28); stroke: rgba(186,220,255,0.7); stroke-width: 1.1; stroke-linejoin: round; }
+.cov-prov.is-hq path { fill: rgba(26,126,255,0.55); stroke: #3D9BFF; }
+.cov-link { stroke: rgba(61,155,255,0.35); stroke-width: 1.2; stroke-dasharray: 4 6; }
+.cov-pulse { display: none; }
+
+/* Testimonials */
+.testimonials-section { background: var(--surface); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+.testimonial-card { background: white; border-radius: 16px; padding: 2rem; border: 1px solid var(--border); transition: box-shadow 0.2s; }
+.testimonial-card:hover { box-shadow: 0 8px 32px rgba(10,37,64,0.08); }
+.testimonial-card.feat-t { background: var(--navy); border-color: transparent; }
+.quote-mark { font-size: 4rem; line-height: 0.8; color: var(--blue); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; opacity: 0.3; margin-bottom: 0.5rem; display: block; }
+.testimonial-card.feat-t .quote-mark { color: var(--blue-light); opacity: 0.4; }
+.testimonial-text { font-size: 0.9rem; line-height: 1.7; color: var(--text); margin-bottom: 1.5rem; font-style: italic; }
+.testimonial-card.feat-t .testimonial-text { color: rgba(255,255,255,0.75); }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 15px; color: white; flex-shrink: 0; }
+.author-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+.testimonial-card.feat-t .author-name { color: white; }
+.author-title { font-size: 0.78rem; color: var(--muted); }
+.testimonial-card.feat-t .author-title { color: rgba(255,255,255,0.5); }
+.stars { color: var(--gold); font-size: 13px; margin-bottom: 1rem; }
+
+/* Client logos */
+.clients-section { background: white; padding: 4rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.clients-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+#about-us, #our-team, #clients { scroll-margin-top: 88px; }
+.clients-inner { max-width: 1200px; margin: 0 auto; }
+.clients-label { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2.5rem; }
+.clients-scroll { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.client-logo-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 10px; transition: all 0.2s; }
+.client-logo-chip:hover { border-color: rgba(26,126,255,0.3); background: rgba(26,126,255,0.04); }
+.client-logo-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: white; flex-shrink: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+.client-logo-name { font-size: 12px; font-weight: 600; color: var(--navy); white-space: nowrap; }
+.client-logo-type { font-size: 10px; color: var(--muted); }
+
+/* CTA */
+.cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(26,126,255,0.15) 0%, transparent 70%); }
+.cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 2; }
+.cta-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 800; color: white; letter-spacing: -1px; line-height: 1.15; margin-bottom: 1rem; }
+.cta-desc { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── PAGE: CBS PRODUCT ── */
+.page-hero {
+  background: var(--navy); padding: 8rem 2rem 5rem; position: relative; overflow: hidden;
+}
+.page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 80% 40%, rgba(26,126,255,0.14) 0%, transparent 65%); }
+.page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+.page-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
+.page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.25rem; font-size: 12px; font-weight: 600; color: var(--emerald); }
+.page-hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 800; color: white; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.25rem; }
+.page-hero-desc { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+.page-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* CBS UI mockup */
+.cbs-mockup {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; overflow: hidden;
+}
+.cbs-mockup-bar { background: rgba(255,255,255,0.06); padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); margin-left: 8px; }
+.cbs-mockup-body { padding: 1.5rem; }
+.mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.mockup-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 13px; }
+.mockup-badge { background: rgba(16,185,129,0.2); color: var(--emerald); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+.mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+.mockup-stat { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.75rem; }
+.mockup-stat-val { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: white; font-size: 1.3rem; }
+.mockup-stat-lbl { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.mockup-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mockup-row:last-child { border-bottom: none; }
+.mockup-row-label { font-size: 11px; color: rgba(255,255,255,0.5); }
+.mockup-row-val { font-size: 11px; font-weight: 600; color: white; }
+.mockup-row-ok { color: var(--emerald); }
+
+/* Feature matrix */
+.feature-matrix { background: var(--surface); }
+.feature-tabs { display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.feature-tab { padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: white; color: var(--muted); transition: all 0.2s; }
+.feature-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+.feature-panel { display: none; }
+.feature-panel.active { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.feature-item { background: white; border-radius: 14px; padding: 1.5rem; border: 1px solid var(--border); }
+.feature-item-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; }
+.feature-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
+.feature-item-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+
+/* Architecture */
+.arch-section { background: white; }
+.arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+/* Compliance */
+.compliance-section { background: var(--navy); padding: 5rem 2rem; }
+.compliance-inner { max-width: 1200px; margin: 0 auto; }
+.compliance-section .section-eyebrow { color: var(--blue-light); }
+.compliance-section .section-title { color: white; }
+.compliance-section .section-desc { color: rgba(255,255,255,0.6); }
+.compliance-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+.compliance-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.5rem; text-align: center; }
+.compliance-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.compliance-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 0.9rem; margin-bottom: 0.4rem; }
+.compliance-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* Integrations */
+.integrations-section { background: var(--surface); }
+.integrations-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; margin-top: 3rem; }
+.integration-chip { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; transition: all 0.2s; }
+.integration-chip:hover { border-color: rgba(26,126,255,0.3); box-shadow: 0 4px 20px rgba(10,37,64,0.08); transform: translateY(-2px); }
+.integration-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+.integration-name { font-size: 12px; font-weight: 600; color: var(--navy); }
+.integration-type { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+/* ── PAGE: ABOUT ── */
+.about-story { background: white; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-intro-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1rem; }
+.about-intro-text p:last-child { margin-bottom: 0; }
+.about-highlight { border-left: 3px solid var(--blue); padding-left: 1.25rem; margin: 1.5rem 0; }
+.about-highlight p { color: var(--navy); font-weight: 500; font-size: 1rem; line-height: 1.7; margin: 0; }
+.about-stats-side { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.about-stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; text-align: center; }
+.about-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -1px; }
+.about-stat-num .accent { color: var(--blue); }
+.about-stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+.about-values { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.about-value-item { display: flex; gap: 1rem; align-items: flex-start; }
+.about-value-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.about-value-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 3px; }
+.about-value-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+/* Timeline */
+.timeline-section { background: var(--surface); }
+.timeline { position: relative; max-width: 860px; margin: 3rem auto 0; }
+.timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--border); transform: translateX(-50%); }
+.timeline-item { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2.5rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-content-left { text-align: right; padding-top: 4px; }
+.timeline-content-right { padding-top: 4px; }
+.timeline-content-empty { }
+.timeline-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); border: 3px solid white; box-shadow: 0 0 0 2px var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; color: white; position: relative; z-index: 2; flex-shrink: 0; }
+.timeline-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--blue); margin-bottom: 4px; letter-spacing: 1px; }
+.timeline-event-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 4px; }
+.timeline-event-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+/* Team */
+.team-section { background: white; }
+.team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+.team-card { text-align: center; }
+.team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 24px; color: white; }
+.team-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 3px; }
+.team-role { font-size: 0.82rem; color: var(--muted); }
+.team-dept { font-size: 11px; color: var(--blue); font-weight: 500; margin-top: 2px; }
+
+/* ── PAGE: CONTACT ── */
+.contact-section { background: var(--surface); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-form-card { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); }
+.form-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; }
+.form-subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-family: 'Inter', sans-serif; color: var(--text); background: white;
+  transition: border-color 0.2s; outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,126,255,0.1); }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+.form-submit { width: 100%; padding: 14px; border-radius: 10px; background: var(--blue); color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(26,126,255,0.35); }
+.form-submit:hover { background: var(--blue-light); transform: translateY(-1px); }
+.form-success { display: none; text-align: center; padding: 2rem; }
+.form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+.form-success-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: var(--navy); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.form-success-desc { color: var(--muted); font-size: 0.9rem; }
+
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-info-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: var(--navy); font-size: 1.5rem; margin-bottom: 0.5rem; }
+.contact-info-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; }
+.contact-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: box-shadow 0.2s; }
+.contact-card:hover { box-shadow: 0 4px 20px rgba(10,37,64,0.08); }
+.contact-card-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.contact-card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--navy); margin-bottom: 3px; }
+.contact-card-val { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.contact-card-val a { color: var(--blue); text-decoration: none; }
+.contact-hours { background: var(--navy); border-radius: 14px; padding: 1.25rem 1.5rem; }
+.contact-hours-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 0.88rem; margin-bottom: 0.75rem; }
+.hours-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem; }
+.hours-row:last-child { border-bottom: none; }
+.hours-day { color: rgba(255,255,255,0.5); }
+.hours-time { color: white; font-weight: 500; }
+.hours-time.open { color: var(--emerald); }
+
+/* Map placeholder */
+.map-section { background: white; padding: 3rem 2rem; border-top: 1px solid var(--border); }
+.map-inner { max-width: 1200px; margin: 0 auto; }
+.map-placeholder { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; height: 300px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
+.map-placeholder-icon { font-size: 2.5rem; }
+.map-placeholder-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 1rem; }
+.map-placeholder-addr { font-size: 0.88rem; color: var(--muted); }
+
+/* FAQ section */
+.faq-section { background: var(--surface); }
+.faq-list { max-width: 800px; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.faq-item { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.faq-question { padding: 1.25rem 1.5rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.faq-arrow { font-size: 18px; color: var(--muted); transition: transform 0.2s; }
+.faq-item.open .faq-arrow { transform: rotate(45deg); }
+.faq-answer { display: none; padding: 0 1.5rem 1.25rem; font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-answer { display: block; }
+
+/* FOOTER */
+footer { background: #060F1A; padding: 4rem 2rem 2rem; color: rgba(255,255,255,0.5); }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-tagline { font-size: 0.85rem; line-height: 1.6; margin: 1rem 0 1.25rem; }
+.footer-contact-item { font-size: 0.82rem; margin-bottom: 0.4rem; }
+.footer-col-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: white; font-size: 0.88rem; margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; cursor: pointer; }
+.footer-links a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 0.8rem; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; }
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+  display: flex; align-items: center; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; overflow: hidden;
+}
+.lang-btn {
+  padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
+  border: none; background: transparent; color: rgba(255,255,255,0.55);
+  transition: all 0.2s; letter-spacing: 0.3px;
+}
+.lang-btn.active { background: var(--blue); color: white; }
+.lang-btn:hover:not(.active) { color: white; background: rgba(255,255,255,0.06); }
+
+/* Nepali font override */
+[lang="ne"] body, body.ne { font-family: 'Tiro Devanagari Nepali', 'Inter', sans-serif; }
+body.ne .hero-title, body.ne .section-title, body.ne .page-hero-title,
+body.ne .cta-title, body.ne .form-title, body.ne .contact-info-title,
+body.ne .footer-col-title, body.ne .product-title, body.ne .pillar-title,
+body.ne .why-point-title, body.ne .team-name, body.ne .compliance-title,
+body.ne .feature-item-title, body.ne .about-value-title,
+body.ne .nav-logo-text, body.ne .mockup-title, body.ne .contact-hours-title,
+body.ne .faq-question, body.ne .about-stat-num, body.ne .stat-number,
+body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; letter-spacing: 0; }
+
+/* LOGO BAR — animated scroll */
+.logo-bar-wrap { overflow: hidden; position: relative; }
+.logo-bar-wrap::before, .logo-bar-wrap::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+  pointer-events: none;
+}
+.logo-bar-wrap::before { left: 0; background: linear-gradient(to right, white, transparent); }
+.logo-bar-wrap::after { right: 0; background: linear-gradient(to left, white, transparent); }
+.logo-bar-track {
+  display: flex; gap: 1.5rem; width: max-content;
+  animation: logoScroll 32s linear infinite;
+}
+.logo-bar-track:hover { animation-play-state: paused; }
+@keyframes logoScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* LOGO CHIP — refined */
+.client-logo-chip {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 10px;
+  transition: all 0.2s; flex-shrink: 0; white-space: nowrap;
+}
+
+/* MAP */
+.map-frame { width: 100%; height: 360px; border-radius: 16px; border: none; display: block; }
+
+/* FORM ENHANCEMENTS */
+.form-field-hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.form-step-bar { display: flex; gap: 6px; margin-bottom: 1.75rem; }
+.form-step-dot { flex: 1; height: 3px; border-radius: 2px; background: var(--border); transition: background 0.3s; }
+.form-step-dot.done { background: var(--emerald); }
+.form-step-dot.active { background: var(--blue); }
+.form-checkbox-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.form-checkbox-item { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1.5px solid var(--border); border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.2s; user-select: none; }
+.form-checkbox-item.checked { border-color: var(--blue); background: rgba(26,126,255,0.06); color: var(--navy); }
+.form-checkbox-item input { display: none; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .compliance-grid { grid-template-columns: repeat(2,1fr); }
+  .integrations-grid { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 900px) {
+  .hero-inner, .page-hero-inner, .why-grid, .province-inner, .about-grid, .contact-grid, .arch-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card.featured { grid-column: span 1; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0.15rem;
+    background: rgba(10,37,64,0.98); border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.75rem 1rem 1rem;
+  }
+  nav.menu-open .nav-links { display: flex; }
+  .nav-links > li > a { display: block; }
+  .nav-dropdown {
+    display: flex; flex-direction: column; position: static; min-width: 0;
+    padding: 0.15rem 0 0.35rem 0.5rem;
+  }
+  .nav-dropdown-panel { background: transparent; border: none; box-shadow: none; padding: 0; }
+  .nav-dropdown a { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .nav-item[data-menu="products"] .nav-dropdown { display: none; }
+  .nav-item[data-menu="products"].open .nav-dropdown,
+  .nav-item[data-menu="products"]:hover .nav-dropdown { display: flex; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .province-grid { grid-template-columns: repeat(2,1fr); }
+  .province-chip.all { grid-column: span 2; }
+  .nepal-map-wrap { display: none; }
+  .feature-panel.active { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(3,1fr); }
+  .timeline::before { left: 20px; }
+  .timeline-item { grid-template-columns: 40px 1fr; }
+  .timeline-content-left { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .stats-inner { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .stat-item:last-child { border-bottom: none; }
+  .footer-top { grid-template-columns: 1fr; }
+  .about-stats-side { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .compliance-grid { grid-template-columns: 1fr 1fr; }
+  .integrations-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="navigate('home')">
+    <div class="nav-logo-mark">PT</div>
+    <div>
+      <div class="nav-logo-text">Premium Technologies</div>
+      <div class="nav-logo-sub">Core Banking System · Nepal</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="navigate('home')" data-page="home" data-en="Home" data-ne="गृहपृष्ठ">Home</a></li>
+    <li class="nav-item" data-menu="products">
+      <a href="#" onclick="toggleDropdown(event)" data-page="products" data-en="Products <span class='nav-caret'>▾</span>" data-ne="उत्पादनहरू <span class='nav-caret'>▾</span>">Products <span class="nav-caret">▾</span></a>
+      <ul class="nav-dropdown">
+        <li class="nav-dropdown-panel">
+          <a onclick="navigate('cbs')" data-page="cbs" data-en="Premium CBS" data-ne="प्रिमियम CBS">Premium CBS</a>
+          <a onclick="navigate('mobile')" data-page="mobile" data-en="Mobile Banking" data-ne="मोबाइल ब्याङ्किङ">Mobile Banking</a>
+          <a onclick="navigate('atm')" data-page="atm" data-en="ATM Banking" data-ne="एटीएम ब्याङ्किङ">ATM Banking</a>
+          <a onclick="navigate('sms')" data-page="sms" data-en="SMS Banking" data-ne="एसएमएस ब्याङ्किङ">SMS Banking</a>
+          <a onclick="navigate('tablet')" data-page="tablet" data-en="Tablet Banking" data-ne="ट्याब्लेट ब्याङ्किङ">Tablet Banking</a>
+        </li>
+      </ul>
+    </li>
+    <li><a onclick="navigate('about')" data-page="about" data-en="About Us" data-ne="हाम्रोबारे">About Us</a></li>
+    <li><a onclick="navigate('contact')" data-page="contact" data-en="Contact" data-ne="सम्पर्क">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('ne')" id="btn-ne">नेपाली</button>
+    </div>
+    <button class="nav-cta" onclick="navigate('contact')" data-en="Request Demo" data-ne="डेमो अनुरोध">Request Demo</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ PAGE: HOME ═══════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow"><span class="pulse"></span>Nepal's Trusted CBS Provider</div>
+        <h1 class="hero-title">The Banking OS<br><span class="accent">Built for Nepal's</span><br>Financial Institutions.</h1>
+        <p class="hero-desc">Premium Technologies powers cooperatives, microfinances, and credit unions across all 7 provinces — with a complete suite of core banking, mobile, ATM, and digital channel solutions.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="navigate('contact')">Schedule a Demo →</button>
+          <button class="btn-ghost" onclick="navigate('products')">View Products</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-map">
+          <div class="hero-map-frame">
+                        <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" role="img" aria-label="Map of Nepal and its seven provinces">
+                          <line class="hero-link" x1="74.7" y1="108.1" x2="142.3" y2="103.9"/>
+                          <line class="hero-link" x1="142.3" y1="103.9" x2="176.3" y2="181.5"/>
+                          <line class="hero-link" x1="176.3" y1="181.5" x2="255.3" y2="165.5"/>
+                          <line class="hero-link" x1="255.3" y1="165.5" x2="335.5" y2="213.9"/>
+                          <line class="hero-link" x1="335.5" y1="213.9" x2="359.5" y2="263.9"/>
+                          <line class="hero-link" x1="359.5" y1="263.9" x2="434.7" y2="248.5"/>
+                          <g class="hero-prov" data-name="Sudurpashchim">
+                            <path d="M73.5,25.5L82.1,41.0L98.7,40.8L101.7,42.4L102.1,49.5L112.5,45.6L121.7,48.8L115.6,63.7L121.6,70.6L119.5,75.4L121.6,82.0L118.1,86.9L112.7,87.8L110.6,84.4L104.3,88.2L102.0,91.1L103.1,97.8L107.7,100.9L98.5,109.6L108.6,125.8L105.1,126.3L99.8,115.4L86.3,115.6L77.1,110.9L73.0,113.4L80.2,119.8L82.7,117.9L86.2,121.7L86.4,118.7L91.2,132.0L78.1,150.2L48.5,130.4L44.6,131.9L45.5,139.6L29.7,125.7L19.2,121.2L18.2,115.0L22.8,108.9L23.3,102.4L30.9,99.8L29.5,94.5L32.4,95.6L33.5,88.2L29.1,79.5L32.7,78.9L39.0,69.3L36.5,58.9L44.0,55.9L50.1,45.3L59.0,41.8L66.9,33.4L68.0,27.8L73.5,25.5Z"/>
+                            <text x="74.7" y="84.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Sudur</text><text x="74.7" y="96.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Pashchim</text>
+                            <circle class="hero-pulse" cx="74.7" cy="108.1" r="9"/>
+                            <circle cx="74.7" cy="108.1" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                          <g class="hero-prov" data-name="Karnali">
+                            <path d="M111.4,12.1L132.9,20.5L139.8,18.6L139.4,26.0L145.8,31.7L143.8,37.7L166.2,44.6L171.7,50.8L170.5,53.0L176.8,53.2L174.6,58.0L178.3,57.9L182.7,63.0L189.2,61.9L198.1,68.8L201.9,67.4L209.5,71.1L208.9,75.2L217.6,81.1L220.5,90.8L233.2,99.5L229.6,102.8L229.6,110.2L222.7,117.7L221.7,124.0L209.5,128.1L189.9,120.9L179.1,122.3L171.9,118.3L167.0,125.0L170.2,130.3L166.5,133.4L162.7,132.3L168.1,137.3L158.4,141.1L154.4,148.3L155.2,155.2L159.6,160.1L157.2,165.3L151.4,160.2L139.6,159.3L134.0,166.5L118.4,155.6L119.7,151.8L92.9,133.8L86.4,118.7L86.2,121.7L82.7,117.9L80.2,119.8L73.0,113.5L77.1,110.9L86.3,115.6L99.8,115.4L105.1,126.3L108.7,125.6L98.5,109.6L107.7,100.9L103.1,97.8L102.0,91.1L104.3,88.2L110.6,84.4L112.7,87.8L118.1,86.9L121.6,82.0L119.5,75.4L121.6,70.6L115.6,63.7L121.7,48.8L112.5,45.6L102.1,49.5L101.7,42.4L90.3,39.0L89.4,32.2L97.7,28.0L98.4,13.7L106.9,17.2L107.5,13.3L111.3,12.1Z"/>
+                            <text x="142.3" y="89.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Karnali</text>
+                            <circle class="hero-pulse" cx="142.3" cy="103.9" r="9"/>
+                            <circle cx="142.3" cy="103.9" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                          <g class="hero-prov" data-name="Lumbini">
+                            <path d="M173.4,119.3L179.1,122.3L189.9,120.9L201.6,126.4L199.9,134.2L191.6,134.4L191.8,139.6L188.0,138.7L186.0,145.7L198.6,159.4L204.0,158.5L218.2,168.3L225.9,168.8L228.9,176.9L219.2,181.2L254.1,186.4L251.8,193.6L233.2,195.7L234.3,199.5L241.3,199.4L240.0,203.3L246.4,210.4L245.8,219.9L229.5,212.4L216.1,211.7L217.3,216.2L211.1,221.7L204.2,213.4L177.3,210.2L178.5,204.5L175.7,195.4L160.2,198.3L137.8,181.9L131.7,181.5L126.8,186.3L102.6,171.2L100.6,165.8L96.4,164.8L93.0,167.7L86.8,152.6L77.7,149.2L92.4,131.4L119.7,151.8L118.4,155.6L134.0,166.5L139.6,159.3L151.4,160.2L157.2,165.3L159.6,160.1L155.2,155.2L154.4,148.2L158.4,141.1L168.1,137.3L162.7,132.3L169.2,131.6L167.0,125.0L173.4,119.3Z"/>
+                            <text x="176.3" y="167.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Lumbini</text>
+                            <circle class="hero-pulse" cx="176.3" cy="181.5" r="9"/>
+                            <circle cx="176.3" cy="181.5" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                          <g class="hero-prov" data-name="Gandaki">
+                            <path d="M250.3,87.1L264.4,93.2L262.1,96.9L263.7,106.2L267.2,106.9L265.9,116.5L276.7,119.3L279.8,126.1L289.7,127.1L293.7,133.9L303.4,138.3L310.9,136.9L315.3,130.8L323.6,134.5L323.0,140.8L317.8,146.0L318.3,153.4L309.8,162.1L309.3,168.2L302.6,168.9L300.7,176.5L296.8,179.4L298.9,189.2L293.1,189.5L289.3,184.8L278.9,188.6L280.5,193.3L278.0,196.6L264.7,201.0L259.3,206.8L247.9,207.4L250.6,209.6L246.2,214.6L245.4,208.5L239.9,203.2L241.3,199.4L234.3,199.5L233.2,195.7L251.8,193.6L254.1,186.4L219.2,181.2L228.9,176.9L225.9,168.8L218.2,168.3L204.0,158.5L198.6,159.4L188.0,149.6L185.7,142.0L188.3,138.5L191.7,139.9L191.6,134.4L199.9,134.2L201.6,126.4L209.5,128.1L221.7,124.0L222.7,117.7L229.6,110.2L229.6,102.8L233.4,101.1L232.0,95.7L240.4,92.6L241.3,89.1L250.2,87.1Z"/>
+                            <text x="255.3" y="151.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Gandaki</text>
+                            <circle class="hero-pulse" cx="255.3" cy="165.5" r="9"/>
+                            <circle cx="255.3" cy="165.5" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                          <g class="hero-prov is-hq" data-name="Bagmati">
+                            <path d="M354.2,150.7L356.4,160.7L362.3,164.3L370.6,182.3L378.7,181.6L376.2,170.6L382.4,165.0L385.2,178.4L395.7,183.0L400.9,179.6L403.9,181.5L405.3,193.2L402.6,200.2L393.7,205.8L384.5,218.3L385.6,224.6L383.4,227.2L387.1,226.5L394.5,231.9L389.5,236.7L392.9,237.3L392.3,246.4L386.7,249.5L377.6,243.0L370.8,242.4L367.6,235.8L354.9,230.9L349.3,234.8L341.6,234.4L341.6,232.2L322.5,227.3L317.0,219.7L307.5,219.5L299.4,214.6L285.8,212.9L284.5,218.0L280.4,220.1L269.8,218.1L261.1,209.1L254.1,214.8L248.3,213.8L250.6,209.3L247.9,207.4L259.3,206.8L264.7,201.0L278.0,196.6L280.5,193.3L278.9,188.6L289.3,184.8L293.1,189.5L298.9,189.3L296.8,179.4L300.7,176.5L302.6,168.9L309.3,168.2L309.6,162.4L315.9,153.8L334.3,158.0L342.0,154.2L347.6,156.2L348.0,159.4L354.2,150.7Z"/>
+                            <text x="335.5" y="199.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Bagmati</text>
+                            <circle class="hero-pulse" cx="335.5" cy="213.9" r="9"/>
+                            <circle cx="335.5" cy="213.9" r="5" fill="#1A7EFF"/>
+                            <text x="335.5" y="225.9" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="Inter,sans-serif">HQ</text>
+                          </g>
+                          <g class="hero-prov" data-name="Madhesh">
+                            <path d="M286.0,212.8L316.9,219.7L322.5,227.3L341.6,232.2L341.6,234.4L349.3,234.8L354.9,230.9L361.2,232.8L367.6,235.9L370.8,242.4L385.2,247.4L386.7,249.8L384.5,251.5L380.6,249.5L385.8,253.1L394.1,250.1L399.8,251.5L404.3,255.4L402.8,258.1L405.6,258.5L406.2,264.5L421.7,264.8L426.1,259.7L431.3,263.5L430.3,272.8L424.4,280.2L414.7,282.9L391.1,269.7L384.2,271.7L372.9,266.5L362.3,273.0L362.4,270.4L355.5,267.5L355.5,257.8L349.6,252.6L331.7,261.4L324.5,260.3L323.2,252.8L313.2,253.8L315.4,251.6L309.9,249.7L309.6,246.7L290.6,240.9L293.4,229.0L289.4,221.4L281.2,219.5L286.0,212.8Z"/>
+                            <text x="359.5" y="249.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Madhesh</text>
+                            <circle class="hero-pulse" cx="359.5" cy="263.9" r="9"/>
+                            <circle cx="359.5" cy="263.9" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                          <g class="hero-prov" data-name="Koshi">
+                            <path d="M405.8,169.3L409.0,172.0L415.2,169.7L416.0,174.2L433.1,180.0L440.9,188.8L455.6,186.0L457.5,188.7L464.2,185.7L467.1,189.5L473.8,189.8L480.2,179.9L482.2,182.7L501.8,186.5L492.8,210.6L494.1,221.4L489.4,236.0L498.2,245.0L501.3,259.4L495.9,281.7L491.9,286.8L483.5,278.6L481.2,281.9L477.6,279.7L476.3,283.6L471.0,282.0L466.7,285.7L458.4,281.7L452.6,283.9L451.0,287.9L436.2,281.0L435.0,271.9L425.0,278.5L430.3,272.8L431.5,266.1L426.1,259.7L421.7,264.8L407.6,265.0L404.2,261.1L405.6,258.5L402.8,258.1L404.1,255.1L399.8,251.5L394.1,250.1L386.0,253.2L380.6,249.6L384.5,251.5L393.0,245.4L392.9,237.3L389.5,236.7L394.5,231.9L387.1,226.5L383.4,227.2L385.6,224.6L384.5,218.3L393.7,205.8L403.3,198.9L405.3,193.2L401.8,177.7L405.7,169.2Z"/>
+                            <text x="434.7" y="234.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Koshi</text>
+                            <circle class="hero-pulse" cx="434.7" cy="248.5" r="9"/>
+                            <circle cx="434.7" cy="248.5" r="3.5" fill="#10B981"/>
+                
+                          </g>
+                        </svg>
+            <div class="hero-map-status">
+              <span class="hero-map-live"></span>
+              <span class="hero-map-name" id="heroProvinceName">Sudurpashchim</span>
+              <span class="hero-map-sub">Live coverage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-number" id="s1">12<span class="plus">+</span></div><div class="stat-label">Years of Industry Experience</div><div class="stat-sublabel">Est. 2015 · Kathmandu</div></div>
+      <div class="stat-item"><div class="stat-number" id="s2">450<span class="plus">+</span></div><div class="stat-label">Institutions Served Nationwide</div><div class="stat-sublabel">Cooperatives · MFIs · Credit Unions</div></div>
+      <div class="stat-item"><div class="stat-number" id="s3">7<span class="plus">/7</span></div><div class="stat-label">Provinces Covered</div><div class="stat-sublabel">Full nationwide coverage</div></div>
+    </div>
+  </div>
+
+  <section class="section products-section">
+    <div class="section-inner">
+      <div class="products-header">
+        <div><div class="section-eyebrow">Product Suite</div><h2 class="section-title">Everything your institution<br>needs, in one platform.</h2></div>
+        <p class="section-desc">From core ledger to mobile-first banking — each product is built for Nepal's regulatory environment and designed to scale with your institution.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card featured" onclick="navigate('cbs')">
+          <div class="product-icon">🏦</div>
+          <div class="product-title">Premium CBS — Core Banking System</div>
+          <div class="product-desc">The backbone of your institution. A fully integrated, multi-branch core banking platform purpose-built for Nepal's cooperatives and microfinances. NRB-compliant, real-time, and built to handle deposits, loans, GL, and MIS reporting.</div>
+          <div class="product-features">
+            <span class="product-feature-tag">Multi-Branch</span><span class="product-feature-tag">Deposit & Savings</span><span class="product-feature-tag">Loan & EMI</span><span class="product-feature-tag">Share Management</span><span class="product-feature-tag">NRB Reports</span><span class="product-feature-tag">GL & Accounting</span><span class="product-feature-tag">Member KYC</span><span class="product-feature-tag">Audit Trail</span>
+          </div>
+          <div class="product-card-actions">
+            <span class="product-link">Explore Premium CBS →</span>
+            <button type="button" class="product-demo" onclick="event.stopPropagation(); navigate('contact')">Request a Demo</button>
+          </div>
+        </div>
+        <div class="product-card" onclick="navigate('mobile')">
+          <div class="product-icon">📱</div>
+          <div class="product-title">Mobile Banking</div>
+          <div class="product-desc">The representative's phone records deposits, loans, and fees on the visit, prints the deposit slip on a POS, and syncs to Premium CBS over office Wi-Fi — no collection sheet, Excel export, or USB.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit Collections</span><span class="product-feature-tag">Loan Collections</span><span class="product-feature-tag">POS Slip</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <span class="product-link">Explore Mobile Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('atm')">
+          <div class="product-icon">🏧</div>
+          <div class="product-title">ATM Banking — SCT Integration</div>
+          <div class="product-desc">Premium CBS is already integrated with Smart Choice Technologies, Nepal's ATM provider. Issue SCT debit and prepaid chip cards, reach the nationwide ATM and POS networks, and settle through the SCT report, request, and dispute portals.</div>
+          <div class="product-features"><span class="product-feature-tag">SCT Debit Card</span><span class="product-feature-tag">ATM & POS</span><span class="product-feature-tag">CRMS & DMS</span></div>
+          <span class="product-link">Explore ATM Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('sms')">
+          <div class="product-icon">💬</div>
+          <div class="product-title">SMS Banking</div>
+          <div class="product-desc">Text members when money moves: deposits, withdrawals, loan dues and receipts, FD maturity, recurring installments, and loan maturity. You can also send occasion wishes, news, and advertisements.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit Alerts</span><span class="product-feature-tag">Loan Alerts</span><span class="product-feature-tag">FD Maturity</span></div>
+          <span class="product-link">Explore SMS Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('tablet')">
+          <div class="product-icon">📋</div>
+          <div class="product-title">Tablet Banking</div>
+          <div class="product-desc">Replace the collection sheet. Representatives collect deposits, loans, and fees, print the deposit slip on a POS, and sync to Premium CBS over Wi-Fi without Excel or a USB stick.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit & Loan</span><span class="product-feature-tag">POS Printing</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <span class="product-link">Explore Tablet Banking →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div class="why-visual">
+          <div class="why-visual-bg"></div>
+          <div class="why-pillars">
+            <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:white;font-size:1.05rem;margin-bottom:0.5rem;position:relative;">Why institutions choose Premium Tech</div>
+            <div class="pillar-item"><div class="pillar-icon">🇳🇵</div><div><div class="pillar-title">Built in Nepal, for Nepal</div><div class="pillar-desc">Designed around NRB regulations and Nepal's cooperative act — not adapted from foreign systems.</div></div></div>
+            <div class="pillar-item"><div class="pillar-icon">⚡</div><div><div class="pillar-title">Real-time across all channels</div><div class="pillar-desc">Mobile, ATM, SMS, and Tablet stay in sync with the core in real time.</div></div></div>
+            <div class="pillar-item"><div class="pillar-icon">🛡️</div><div><div class="pillar-title">Enterprise security, simple to run</div><div class="pillar-desc">Role-based access, full audit trails, end-to-end encryption — without the complexity.</div></div></div>
+            <div class="pillar-item"><div class="pillar-icon">🤝</div><div><div class="pillar-title">Local team, fast support</div><div class="pillar-desc">Based in Kathmandu. Fast response, on-site visits, and training included.</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-eyebrow">Our Commitment</div>
+          <h2 class="section-title">Designed around your feedback. Refined over 12 years.</h2>
+          <p class="section-desc" style="margin-bottom:2rem;">Every feature we've built started as a request from a cooperative manager, a microfinance officer, or a branch accountant. We build software by listening to the people using it.</p>
+          <div class="why-points">
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">NRB Regulatory Compliance</div><div class="why-point-desc">Automatic compliance reports and audit-ready ledgers aligned with Nepal Rastra Bank requirements.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Rapid Onboarding</div><div class="why-point-desc">Most institutions are live within 2–4 weeks. We handle data migration, configuration, and staff training end-to-end.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Scalable from 1 to 50+ branches</div><div class="why-point-desc">The platform grows with you without re-implementation, whether you're one branch or fifty.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Client feedback drives our roadmap</div><div class="why-point-desc">Your suggestions become the next release's features. Our clients help shape what we build.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="province-section">
+    <div class="province-inner">
+      <div>
+        <div class="section-eyebrow">Coverage</div>
+        <h2 class="section-title">All 7 Provinces.<br>One Platform.</h2>
+        <p class="section-desc">From the Terai plains to the mountain districts, Premium Technologies has active deployments across every province in Nepal.</p>
+        <div class="province-grid">
+          <div class="province-chip"><div class="p-num">Province 1</div><div class="p-name">Koshi</div></div>
+          <div class="province-chip"><div class="p-num">Province 2</div><div class="p-name">Madhesh</div></div>
+          <div class="province-chip"><div class="p-num">Province 3</div><div class="p-name">Bagmati</div></div>
+          <div class="province-chip"><div class="p-num">Province 4</div><div class="p-name">Gandaki</div></div>
+          <div class="province-chip"><div class="p-num">Province 5</div><div class="p-name">Lumbini</div></div>
+          <div class="province-chip"><div class="p-num">Province 6</div><div class="p-name">Karnali</div></div>
+          <div class="province-chip"><div class="p-num">Province 7</div><div class="p-name">Sudurpashchim</div></div>
+          <div class="province-chip all"><span style="color:var(--emerald);font-size:16px;">✓</span><div class="p-name">All 7 Provinces — 450+ Institutions Active</div></div>
+        </div>
+      </div>
+      <div class="nepal-map-wrap">
+        <div class="nepal-svg-container">
+                    <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;" role="img" aria-label="Nepal, all seven provinces">
+                        <line class="cov-link" x1="74.7" y1="108.1" x2="142.3" y2="103.9"/>
+                        <line class="cov-link" x1="142.3" y1="103.9" x2="176.3" y2="181.5"/>
+                        <line class="cov-link" x1="176.3" y1="181.5" x2="255.3" y2="165.5"/>
+                        <line class="cov-link" x1="255.3" y1="165.5" x2="335.5" y2="213.9"/>
+                        <line class="cov-link" x1="335.5" y1="213.9" x2="359.5" y2="263.9"/>
+                        <line class="cov-link" x1="359.5" y1="263.9" x2="434.7" y2="248.5"/>
+                        <g class="cov-prov" data-name="Sudurpashchim">
+                          <path d="M73.5,25.5L82.1,41.0L98.7,40.8L101.7,42.4L102.1,49.5L112.5,45.6L121.7,48.8L115.6,63.7L121.6,70.6L119.5,75.4L121.6,82.0L118.1,86.9L112.7,87.8L110.6,84.4L104.3,88.2L102.0,91.1L103.1,97.8L107.7,100.9L98.5,109.6L108.6,125.8L105.1,126.3L99.8,115.4L86.3,115.6L77.1,110.9L73.0,113.4L80.2,119.8L82.7,117.9L86.2,121.7L86.4,118.7L91.2,132.0L78.1,150.2L48.5,130.4L44.6,131.9L45.5,139.6L29.7,125.7L19.2,121.2L18.2,115.0L22.8,108.9L23.3,102.4L30.9,99.8L29.5,94.5L32.4,95.6L33.5,88.2L29.1,79.5L32.7,78.9L39.0,69.3L36.5,58.9L44.0,55.9L50.1,45.3L59.0,41.8L66.9,33.4L68.0,27.8L73.5,25.5Z"/>
+                          <text x="74.7" y="84.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Sudur</text><text x="74.7" y="96.1" text-anchor="middle" fill="white" font-size="9" font-family="Inter,sans-serif" font-weight="700">Pashchim</text>
+                          <circle class="cov-pulse" cx="74.7" cy="108.1" r="9"/>
+                          <circle cx="74.7" cy="108.1" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                        <g class="cov-prov" data-name="Karnali">
+                          <path d="M111.4,12.1L132.9,20.5L139.8,18.6L139.4,26.0L145.8,31.7L143.8,37.7L166.2,44.6L171.7,50.8L170.5,53.0L176.8,53.2L174.6,58.0L178.3,57.9L182.7,63.0L189.2,61.9L198.1,68.8L201.9,67.4L209.5,71.1L208.9,75.2L217.6,81.1L220.5,90.8L233.2,99.5L229.6,102.8L229.6,110.2L222.7,117.7L221.7,124.0L209.5,128.1L189.9,120.9L179.1,122.3L171.9,118.3L167.0,125.0L170.2,130.3L166.5,133.4L162.7,132.3L168.1,137.3L158.4,141.1L154.4,148.3L155.2,155.2L159.6,160.1L157.2,165.3L151.4,160.2L139.6,159.3L134.0,166.5L118.4,155.6L119.7,151.8L92.9,133.8L86.4,118.7L86.2,121.7L82.7,117.9L80.2,119.8L73.0,113.5L77.1,110.9L86.3,115.6L99.8,115.4L105.1,126.3L108.7,125.6L98.5,109.6L107.7,100.9L103.1,97.8L102.0,91.1L104.3,88.2L110.6,84.4L112.7,87.8L118.1,86.9L121.6,82.0L119.5,75.4L121.6,70.6L115.6,63.7L121.7,48.8L112.5,45.6L102.1,49.5L101.7,42.4L90.3,39.0L89.4,32.2L97.7,28.0L98.4,13.7L106.9,17.2L107.5,13.3L111.3,12.1Z"/>
+                          <text x="142.3" y="89.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Karnali</text>
+                          <circle class="cov-pulse" cx="142.3" cy="103.9" r="9"/>
+                          <circle cx="142.3" cy="103.9" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                        <g class="cov-prov" data-name="Lumbini">
+                          <path d="M173.4,119.3L179.1,122.3L189.9,120.9L201.6,126.4L199.9,134.2L191.6,134.4L191.8,139.6L188.0,138.7L186.0,145.7L198.6,159.4L204.0,158.5L218.2,168.3L225.9,168.8L228.9,176.9L219.2,181.2L254.1,186.4L251.8,193.6L233.2,195.7L234.3,199.5L241.3,199.4L240.0,203.3L246.4,210.4L245.8,219.9L229.5,212.4L216.1,211.7L217.3,216.2L211.1,221.7L204.2,213.4L177.3,210.2L178.5,204.5L175.7,195.4L160.2,198.3L137.8,181.9L131.7,181.5L126.8,186.3L102.6,171.2L100.6,165.8L96.4,164.8L93.0,167.7L86.8,152.6L77.7,149.2L92.4,131.4L119.7,151.8L118.4,155.6L134.0,166.5L139.6,159.3L151.4,160.2L157.2,165.3L159.6,160.1L155.2,155.2L154.4,148.2L158.4,141.1L168.1,137.3L162.7,132.3L169.2,131.6L167.0,125.0L173.4,119.3Z"/>
+                          <text x="176.3" y="167.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Lumbini</text>
+                          <circle class="cov-pulse" cx="176.3" cy="181.5" r="9"/>
+                          <circle cx="176.3" cy="181.5" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                        <g class="cov-prov" data-name="Gandaki">
+                          <path d="M250.3,87.1L264.4,93.2L262.1,96.9L263.7,106.2L267.2,106.9L265.9,116.5L276.7,119.3L279.8,126.1L289.7,127.1L293.7,133.9L303.4,138.3L310.9,136.9L315.3,130.8L323.6,134.5L323.0,140.8L317.8,146.0L318.3,153.4L309.8,162.1L309.3,168.2L302.6,168.9L300.7,176.5L296.8,179.4L298.9,189.2L293.1,189.5L289.3,184.8L278.9,188.6L280.5,193.3L278.0,196.6L264.7,201.0L259.3,206.8L247.9,207.4L250.6,209.6L246.2,214.6L245.4,208.5L239.9,203.2L241.3,199.4L234.3,199.5L233.2,195.7L251.8,193.6L254.1,186.4L219.2,181.2L228.9,176.9L225.9,168.8L218.2,168.3L204.0,158.5L198.6,159.4L188.0,149.6L185.7,142.0L188.3,138.5L191.7,139.9L191.6,134.4L199.9,134.2L201.6,126.4L209.5,128.1L221.7,124.0L222.7,117.7L229.6,110.2L229.6,102.8L233.4,101.1L232.0,95.7L240.4,92.6L241.3,89.1L250.2,87.1Z"/>
+                          <text x="255.3" y="151.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Gandaki</text>
+                          <circle class="cov-pulse" cx="255.3" cy="165.5" r="9"/>
+                          <circle cx="255.3" cy="165.5" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                        <g class="cov-prov is-hq" data-name="Bagmati">
+                          <path d="M354.2,150.7L356.4,160.7L362.3,164.3L370.6,182.3L378.7,181.6L376.2,170.6L382.4,165.0L385.2,178.4L395.7,183.0L400.9,179.6L403.9,181.5L405.3,193.2L402.6,200.2L393.7,205.8L384.5,218.3L385.6,224.6L383.4,227.2L387.1,226.5L394.5,231.9L389.5,236.7L392.9,237.3L392.3,246.4L386.7,249.5L377.6,243.0L370.8,242.4L367.6,235.8L354.9,230.9L349.3,234.8L341.6,234.4L341.6,232.2L322.5,227.3L317.0,219.7L307.5,219.5L299.4,214.6L285.8,212.9L284.5,218.0L280.4,220.1L269.8,218.1L261.1,209.1L254.1,214.8L248.3,213.8L250.6,209.3L247.9,207.4L259.3,206.8L264.7,201.0L278.0,196.6L280.5,193.3L278.9,188.6L289.3,184.8L293.1,189.5L298.9,189.3L296.8,179.4L300.7,176.5L302.6,168.9L309.3,168.2L309.6,162.4L315.9,153.8L334.3,158.0L342.0,154.2L347.6,156.2L348.0,159.4L354.2,150.7Z"/>
+                          <text x="335.5" y="199.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Bagmati</text>
+                          <circle class="cov-pulse" cx="335.5" cy="213.9" r="9"/>
+                          <circle cx="335.5" cy="213.9" r="5" fill="#1A7EFF"/>
+                          <text x="335.5" y="225.9" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="Inter,sans-serif">HQ</text>
+                        </g>
+                        <g class="cov-prov" data-name="Madhesh">
+                          <path d="M286.0,212.8L316.9,219.7L322.5,227.3L341.6,232.2L341.6,234.4L349.3,234.8L354.9,230.9L361.2,232.8L367.6,235.9L370.8,242.4L385.2,247.4L386.7,249.8L384.5,251.5L380.6,249.5L385.8,253.1L394.1,250.1L399.8,251.5L404.3,255.4L402.8,258.1L405.6,258.5L406.2,264.5L421.7,264.8L426.1,259.7L431.3,263.5L430.3,272.8L424.4,280.2L414.7,282.9L391.1,269.7L384.2,271.7L372.9,266.5L362.3,273.0L362.4,270.4L355.5,267.5L355.5,257.8L349.6,252.6L331.7,261.4L324.5,260.3L323.2,252.8L313.2,253.8L315.4,251.6L309.9,249.7L309.6,246.7L290.6,240.9L293.4,229.0L289.4,221.4L281.2,219.5L286.0,212.8Z"/>
+                          <text x="359.5" y="249.9" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Madhesh</text>
+                          <circle class="cov-pulse" cx="359.5" cy="263.9" r="9"/>
+                          <circle cx="359.5" cy="263.9" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                        <g class="cov-prov" data-name="Koshi">
+                          <path d="M405.8,169.3L409.0,172.0L415.2,169.7L416.0,174.2L433.1,180.0L440.9,188.8L455.6,186.0L457.5,188.7L464.2,185.7L467.1,189.5L473.8,189.8L480.2,179.9L482.2,182.7L501.8,186.5L492.8,210.6L494.1,221.4L489.4,236.0L498.2,245.0L501.3,259.4L495.9,281.7L491.9,286.8L483.5,278.6L481.2,281.9L477.6,279.7L476.3,283.6L471.0,282.0L466.7,285.7L458.4,281.7L452.6,283.9L451.0,287.9L436.2,281.0L435.0,271.9L425.0,278.5L430.3,272.8L431.5,266.1L426.1,259.7L421.7,264.8L407.6,265.0L404.2,261.1L405.6,258.5L402.8,258.1L404.1,255.1L399.8,251.5L394.1,250.1L386.0,253.2L380.6,249.6L384.5,251.5L393.0,245.4L392.9,237.3L389.5,236.7L394.5,231.9L387.1,226.5L383.4,227.2L385.6,224.6L384.5,218.3L393.7,205.8L403.3,198.9L405.3,193.2L401.8,177.7L405.7,169.2Z"/>
+                          <text x="434.7" y="234.5" text-anchor="middle" fill="white" font-size="10" font-family="Inter,sans-serif" font-weight="700">Koshi</text>
+                          <circle class="cov-pulse" cx="434.7" cy="248.5" r="9"/>
+                          <circle cx="434.7" cy="248.5" r="3.5" fill="#10B981"/>
+                
+                        </g>
+                      </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clients-section">
+    <div class="clients-inner">
+      <div class="clients-label" data-en="Trusted by 450+ institutions across all 7 provinces of Nepal" data-ne="नेपालका सबै ७ प्रदेशका ४५०+ संस्थाहरूद्वारा विश्वसनीय">Trusted by 450+ institutions across all 7 provinces of Nepal</div>
+    </div>
+    <div class="logo-bar-wrap" style="padding:0 0 0.5rem;">
+      <div class="logo-bar-track" id="logoTrack">
+        <!-- Set 1 -->
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1A7EFF"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KS</text></svg><div><div class="client-logo-name">Kumari Savings</div><div class="client-logo-type">Cooperative · Kathmandu</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0A2540"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">NM</text></svg><div><div class="client-logo-name">Nabil Microfinance</div><div class="client-logo-type">MFI · Pokhara</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#10B981"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">SB</text></svg><div><div class="client-logo-name">Sagarmatha SACCOS</div><div class="client-logo-type">Cooperative · Solukhumbu</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#7C3AED"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">LS</text></svg><div><div class="client-logo-name">Lumbini Savings</div><div class="client-logo-type">Cooperative · Butwal</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#F59E0B"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">GC</text></svg><div><div class="client-logo-name">Gandaki Credit Union</div><div class="client-logo-type">Credit Union · Kaski</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#EF4444"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KM</text></svg><div><div class="client-logo-name">Karnali MFI</div><div class="client-logo-type">Microfinance · Surkhet</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0E7490"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">BC</text></svg><div><div class="client-logo-name">Bagmati Cooperative</div><div class="client-logo-type">Cooperative · Lalitpur</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#BE185D"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">MS</text></svg><div><div class="client-logo-name">Madhesh SACCOS</div><div class="client-logo-type">Cooperative · Janakpur</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#374151"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">PS</text></svg><div><div class="client-logo-name">Pokhara Savings</div><div class="client-logo-type">Cooperative · Gandaki</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#065F46"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KP</text></svg><div><div class="client-logo-name">Koshi Purbanchal</div><div class="client-logo-type">Cooperative · Biratnagar</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#92400E"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">SW</text></svg><div><div class="client-logo-name">Sudur West MFI</div><div class="client-logo-type">Microfinance · Dhangadhi</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1E3A5F"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">JS</text></svg><div><div class="client-logo-name">Janakpur SACCOS</div><div class="client-logo-type">SACCOS · Madhesh</div></div></div>
+        <!-- Set 2 — duplicate for seamless loop -->
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1A7EFF"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KS</text></svg><div><div class="client-logo-name">Kumari Savings</div><div class="client-logo-type">Cooperative · Kathmandu</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0A2540"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">NM</text></svg><div><div class="client-logo-name">Nabil Microfinance</div><div class="client-logo-type">MFI · Pokhara</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#10B981"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">SB</text></svg><div><div class="client-logo-name">Sagarmatha SACCOS</div><div class="client-logo-type">Cooperative · Solukhumbu</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#7C3AED"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">LS</text></svg><div><div class="client-logo-name">Lumbini Savings</div><div class="client-logo-type">Cooperative · Butwal</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#F59E0B"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">GC</text></svg><div><div class="client-logo-name">Gandaki Credit Union</div><div class="client-logo-type">Credit Union · Kaski</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#EF4444"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KM</text></svg><div><div class="client-logo-name">Karnali MFI</div><div class="client-logo-type">Microfinance · Surkhet</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0E7490"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">BC</text></svg><div><div class="client-logo-name">Bagmati Cooperative</div><div class="client-logo-type">Cooperative · Lalitpur</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#BE185D"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">MS</text></svg><div><div class="client-logo-name">Madhesh SACCOS</div><div class="client-logo-type">Cooperative · Janakpur</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#374151"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">PS</text></svg><div><div class="client-logo-name">Pokhara Savings</div><div class="client-logo-type">Cooperative · Gandaki</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#065F46"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">KP</text></svg><div><div class="client-logo-name">Koshi Purbanchal</div><div class="client-logo-type">Cooperative · Biratnagar</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#92400E"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">SW</text></svg><div><div class="client-logo-name">Sudur West MFI</div><div class="client-logo-type">Microfinance · Dhangadhi</div></div></div>
+        <div class="client-logo-chip"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1E3A5F"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="sans-serif">JS</text></svg><div><div class="client-logo-name">Janakpur SACCOS</div><div class="client-logo-type">SACCOS · Madhesh</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials-section">
+    <div class="section-inner">
+      <div style="margin-bottom:3rem;"><div class="section-eyebrow">Client Testimonials</div><h2 class="section-title">Institutions that trust us,<br>every single day.</h2></div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card feat-t"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">Premium CBS transformed how we operate. Branch reconciliation is now real-time across all our branches. The NRB reporting alone saves us two full days every quarter.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#1A7EFF,#0A56C8);">RK</div><div><div class="author-name">Ram Kumar Shrestha</div><div class="author-title">CEO, Kumari Savings Cooperative · Kathmandu</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">We were hesitant to switch, but Premium Tech made the migration seamless. Staff were fully trained within a week and members noticed the faster service immediately.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#10B981,#0A7A52);">SM</div><div><div class="author-name">Sunita Maharjan</div><div class="author-title">Operations Manager, Lumbini Savings · Butwal</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">The mobile banking app is a game-changer. Member deposits are up 23% since launch — members who came to the branch twice a week now manage everything from their phones.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">BT</div><div><div class="author-name">Bikash Tamang</div><div class="author-title">IT Head, Sagarmatha SACCOS · Solukhumbu</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">Their support team responds within the hour. For a small cooperative, that kind of responsiveness was unthinkable before. They treat us like a partner, not a customer.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#F59E0B,#B45309);">PG</div><div><div class="author-name">Puja Gurung</div><div class="author-title">Chairperson, Gandaki Credit Union · Kaski</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">We serve members across 3 districts in Karnali. Tablet Banking lets our field officers collect savings on-site without internet. The offline sync is incredibly reliable in remote areas.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#EF4444,#B91C1C);">DP</div><div><div class="author-name">Durga Prasad Bohara</div><div class="author-title">Branch Manager, Karnali MFI · Surkhet</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><span class="quote-mark">"</span><p class="testimonial-text">The system felt designed for Nepali cooperatives specifically — because it was. We've recommended Premium Tech to three peer institutions in our district since switching.</p><div class="testimonial-author"><div class="author-avatar" style="background:linear-gradient(135deg,#0E7490,#0A5A72);">NK</div><div><div class="author-name">Nabin Karki</div><div class="author-title">General Manager, Bagmati Cooperative · Lalitpur</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-eyebrow" style="color:var(--blue-light);display:block;text-align:center;margin-bottom:1.5rem;">Get Started</div>
+      <h2 class="cta-title">Ready to modernize your institution?</h2>
+      <p class="cta-desc">Join 450+ cooperatives and microfinances across Nepal who have upgraded to Premium CBS. Our team guides you from demo to go-live.</p>
+      <div class="cta-actions">
+        <button class="btn-primary" style="background:var(--emerald);box-shadow:0 4px 20px rgba(16,185,129,0.4);" onclick="navigate('contact')">Schedule a Free Demo</button>
+        <a href="tel:+9779801130700" class="btn-ghost">📞 +977 9801-130700</a>
+      </div>
+      <p style="color:rgba(255,255,255,0.3);font-size:0.8rem;margin-top:1.5rem;">Tinkune, Kathmandu · info@premiumtech.com.np</p>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: PRODUCTS ═══════════════════════════════ -->
+<div id="page-products" class="page">
+
+  <section class="page-hero" style="padding-bottom:4rem;">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
+      <div class="page-hero-badge">Product Suite · Nepal-built</div>
+      <h1 class="page-hero-title">Every channel your<br>institution needs.</h1>
+      <p class="page-hero-desc" style="max-width:640px;">Core banking, mobile, ATM, SMS, and tablet — each product connects to the same ledger and is built for Nepal's cooperatives, microfinances, and credit unions.</p>
+    </div>
+  </section>
+
+  <section class="section products-section">
+    <div class="section-inner">
+      <div class="products-grid">
+        <div class="product-card featured" onclick="navigate('cbs')">
+          <div class="product-icon">🏦</div>
+          <div class="product-title">Premium CBS — Core Banking System</div>
+          <div class="product-desc">The backbone of your institution. A fully integrated, multi-branch core banking platform purpose-built for Nepal's cooperatives and microfinances. NRB-compliant, real-time, and built to handle deposits, loans, GL, and MIS reporting.</div>
+          <div class="product-features">
+            <span class="product-feature-tag">Multi-Branch</span><span class="product-feature-tag">Deposit & Savings</span><span class="product-feature-tag">Loan & EMI</span><span class="product-feature-tag">NRB Reports</span>
+          </div>
+          <span class="product-link">Explore Premium CBS →</span>
+        </div>
+        <div class="product-card" onclick="navigate('mobile')">
+          <div class="product-icon">📱</div>
+          <div class="product-title">Mobile Banking</div>
+          <div class="product-desc">Field staff post deposits, loans, and fees on the phone and print the slip on the spot. Collections sync to CBS over Wi-Fi.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit Collections</span><span class="product-feature-tag">POS Slip</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <span class="product-link">Explore Mobile Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('atm')">
+          <div class="product-icon">🏧</div>
+          <div class="product-title">ATM Banking — SCT Integration</div>
+          <div class="product-desc">Premium CBS is already integrated with Smart Choice Technologies, Nepal's ATM provider. Issue SCT debit and prepaid chip cards, reach the nationwide ATM and POS networks, and settle through the SCT report, request, and dispute portals.</div>
+          <div class="product-features"><span class="product-feature-tag">SCT Debit Card</span><span class="product-feature-tag">ATM & POS</span><span class="product-feature-tag">CRMS & DMS</span></div>
+          <span class="product-link">Explore ATM Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('sms')">
+          <div class="product-icon">💬</div>
+          <div class="product-title">SMS Banking</div>
+          <div class="product-desc">Text members when money moves: deposits, withdrawals, loan dues and receipts, FD maturity, recurring installments, and loan maturity. You can also send occasion wishes, news, and advertisements.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit Alerts</span><span class="product-feature-tag">Loan Alerts</span><span class="product-feature-tag">FD Maturity</span></div>
+          <span class="product-link">Explore SMS Banking →</span>
+        </div>
+        <div class="product-card" onclick="navigate('tablet')">
+          <div class="product-icon">📋</div>
+          <div class="product-title">Tablet Banking</div>
+          <div class="product-desc">Replace the collection sheet. Representatives collect deposits, loans, and fees, print the deposit slip on a POS, and sync to Premium CBS over Wi-Fi without Excel or a USB stick.</div>
+          <div class="product-features"><span class="product-feature-tag">Deposit & Loan</span><span class="product-feature-tag">POS Printing</span><span class="product-feature-tag">Wi-Fi Sync</span></div>
+          <span class="product-link">Explore Tablet Banking →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: CBS PRODUCT ═══════════════════════════════ -->
+<div id="page-cbs" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-badge">🛡️ NRB Compliant · Nepal-built</div>
+        <h1 class="page-hero-title">Premium CBS<br>Core Banking System</h1>
+        <p class="page-hero-desc">A fully integrated, real-time, multi-branch core banking platform purpose-built for Nepal's cooperatives, microfinances, and credit unions. Covering every function from member onboarding to NRB regulatory reporting — in one system.</p>
+        <div class="page-hero-actions">
+          <button class="btn-primary" onclick="navigate('contact')">Request a Demo</button>
+          <button class="btn-ghost" onclick="navigate('contact')">Talk to Sales</button>
+        </div>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">premiumcbs.app · Dashboard</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Branch Overview — Kathmandu HQ</div><div class="mockup-badge">● Live</div></div>
+            <div class="mockup-grid">
+              <div class="mockup-stat"><div class="mockup-stat-val">NPR 2.4Cr</div><div class="mockup-stat-lbl">Total Deposits Today</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">1,847</div><div class="mockup-stat-lbl">Active Members</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">142</div><div class="mockup-stat-lbl">Transactions Today</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">NPR 38L</div><div class="mockup-stat-lbl">Loans Disbursed</div></div>
+            </div>
+            <div class="mockup-row"><span class="mockup-row-label">NRB Report Q3</span><span class="mockup-row-val mockup-row-ok">✓ Filed</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Branch Sync Status</span><span class="mockup-row-val mockup-row-ok">● All 5 branches online</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Last Backup</span><span class="mockup-row-val">2 mins ago</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">System Health</span><span class="mockup-row-val mockup-row-ok">● All systems operational</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">Built for every function<br>of your institution.</h2>
+      <div class="feature-tabs" style="margin-top:2rem;">
+        <button class="feature-tab active" onclick="showTab('deposits')">Deposits & Savings</button>
+        <button class="feature-tab" onclick="showTab('loans')">Loans & Credit</button>
+        <button class="feature-tab" onclick="showTab('accounting')">Accounting & GL</button>
+        <button class="feature-tab" onclick="showTab('members')">Member Management</button>
+        <button class="feature-tab" onclick="showTab('reports')">Reports & Compliance</button>
+      </div>
+      <div id="tab-deposits" class="feature-panel active">
+        <div class="feature-item"><div class="feature-item-icon">💰</div><div class="feature-item-title">Fixed & Recurring Deposits</div><div class="feature-item-desc">Configure FD and RD products with custom tenures, interest rates, and auto-renewal rules. Interest calculation is automatic and posted to GL in real time.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🏦</div><div class="feature-item-title">Savings Account Management</div><div class="feature-item-desc">Multiple savings account types — mandatory, voluntary, children's, and group savings — each with configurable interest slabs and withdrawal limits.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📊</div><div class="feature-item-title">Share Capital Management</div><div class="feature-item-desc">Track member share purchases, transfers, refunds, and dividend distribution. Supports cooperative and SACCOS share structures as per Nepal Cooperative Act.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔄</div><div class="feature-item-title">Inter-Account Transfers</div><div class="feature-item-desc">Real-time fund transfers between member accounts, branches, or to external banks. Full transaction history with timestamps and teller IDs.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📅</div><div class="feature-item-title">Auto-Interest Posting</div><div class="feature-item-desc">Scheduled daily, monthly, or quarterly interest posting with automatic GL entries. No manual journal entries required for routine interest accrual.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🧾</div><div class="feature-item-title">Passbook & Statement</div><div class="feature-item-desc">Print-ready passbook templates and digital statements with full transaction history. Supports both English and Nepali printing.</div></div>
+      </div>
+      <div id="tab-loans" class="feature-panel">
+        <div class="feature-item"><div class="feature-item-icon">📋</div><div class="feature-item-title">Loan Application & Appraisal</div><div class="feature-item-desc">Digital loan application capture with customizable appraisal checklists. Supports individual and group loans, including agriculture, business, and personal loan types.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📈</div><div class="feature-item-title">EMI Schedule Generation</div><div class="feature-item-desc">Automatic EMI calculation with flat, diminishing balance, or equal principal methods. Generate loan schedules instantly and email to members.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">⚠️</div><div class="feature-item-title">Overdue & NPA Tracking</div><div class="feature-item-desc">Real-time overdue loan tracking with aging buckets (0–30, 31–60, 61–90, 90+ days). NPA classification follows NRB directives automatically.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔗</div><div class="feature-item-title">Collateral Management</div><div class="feature-item-desc">Record and track collateral against loans — property, gold, FD lien, guarantor details. Collateral revaluation schedules and expiry alerts included.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">💳</div><div class="feature-item-title">Partial Payment & Prepayment</div><div class="feature-item-desc">Accept partial EMI payments, advance payments, and full prepayments with automatic recalculation of remaining schedule and interest rebate.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📝</div><div class="feature-item-title">Loan Document Generation</div><div class="feature-item-desc">Auto-generate sanction letters, agreement templates, demand notices, and repayment cards. Fully customizable with your institution's letterhead.</div></div>
+      </div>
+      <div id="tab-accounting" class="feature-panel">
+        <div class="feature-item"><div class="feature-item-icon">📒</div><div class="feature-item-title">General Ledger</div><div class="feature-item-desc">Full double-entry GL with multi-level chart of accounts. Every banking transaction auto-posts to the appropriate GL account without manual entries.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🏢</div><div class="feature-item-title">Multi-Branch Consolidation</div><div class="feature-item-desc">Consolidate financials from all branches in real time. View branch-wise P&L, balance sheet, and trial balance from head office.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📅</div><div class="feature-item-title">Day-End & Month-End Close</div><div class="feature-item-desc">Structured EOD process with automated balance checks, interest posting, and provision entries. Month-end close generates financial statements automatically.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">💱</div><div class="feature-item-title">Expense & Income Vouchers</div><div class="feature-item-desc">Record operational expenses and non-banking income with department and cost-center coding. Approval workflows for expenses above configurable thresholds.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📊</div><div class="feature-item-title">Financial Statements</div><div class="feature-item-desc">Auto-generated Balance Sheet, Income Statement, Trial Balance, and Cash Flow Statement — NRB and cooperative act format ready.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔍</div><div class="feature-item-title">Full Audit Trail</div><div class="feature-item-desc">Every transaction, modification, and reversal is logged with user ID, timestamp, and before/after values. Tamper-proof and available for regulatory inspection.</div></div>
+      </div>
+      <div id="tab-members" class="feature-panel">
+        <div class="feature-item"><div class="feature-item-icon">👤</div><div class="feature-item-title">Member Onboarding & KYC</div><div class="feature-item-desc">Complete digital member registration with KYC document capture, photo, signature, and citizenship scan. Supports individual, joint, and group member types.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🆔</div><div class="feature-item-title">Member ID & Account Linking</div><div class="feature-item-desc">Unique member IDs linked to all their accounts, loans, shares, and transaction history. Full 360° member view in one screen.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">👨‍👩‍👧</div><div class="feature-item-title">Group & Committee Management</div><div class="feature-item-desc">Manage member groups, committees, and boards. Track group savings, group loans, and attendance records for group meetings.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📞</div><div class="feature-item-title">Member Communication Log</div><div class="feature-item-desc">Record calls, visits, and notices against member profiles. Automated SMS and email alerts for dues, maturity, and announcements.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔒</div><div class="feature-item-title">Role-Based Access Control</div><div class="feature-item-desc">Define user roles — teller, supervisor, manager, auditor — with granular permission sets. No user can access what they're not authorized to see or modify.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📍</div><div class="feature-item-title">Branch & Department Setup</div><div class="feature-item-desc">Configure unlimited branches, sub-branches, and departments with individual bank accounts, staff assignments, and independent operating limits.</div></div>
+      </div>
+      <div id="tab-reports" class="feature-panel">
+        <div class="feature-item"><div class="feature-item-icon">🏛️</div><div class="feature-item-title">NRB Regulatory Returns</div><div class="feature-item-desc">Auto-generate NRB quarterly and annual returns in the prescribed formats. Deposit and loan return templates updated to match current NRB circulars.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📊</div><div class="feature-item-title">MIS Dashboard</div><div class="feature-item-desc">Live management information system with branch-wise performance, loan portfolio health, deposit growth, and member activity — updated in real time.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📉</div><div class="feature-item-title">Portfolio Quality Reports</div><div class="feature-item-desc">PAR (Portfolio at Risk) ratios by product, branch, and loan officer. Provision requirement calculations and write-off schedules following NRB guidelines.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🧮</div><div class="feature-item-title">Custom Report Builder</div><div class="feature-item-desc">Build your own reports from any data point in CBS — select fields, apply filters, group by branch or product, and export to Excel or PDF.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📆</div><div class="feature-item-title">Scheduled Report Delivery</div><div class="feature-item-desc">Set up automated daily, weekly, or monthly reports to be emailed to management and board members — no manual generation needed.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔎</div><div class="feature-item-title">Internal Audit Reports</div><div class="feature-item-desc">Transaction exception reports, teller reconciliation, and dormant account summaries designed for internal and external audit support.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section arch-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Architecture</div>
+      <h2 class="section-title">How it all connects.</h2>
+      <div class="arch-grid" style="margin-top:3rem;">
+        <div>
+          <p style="color:var(--muted);line-height:1.8;margin-bottom:1.5rem;">Premium CBS sits at the center of your institution's technology ecosystem. Every channel — counter tellers, mobile banking, ATMs, SMS — connects to the same core in real time, ensuring a single, consistent source of truth for every transaction.</p>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Web-based, no local installation</div><div class="why-point-desc">Access from any modern browser. No software to install on each PC — just a connection to your server.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">On-premise or cloud deployment</div><div class="why-point-desc">Deploy on your own server within your branch, or let us host it securely in our datacenter in Kathmandu.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Works on low-bandwidth connections</div><div class="why-point-desc">Designed for Nepal's connectivity realities — functions reliably on 2G/3G connections in remote districts.</div></div></div>
+            <div class="why-point"><div class="why-check">✓</div><div><div class="why-point-title">Automatic daily backups</div><div class="why-point-desc">Your data is backed up automatically every night. Restoration takes minutes in the event of hardware failure.</div></div></div>
+          </div>
+        </div>
+        <div>
+          <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+            <defs>
+              <filter id="sf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <!-- Central CBS -->
+            <rect x="145" y="150" width="130" height="80" rx="12" fill="#0A2540" stroke="#1A7EFF" stroke-width="2"/>
+            <text x="210" y="183" text-anchor="middle" fill="white" font-size="13" font-family="Plus Jakarta Sans,sans-serif" font-weight="800">Premium CBS</text>
+            <text x="210" y="200" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-family="Inter,sans-serif">Core Engine</text>
+            <circle cx="210" cy="215" r="4" fill="#10B981" filter="url(#sf)"/>
+            <!-- Channel nodes -->
+            <!-- Teller -->
+            <rect x="10" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="60" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🖥️ Teller</text>
+            <text x="60" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Counter Banking</text>
+            <line x1="110" y1="47" x2="145" y2="170" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- Mobile -->
+            <rect x="155" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="205" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">📱 Mobile</text>
+            <text x="205" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Mobile Banking</text>
+            <line x1="205" y1="75" x2="210" y2="150" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- ATM -->
+            <rect x="305" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="355" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🏧 ATM</text>
+            <text x="355" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">SCT Network</text>
+            <line x1="305" y1="47" x2="275" y2="170" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- SMS -->
+            <rect x="10" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="60" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">💬 SMS</text>
+            <text x="60" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Alerts & Enquiry</text>
+            <line x1="110" y1="332" x2="145" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- Tablet -->
+            <rect x="155" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="205" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">📋 Tablet</text>
+            <text x="205" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Field Banking</text>
+            <line x1="205" y1="305" x2="210" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- NRB -->
+            <rect x="305" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
+            <text x="355" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🏛️ NRB</text>
+            <text x="355" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Reports & Returns</text>
+            <line x1="305" y1="332" x2="275" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+            <!-- Labels on lines -->
+            <text x="128" y="120" fill="#1A7EFF" font-size="8" font-family="JetBrains Mono,sans-serif" text-anchor="middle" transform="rotate(-55,128,120)">Real-time</text>
+            <text x="292" y="120" fill="#1A7EFF" font-size="8" font-family="JetBrains Mono,sans-serif" text-anchor="middle" transform="rotate(55,292,120)">Real-time</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="compliance-section">
+    <div class="compliance-inner">
+      <div class="section-eyebrow">Compliance & Security</div>
+      <h2 class="section-title">Built to meet Nepal's regulatory standards.</h2>
+      <p class="section-desc">Every module in Premium CBS is designed with Nepal Rastra Bank directives in mind. We stay current with regulatory changes so your institution doesn't have to.</p>
+      <div class="compliance-grid">
+        <div class="compliance-card"><div class="compliance-icon">🏛️</div><div class="compliance-title">NRB Directives</div><div class="compliance-desc">Compliant with all applicable NRB directives for cooperative and microfinance institutions.</div></div>
+        <div class="compliance-card"><div class="compliance-icon">🤝</div><div class="compliance-title">Cooperative Act</div><div class="compliance-desc">Aligned with Nepal's Cooperative Act 2074 for share management, dividend, and governance.</div></div>
+        <div class="compliance-card"><div class="compliance-icon">🔒</div><div class="compliance-title">Data Encryption</div><div class="compliance-desc">All data at rest and in transit is encrypted. No plain-text passwords or financial data ever stored.</div></div>
+        <div class="compliance-card"><div class="compliance-icon">📋</div><div class="compliance-title">AML/KYC Ready</div><div class="compliance-desc">Built-in KYC document storage and member risk categorization following AML guidelines.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section integrations-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Integrations</div>
+      <h2 class="section-title">Connects with the tools<br>your institution already uses.</h2>
+      <div class="integrations-grid">
+        <div class="integration-chip"><div class="integration-icon">🏧</div><div class="integration-name">SCT ATM Network</div><div class="integration-type">Card switching</div></div>
+        <div class="integration-chip"><div class="integration-icon">📱</div><div class="integration-name">Mobile Banking</div><div class="integration-type">Field collection</div></div>
+        <div class="integration-chip"><div class="integration-icon">💬</div><div class="integration-name">SMS Gateway</div><div class="integration-type">Alert delivery</div></div>
+        <div class="integration-chip"><div class="integration-icon">📋</div><div class="integration-name">Tablet Banking</div><div class="integration-type">Field collection</div></div>
+        <div class="integration-chip"><div class="integration-icon">🖨️</div><div class="integration-name">Passbook Printer</div><div class="integration-type">Branch hardware</div></div>
+        <div class="integration-chip"><div class="integration-icon">📊</div><div class="integration-name">Excel / PDF</div><div class="integration-type">Report export</div></div>
+        <div class="integration-chip"><div class="integration-icon">🏛️</div><div class="integration-name">NRB Portal</div><div class="integration-type">Returns filing</div></div>
+        <div class="integration-chip"><div class="integration-icon">📧</div><div class="integration-name">Email Alerts</div><div class="integration-type">Notifications</div></div>
+        <div class="integration-chip"><div class="integration-icon">💳</div><div class="integration-name">Card Embosser</div><div class="integration-type">Card issuance</div></div>
+        <div class="integration-chip"><div class="integration-icon">🔐</div><div class="integration-name">Fingerprint / OTP</div><div class="integration-type">Authentication</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-eyebrow" style="color:var(--blue-light);display:block;text-align:center;margin-bottom:1.5rem;">Get Started with CBS</div>
+      <h2 class="cta-title">See Premium CBS in action.</h2>
+      <p class="cta-desc">Book a live demo with our team. We'll walk you through the system with your institution's own workflows in mind — no generic scripts.</p>
+      <div class="cta-actions">
+        <button class="btn-primary" style="background:var(--emerald);box-shadow:0 4px 20px rgba(16,185,129,0.4);" onclick="navigate('contact')">Book a Live Demo</button>
+        <button class="btn-ghost" onclick="navigate('contact')">Talk to our Team</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: MOBILE BANKING ═══════════════════════════════ -->
+<div id="page-mobile" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-badge">📱 Field collection · POS slip · Wi-Fi sync</div>
+        <h1 class="page-hero-title">Mobile Banking<br>for the representative on the route.</h1>
+        <p class="page-hero-desc">Collections used to live on a sheet until the marketing representative got back to the office. Posting then risked a wrong account number, a wrong amount, a slow queue, a lost sheet, and an irregular record. A mobile app that only copies the sheet is not enough. This one records the collection in a simple way, posts it so it is harder to miss, and prints the deposit slip on the spot — reliable for the institution and for the member.</p>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">Collector app · Today's route</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Member collection</div><div class="mockup-badge">● Posting</div></div>
+            <div class="mockup-grid">
+              <div class="mockup-stat"><div class="mockup-stat-val">Deposit</div><div class="mockup-stat-lbl">Savings product</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Loan</div><div class="mockup-stat-lbl">Installment</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Fee</div><div class="mockup-stat-lbl">Collected</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">POS</div><div class="mockup-stat-lbl">Slip ready</div></div>
+            </div>
+            <div class="mockup-row"><span class="mockup-row-label">Account</span><span class="mockup-row-val mockup-row-ok">✓ Selected, not typed</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Deposit slip</span><span class="mockup-row-val mockup-row-ok">✓ Printed on POS</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Sync</span><span class="mockup-row-val">Office Wi-Fi</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">The collection is posted<br>before the representative leaves.</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="feature-item-icon">💵</div><div class="feature-item-title">Deposit collections</div><div class="feature-item-desc">The representative posts the deposit on the phone against the member's account. The figure is not copied from a sheet later, which is where account numbers and amounts usually go wrong.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📘</div><div class="feature-item-title">Deposit and loan product information</div><div class="feature-item-desc">Deposit and loan products from the institution are on the phone, so the collector picks the product the member actually holds instead of writing a name from memory.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📋</div><div class="feature-item-title">Loan collections</div><div class="feature-item-desc">Loan installments are collected and posted on the visit. The repayment does not wait in a bag of sheets until the office has time to enter it.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🧾</div><div class="feature-item-title">Fee collections</div><div class="feature-item-desc">Fees follow the same screen as deposits and loans, so they are recorded with the visit and not dropped when the sheet is rewritten.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📶</div><div class="feature-item-title">Sync directly over Wi-Fi</div><div class="feature-item-desc">At the office the phone syncs straight into Premium CBS over Wi-Fi. There is no Excel file to export and no USB cable to a computer.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🖨️</div><div class="feature-item-title">Bill printing from a POS</div><div class="feature-item-desc">A POS device prints the deposit slip as the transaction is posted. The member holds the slip, and the institution holds the posted entry.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section arch-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Record it once. The member sees the slip.</h2>
+      <div class="why-points" style="margin-top:2rem;max-width:720px;">
+        <div class="why-point"><div class="why-check">1</div><div><div class="why-point-title">Select the member and the product</div><div class="why-point-desc">The representative opens the account and the deposit, loan, or fee product on the phone. Nothing is written on a collection sheet to be interpreted later.</div></div></div>
+        <div class="why-point"><div class="why-check">2</div><div><div class="why-point-title">Post and print together</div><div class="why-point-desc">The amount is posted in front of the member and the POS prints the deposit slip immediately. Both sides can see that the account and the amount match.</div></div></div>
+        <div class="why-point"><div class="why-check">3</div><div><div class="why-point-title">Sync on the office Wi-Fi</div><div class="why-point-desc">The day's collections move into Premium CBS over Wi-Fi. Staff do not export a spreadsheet or join a USB stick to a computer.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════ PAGE: ATM BANKING ═══════════════════════════════ -->
+<div id="page-atm" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-badge">🏧 Smart Choice Technologies · Nationwide network</div>
+        <h1 class="page-hero-title">ATM Banking<br>on a tested CBS.</h1>
+        <p class="page-hero-desc">Premium CBS connects to the fintech services your members expect. Smart Choice Technologies is Nepal's ATM service provider, joined to the nationwide ATM network used by commercial banks, development banks, finance companies, and cooperatives. We have already integrated SCT ATM services for our clients. If your institution wants to offer ATM service, the platform is ready and tested.</p>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">premiumcbs.app · Cards</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Card desk — Kathmandu HQ</div><div class="mockup-badge">● SCT linked</div></div>
+            <div class="mockup-grid">
+              <div class="mockup-stat"><div class="mockup-stat-val">Debit</div><div class="mockup-stat-lbl">SCT Chip Card</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Prepaid</div><div class="mockup-stat-lbl">SCT Chip Card</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">ATM</div><div class="mockup-stat-lbl">Nationwide Network</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">POS</div><div class="mockup-stat-lbl">And ecommerce</div></div>
+            </div>
+            <div class="mockup-row"><span class="mockup-row-label">Daily settlement</span><span class="mockup-row-val mockup-row-ok">✓ SCT Report Portal</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Member requests</span><span class="mockup-row-val">SCT CRMS</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Disputes</span><span class="mockup-row-val mockup-row-ok">● SCT DMS</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">Cards, ATMs, POS,<br>and the reports behind them.</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="feature-item-icon">💳</div><div class="feature-item-title">SCT debit chip card</div><div class="feature-item-desc">Issue an SCT debit chip card against the member account in Premium CBS, so cash withdrawal is a core transaction and not a separate register.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🏧</div><div class="feature-item-title">Nationwide ATM network</div><div class="feature-item-desc">Members reach the SCT ATM network used across Nepal by banks, finances, and cooperatives. Your institution does not have to build a switch of its own.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📊</div><div class="feature-item-title">SCT Report Portal</div><div class="feature-item-desc">Open the SCT report portal for the daily report and settlement, so card activity and the CBS ledger can be matched the same day.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🗂️</div><div class="feature-item-title">Customer Request Management</div><div class="feature-item-desc">SCT CRMS is the customer request management system. Card requests, replacements, and member follow-ups stay in one place instead of on paper at the branch.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🏦</div><div class="feature-item-title">Deploy your own ATM</div><div class="feature-item-desc">Place an ATM at your office or a high-traffic point. It sits on the same SCT connection already linked to Premium CBS.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🎫</div><div class="feature-item-title">SCT prepaid chip card</div><div class="feature-item-desc">Issue a prepaid chip card when a full deposit account is not the right product, and still keep issuance inside the institution's control.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🛍️</div><div class="feature-item-title">POS, ecommerce, and mobile commerce</div><div class="feature-item-desc">The same card reaches the SCT POS network, ecommerce, and mobile commerce, so members can pay beyond the ATM.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">⚖️</div><div class="feature-item-title">Dispute Management System</div><div class="feature-item-desc">SCT DMS is the dispute management system. Questioned ATM or POS transactions are raised and tracked there, with the CBS entry available for the amount and the account.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🖨️</div><div class="feature-item-title">Deploy your own POS</div><div class="feature-item-desc">Run your own point-of-sale device for card acceptance at the counter or with a field team, on the SCT POS network.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section arch-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">From CBS to the SCT network.</h2>
+      <div class="why-points" style="margin-top:2rem;max-width:720px;">
+        <div class="why-point"><div class="why-check">1</div><div><div class="why-point-title">Link Premium CBS to SCT</div><div class="why-point-desc">The core is already built to sit with SCT. We connect your institution so card activity, settlement, and member accounts share one platform.</div></div></div>
+        <div class="why-point"><div class="why-check">2</div><div><div class="why-point-title">Issue the chip card</div><div class="why-point-desc">Staff issue an SCT debit or prepaid chip card. Members then reach ATMs, POS, ecommerce, and mobile commerce. You can also deploy your own ATM or POS.</div></div></div>
+        <div class="why-point"><div class="why-check">3</div><div><div class="why-point-title">Settle and resolve in SCT's tools</div><div class="why-point-desc">Daily reports and settlement come from the SCT Report Portal. Member requests go through CRMS. Disputed transactions go through DMS, the dispute management system.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════ PAGE: SMS BANKING ═══════════════════════════════ -->
+<div id="page-sms" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-badge">💬 Alerts · Notices · Any handset</div>
+        <h1 class="page-hero-title">SMS Banking<br>that reaches the member first.</h1>
+        <p class="page-hero-desc">A mobile phone is one of the most personal channels an institution has. More organizations are using text to improve how they talk to customers. In a crowded financial market, SMS gives you a faster way to exchange information and to keep that work orderly. Households and businesses both see the transactions they have done with you, quickly and in a secured way.</p>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">SMS gateway · Alerts</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Outbound messages</div><div class="mockup-badge">● Sending</div></div>
+            <div class="mockup-row"><span class="mockup-row-label">Deposit alert</span><span class="mockup-row-val mockup-row-ok">Credited</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Withdrawal alert</span><span class="mockup-row-val">Sent</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Loan due</span><span class="mockup-row-val mockup-row-ok">Receipt logged</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">FD maturity</span><span class="mockup-row-val">Scheduled</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Notice</span><span class="mockup-row-val">Wishes, news, ads</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">Alerts for the transaction,<br>and notices you write yourself.</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="feature-item-icon">💰</div><div class="feature-item-title">Deposit alerts</div><div class="feature-item-desc">When a deposit is posted in Premium CBS, the member can receive a text confirming the amount. The household sees the credit without waiting for a passbook update.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🏧</div><div class="feature-item-title">Withdrawal alerts</div><div class="feature-item-desc">A withdrawal — at the counter, on a card, or from a collector — can trigger its own alert, so the member knows the debit came from their account.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📅</div><div class="feature-item-title">Loan due and receipt alerts</div><div class="feature-item-desc">Remind the member before an installment is due, and confirm when the receipt is posted. Both messages come from the loan already sitting in CBS.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📆</div><div class="feature-item-title">FD maturity alerts</div><div class="feature-item-desc">Fixed deposits mature on a date the core already knows. The SMS goes out around that date so the member can renew or withdraw on time.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔁</div><div class="feature-item-title">Recurring installment alerts</div><div class="feature-item-desc">Recurring deposits have a schedule. Members get a reminder for the next installment instead of discovering a missed payment at the branch.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📋</div><div class="feature-item-title">Loan maturity alerts</div><div class="feature-item-desc">When a loan reaches maturity, the member is told before the date passes, with enough notice to close, renew, or talk to the branch.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">✉️</div><div class="feature-item-title">Wishes, news, and advertisements</div><div class="feature-item-desc">Compose occasion wishes, news, and advertisement notifications yourself. The same text service carries both automatic alerts and the messages your institution writes.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔒</div><div class="feature-item-title">Secured, and tied to the member</div><div class="feature-item-desc">Messages go to the mobile number on the member record. Staff do not keep a second phone list, and the member receives transaction information in a secured way.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section arch-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">From the ledger to the handset.</h2>
+      <div class="why-points" style="margin-top:2rem;max-width:720px;">
+        <div class="why-point"><div class="why-check">1</div><div><div class="why-point-title">Use the number already on the member</div><div class="why-point-desc">The mobile number captured with the member is the destination. Households and businesses receive news of their own transactions, not a general broadcast.</div></div></div>
+        <div class="why-point"><div class="why-check">2</div><div><div class="why-point-title">Turn on the alerts you need</div><div class="why-point-desc">Choose deposit, withdrawal, loan due, loan receipt, FD maturity, recurring installment, and loan maturity alerts. Add occasion wishes, news, and advertisements when you want to write them.</div></div></div>
+        <div class="why-point"><div class="why-check">3</div><div><div class="why-point-title">Send as the transaction posts</div><div class="why-point-desc">Premium CBS raises the message when the entry is made, so the member hears about the movement quickly, without a separate typing job at the branch.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════ PAGE: TABLET BANKING ═══════════════════════════════ -->
+<div id="page-tablet" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-badge">📋 Collections · Slip on the spot · Wi-Fi sync</div>
+        <h1 class="page-hero-title">Tablet Banking<br>replaces the collection sheet.</h1>
+        <p class="page-hero-desc">Marketing representatives used to carry a collection sheet and could post the amount in the software only after they reached the office. That delay brought wrong account numbers, wrong amounts, slow posting, misplaced sheets, and irregular records. Other organizations built mobile apps that only replaced the sheet. Ours records the collection easily, reduces the chance a transaction is missed or posted wrongly, and prints the deposit slip on the spot while the collector posts it — so both the institution and the member can rely on it.</p>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">Field tablet · Surkhet route</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Today's collections</div><div class="mockup-badge">● On route</div></div>
+            <div class="mockup-grid">
+              <div class="mockup-stat"><div class="mockup-stat-val">Deposit</div><div class="mockup-stat-lbl">Collected</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Loan</div><div class="mockup-stat-lbl">Installment</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">Fee</div><div class="mockup-stat-lbl">Collected</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-val">POS</div><div class="mockup-stat-lbl">Slip printed</div></div>
+            </div>
+            <div class="mockup-row"><span class="mockup-row-label">Account checked</span><span class="mockup-row-val mockup-row-ok">✓ Before posting</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Deposit slip</span><span class="mockup-row-val mockup-row-ok">✓ Printed on POS</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Office sync</span><span class="mockup-row-val">Wi-Fi, no USB</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">Features</div>
+      <h2 class="section-title">Collect, print, and post<br>without the paper sheet.</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="feature-item-icon">💵</div><div class="feature-item-title">Deposit collections</div><div class="feature-item-desc">The representative records the deposit against the member account while they are with the member. The amount is not copied from a sheet back at the office, where an account number or a figure is easy to mistype.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📘</div><div class="feature-item-title">Deposit and loan product information</div><div class="feature-item-desc">The collector sees the institution's deposit and loan products on the device, so the receipt matches a real product in Premium CBS instead of a name written by hand.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📋</div><div class="feature-item-title">Loan collections</div><div class="feature-item-desc">Loan installments are collected on the same visit. The repayment is posted to the loan, not held on paper until someone at the branch finds time to enter it.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🧾</div><div class="feature-item-title">Fee collections</div><div class="feature-item-desc">Fees are collected and recorded in the same flow as deposits and loans, so they are not left off the sheet or posted to the wrong head later.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">📶</div><div class="feature-item-title">Sync directly over Wi-Fi</div><div class="feature-item-desc">Back at the office, collections sync into Premium CBS over Wi-Fi. There is no Excel export and no USB stick to plug into a computer.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🖨️</div><div class="feature-item-title">Bill printing from a POS</div><div class="feature-item-desc">The collector prints the deposit slip on a POS device at the moment the transaction is posted. The member keeps the slip, and the institution keeps the electronic entry.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section arch-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-title">Post with the member. Sync at the office.</h2>
+      <div class="why-points" style="margin-top:2rem;max-width:720px;">
+        <div class="why-point"><div class="why-check">1</div><div><div class="why-point-title">Open the account on the device</div><div class="why-point-desc">The representative selects the member and the product — deposit, loan, or fee — instead of writing an account number on a collection sheet.</div></div></div>
+        <div class="why-point"><div class="why-check">2</div><div><div class="why-point-title">Post and print the slip together</div><div class="why-point-desc">The amount is posted while the collector is still there, and the POS prints the deposit slip on the spot. The member can check the account and the figure before the representative leaves.</div></div></div>
+        <div class="why-point"><div class="why-check">3</div><div><div class="why-point-title">Sync over office Wi-Fi</div><div class="why-point-desc">When the device joins the office Wi-Fi, the day's collections land in Premium CBS. Nobody retypes them from paper, Excel, or a USB drive.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════ PAGE: ABOUT ═══════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <section class="page-hero" style="padding-bottom:4rem;">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
+      <div class="page-hero-badge">🇳🇵 Kathmandu, Nepal · Est. 2015</div>
+      <h1 class="page-hero-title" style="max-width:700px;">We built Nepal's cooperative banking software from the ground up.</h1>
+      <p class="page-hero-desc" style="max-width:600px;">Premium Technologies was founded by a team of software engineers who saw firsthand how Nepal's cooperatives and microfinances were running on spreadsheets, paper ledgers, and outdated systems. We set out to change that — and have spent 12 years doing exactly that.</p>
+    </div>
+  </section>
+
+  <section id="about-us" class="section about-story">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-intro-text">
+          <div class="section-eyebrow">Our Story</div>
+          <h2 class="section-title">12 years, 450+ institutions, one mission.</h2>
+          <p>In 2015, three engineers from Kathmandu University sat in a small office in Tinkune and wrote the first version of Premium CBS. At the time, most cooperatives in Nepal managed their members' savings in physical registers. Loan tracking was done in Excel. NRB reporting was a quarterly nightmare.</p>
+          <div class="about-highlight"><p>"We didn't want to build a generic banking system and adapt it for Nepal. We wanted to build Nepal's banking system from scratch."</p></div>
+          <p>We started with a single cooperative in Kathmandu. Within three years, we had 50 clients across 4 provinces. Today, Premium Technologies is deployed in 450+ institutions across all 7 provinces, from Koshi to Sudurpashchim — including some of Nepal's largest cooperatives and growing microfinances.</p>
+          <p>Every feature in the system started as feedback from a client. We still answer our own phones. We still visit clients on-site when something is wrong. That hasn't changed in 12 years, and we don't plan to change it.</p>
+        </div>
+        <div>
+          <div class="about-stats-side">
+            <div class="about-stat-box"><div class="about-stat-num">12<span class="accent">+</span></div><div class="about-stat-label">Years in operation</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">450<span class="accent">+</span></div><div class="about-stat-label">Institutions served</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">7<span class="accent">/7</span></div><div class="about-stat-label">Provinces covered</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">5</div><div class="about-stat-label">Products in suite</div></div>
+          </div>
+          <div class="about-values">
+            <div class="about-value-item"><div class="about-value-icon">🎯</div><div><div class="about-value-title">Client-first, always</div><div class="about-value-desc">Every product decision starts with client feedback. We build what institutions need, not what looks good on a brochure.</div></div></div>
+            <div class="about-value-item"><div class="about-value-icon">🇳🇵</div><div><div class="about-value-title">Nepal-specific design</div><div class="about-value-desc">Our software reflects Nepal's legal, regulatory, and cultural context — not a foreign system with Nepali labels slapped on.</div></div></div>
+            <div class="about-value-item"><div class="about-value-icon">📞</div><div><div class="about-value-title">Local, responsive support</div><div class="about-value-desc">Our support team is in Kathmandu. We respond quickly, visit on-site when needed, and speak your language.</div></div></div>
+            <div class="about-value-item"><div class="about-value-icon">🔄</div><div><div class="about-value-title">Continuous improvement</div><div class="about-value-desc">We ship updates regularly. The system your institution uses today is better than the one you started with — and the one you'll use next year will be better still.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section timeline-section">
+    <div class="section-inner">
+      <div style="text-align:center;margin-bottom:1rem;"><div class="section-eyebrow" style="display:inline-block;">Our Journey</div></div>
+      <h2 class="section-title" style="text-align:center;">From one cooperative to a nationwide platform.</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content-left"><div class="timeline-year">2015</div><div class="timeline-event-title">Company founded</div><div class="timeline-event-desc">Premium Technologies Pvt. Ltd. registered in Kathmandu. First version of Premium CBS deployed at a single cooperative in Tinkune.</div></div>
+          <div class="timeline-dot">15</div>
+          <div class="timeline-content-empty"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-empty"></div>
+          <div class="timeline-dot">14</div>
+          <div class="timeline-content-right"><div class="timeline-year">2014</div><div class="timeline-event-title">Multi-branch CBS launch</div><div class="timeline-event-desc">Launched multi-branch support and expanded to 25 institutions across Bagmati and Gandaki provinces.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-left"><div class="timeline-year">2016</div><div class="timeline-event-title">SMS Banking module</div><div class="timeline-event-desc">Launched SMS Banking to extend CBS reach to members without smartphones. Deployed across 80+ institutions.</div></div>
+          <div class="timeline-dot">16</div>
+          <div class="timeline-content-empty"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-empty"></div>
+          <div class="timeline-dot">18</div>
+          <div class="timeline-content-right"><div class="timeline-year">2018</div><div class="timeline-event-title">ATM integration & Mobile Banking</div><div class="timeline-event-desc">Integrated with SCT ATM network and launched mobile banking applications (ISmart and mBank) on iOS and Android. Crossed 150 client institutions.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-left"><div class="timeline-year">2020</div><div class="timeline-event-title">Tablet Banking & all 7 provinces</div><div class="timeline-event-desc">Launched Tablet Banking for field officers and achieved deployment across all 7 provinces of Nepal for the first time.</div></div>
+          <div class="timeline-dot">20</div>
+          <div class="timeline-content-empty"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-empty"></div>
+          <div class="timeline-dot">22</div>
+          <div class="timeline-content-right"><div class="timeline-year">2022</div><div class="timeline-event-title">300+ institutions, NRB updates</div><div class="timeline-event-desc">Surpassed 300 active institutions. Released major compliance update aligned with new NRB Cooperative Directives 2079.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content-left"><div class="timeline-year">2024</div><div class="timeline-event-title">450+ institutions milestone</div><div class="timeline-event-desc">Crossed 450 active institutions nationwide. Launched updated MIS Dashboard and custom report builder. Expanding the product team.</div></div>
+          <div class="timeline-dot" style="background:var(--emerald);box-shadow:0 0 0 2px var(--emerald);">24</div>
+          <div class="timeline-content-empty"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="our-team" class="section team-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Our Team</div>
+      <h2 class="section-title">The people behind the platform.</h2>
+      <p class="section-desc">A dedicated team of developers, support specialists, and banking domain experts — all based in Kathmandu.</p>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#1A7EFF,#0A56C8);">RB</div><div class="team-name">Rajesh Bhandari</div><div class="team-role">Co-founder & CEO</div><div class="team-dept">Leadership</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#10B981,#0A7A52);">SP</div><div class="team-name">Suresh Poudel</div><div class="team-role">Co-founder & CTO</div><div class="team-dept">Engineering</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">KT</div><div class="team-name">Kavita Thapa</div><div class="team-role">Head of Product</div><div class="team-dept">Product</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#F59E0B,#B45309);">AM</div><div class="team-name">Amit Maharjan</div><div class="team-role">Head of Support</div><div class="team-dept">Client Success</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#EF4444,#B91C1C);">PK</div><div class="team-name">Priya Koirala</div><div class="team-role">Lead Developer</div><div class="team-dept">Engineering</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#0E7490,#0A5A72);">BS</div><div class="team-name">Bikash Shrestha</div><div class="team-role">Sales & Partnerships</div><div class="team-dept">Sales</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#BE185D,#881337);">NR</div><div class="team-name">Nisha Rai</div><div class="team-role">Banking Domain Expert</div><div class="team-dept">Compliance</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#374151,#111827);">DP</div><div class="team-name">Dipak Pokharel</div><div class="team-role">QA & Testing Lead</div><div class="team-dept">Engineering</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="clients" class="section clients-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Clients</div>
+      <h2 class="section-title">Institutions that run on Premium CBS.</h2>
+      <p class="section-desc">Cooperatives, microfinances, and credit unions across all 7 provinces.</p>
+      <div class="clients-grid" id="aboutClients"></div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-eyebrow" style="color:var(--blue-light);display:block;text-align:center;margin-bottom:1.5rem;">Work With Us</div>
+      <h2 class="cta-title">Join 450+ institutions that trust Premium Tech.</h2>
+      <p class="cta-desc">Talk to our team about your institution's specific needs. No generic pitches — just a conversation about what would work for you.</p>
+      <div class="cta-actions">
+        <button class="btn-primary" style="background:var(--emerald);box-shadow:0 4px 20px rgba(16,185,129,0.4);" onclick="navigate('contact')">Get in Touch</button>
+        <button class="btn-ghost" onclick="navigate('products')">View Products</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: CONTACT ═══════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <section class="page-hero" style="padding-bottom:3rem;">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
+      <div class="page-hero-badge">📅 Response within 24 hours</div>
+      <h1 class="page-hero-title">Request a Demo</h1>
+      <p class="page-hero-desc" style="max-width:540px;">Tell us about your institution and we'll schedule a live walkthrough of Premium CBS tailored to your workflows. No commitment required.</p>
+    </div>
+  </section>
+
+  <section class="contact-section section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-form-card">
+          <div id="form-body">
+            <div class="form-title" data-en="Schedule a Demo" data-ne="डेमो तालिका गर्नुहोस्">Schedule a Demo</div>
+            <div class="form-subtitle" data-en="Fill in your details — our team will reach out within one business day." data-ne="आफ्नो विवरण भर्नुहोस् — हाम्रो टोलीले एक कार्य दिनभित्र सम्पर्क गर्नेछ।">Fill in your details — our team will reach out within one business day.</div>
+            <div class="form-step-bar">
+              <div class="form-step-dot done" id="sd1"></div>
+              <div class="form-step-dot active" id="sd2"></div>
+              <div class="form-step-dot" id="sd3"></div>
+            </div>
+            <form id="demoForm" action="https://formspree.io/f/info@premiumtech.com.np" method="POST" onsubmit="submitForm(event)">
+              <input type="hidden" name="_subject" value="New Demo Request — Premium Technologies Website"/>
+              <input type="hidden" name="_next" value=""/>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" data-en="Your name *" data-ne="तपाईंको नाम *">Your name *</label>
+                  <input class="form-input" type="text" name="name" placeholder="Rajesh Shrestha" required oninput="updateProgress()"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-en="Designation *" data-ne="पद *">Designation *</label>
+                  <input class="form-input" type="text" name="designation" placeholder="CEO / Manager / IT Head" required/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-en="Institution name *" data-ne="संस्थाको नाम *">Institution name *</label>
+                <input class="form-input" type="text" name="institution" placeholder="Kumari Savings & Credit Cooperative" required oninput="updateProgress()"/>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" data-en="Institution type *" data-ne="संस्थाको प्रकार *">Institution type *</label>
+                  <select class="form-select" name="institution_type" required onchange="updateProgress()">
+                    <option value="">Select type</option>
+                    <option>Savings &amp; Credit Cooperative</option>
+                    <option>Microfinance Institution</option>
+                    <option>Credit Union</option>
+                    <option>SACCOS</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-en="Number of branches" data-ne="शाखाहरूको संख्या">Number of branches</label>
+                  <select class="form-select" name="branches">
+                    <option value="">Select range</option>
+                    <option>1 (head office only)</option>
+                    <option>2–5 branches</option>
+                    <option>6–15 branches</option>
+                    <option>16–30 branches</option>
+                    <option>30+ branches</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" data-en="Phone number *" data-ne="फोन नम्बर *">Phone number *</label>
+                  <input class="form-input" type="tel" name="phone" placeholder="+977 98XXXXXXXX" required oninput="updateProgress()"/>
+                  <div class="form-field-hint">We'll call to confirm your demo time.</div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" data-en="Email address" data-ne="इमेल ठेगाना">Email address</label>
+                  <input class="form-input" type="email" name="email" placeholder="info@yourinstitution.com"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-en="Products you're interested in" data-ne="रुचि भएका उत्पादनहरू">Products you're interested in</label>
+                <div class="form-checkbox-group" id="productChecks">
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Premium CBS"/> 🏦 Premium CBS</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Mobile Banking"/> 📱 Mobile Banking</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="ATM Banking"/> 🏧 ATM Banking</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="SMS Banking"/> 💬 SMS Banking</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Tablet Banking"/> 📋 Tablet Banking</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Full Suite"/> ⭐ Full Suite</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-en="Anything you'd like us to know" data-ne="थप जानकारी">Anything you'd like us to know</label>
+                <textarea class="form-textarea" name="message" placeholder="Your current system, key challenges, or specific features you're looking for…"></textarea>
+              </div>
+              <button type="submit" class="form-submit" data-en="Send Demo Request →" data-ne="डेमो अनुरोध पठाउनुहोस् →">Send Demo Request →</button>
+            </form>
+          </div>
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">✅</div>
+            <div class="form-success-title" data-en="Request received!" data-ne="अनुरोध प्राप्त भयो!">Request received!</div>
+            <div class="form-success-desc" data-en="Thank you. Our team will contact you within one business day to confirm your demo." data-ne="धन्यवाद। हाम्रो टोलीले एक कार्य दिनभित्र तपाईंलाई सम्पर्क गर्नेछ।">Thank you. Our team will contact you within one business day to confirm your demo.</div>
+            <div style="margin-top:1.5rem;padding:1rem;background:var(--surface);border-radius:10px;font-size:0.85rem;color:var(--muted);">
+              In the meantime, feel free to call us at <a href="tel:+9779801130700" style="color:var(--blue);font-weight:600;">+977 9801-130700</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <div>
+            <div class="contact-info-title">Talk to us directly.</div>
+            <div class="contact-info-desc">Whether you're evaluating CBS for the first time or looking to switch from another system, our team is happy to answer your questions — no sales pressure, just honest information.</div>
+          </div>
+          <div class="contact-card"><div class="contact-card-icon">📍</div><div><div class="contact-card-title">Office address</div><div class="contact-card-val">Subidhanagar 32, Tinkune<br>Kathmandu, Nepal 44600</div></div></div>
+          <div class="contact-card"><div class="contact-card-icon">📞</div><div><div class="contact-card-title">Phone</div><div class="contact-card-val"><a href="tel:+9779801130700">+977 9801-130700</a><br><a href="tel:+9779801130459">+977 9801-130459</a></div></div></div>
+          <div class="contact-card"><div class="contact-card-icon">✉️</div><div><div class="contact-card-title">Email</div><div class="contact-card-val"><a href="mailto:info@premiumtech.com.np">info@premiumtech.com.np</a><br><a href="mailto:support@premiumtech.com.np">support@premiumtech.com.np</a></div></div></div>
+          <div class="contact-hours">
+            <div class="contact-hours-title">Office Hours</div>
+            <div class="hours-row"><span class="hours-day">Sunday – Friday</span><span class="hours-time open">10:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM – 2:00 PM</span></div>
+            <div class="hours-row"><span class="hours-day">Public Holidays</span><span class="hours-time">Closed</span></div>
+            <div class="hours-row"><span class="hours-day">Support (existing clients)</span><span class="hours-time open">7 days / on-call</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="map-section">
+    <div class="map-inner">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(10,37,64,0.08);">
+        <div style="background:var(--navy);padding:12px 16px;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:16px;">📍</span>
+          <div>
+            <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:white;font-size:13px;">Premium Technologies Pvt. Ltd.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.5);">Subidhanagar 32, Tinkune, Kathmandu 44600</div>
+          </div>
+          <a href="https://www.google.com/maps?q=27.684529255037663,85.34576405767051" target="_blank" rel="noopener" style="margin-left:auto;font-size:12px;font-weight:600;color:var(--blue-light);text-decoration:none;white-space:nowrap;">Open in Maps →</a>
+        </div>
+        <iframe
+          class="map-frame"
+          src="https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s27.684529255037663,85.34576405767051!6i17!3m1!1sen!5m1!1sen"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Premium Technologies office location — Tinkune, Kathmandu">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <section class="section faq-section">
+    <div class="section-inner">
+      <div style="text-align:center;margin-bottom:0.5rem;"><div class="section-eyebrow" style="display:inline-block;">FAQ</div></div>
+      <h2 class="section-title" style="text-align:center;">Common questions.</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How long does implementation take? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">Most institutions are live within 2–4 weeks. This includes data migration from your existing system, system configuration, and staff training. Larger institutions with many branches may take 4–8 weeks. We handle the entire process — you don't need a dedicated IT team on your side.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can you migrate our existing data? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">Yes. We have migrated data from Excel spreadsheets, legacy DOS-based systems, and other CBS platforms. Our team will assess your current data format and handle the migration. Member records, account balances, loan schedules, and transaction history can all be brought across.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What does the pricing look like? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">Pricing is based on institution size, number of branches, and the products you select. We offer both one-time license and annual subscription models. Contact our sales team for a quote tailored to your institution — we don't publish fixed prices because every institution's needs are different.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Does the system work without internet? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">Premium CBS is web-based and requires an internet or local network connection for the main system. However, Tablet Banking is offline-capable — field officers can collect deposits and record transactions without connectivity, and data syncs when they return to a connected area. SMS Banking also works without internet for members.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What kind of support do you provide after go-live? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">All clients receive ongoing support via phone and email. Our team is based in Kathmandu and can visit on-site when needed. Existing clients also get access to our support portal and can raise tickets that are tracked until resolution. Critical issues are escalated immediately and typically resolved same-day.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Is Premium CBS compliant with the latest NRB directives? <span class="faq-arrow">+</span></div>
+          <div class="faq-answer">Yes. We actively monitor NRB circulars and directives and release updates to keep the system compliant. When NRB issues new reporting requirements or changes to cooperative regulations, we update the system and notify all clients. You don't need to track regulatory changes yourself.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER (shared) -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a class="nav-logo" onclick="navigate('home')" style="margin-bottom:0;">
+          <div class="nav-logo-mark">PT</div>
+          <div><div class="nav-logo-text">Premium Technologies</div><div class="nav-logo-sub">Core Banking System · Nepal</div></div>
+        </a>
+        <p class="footer-tagline">Nepal's trusted CBS provider — powering cooperatives, microfinances, and credit unions across all 7 provinces since 2015.</p>
+        <div class="footer-contact-item">📍 Subidhanagar 32, Tinkune, Kathmandu</div>
+        <div class="footer-contact-item">📞 +977 9801-130700 / 9801-130459</div>
+        <div class="footer-contact-item">✉️ info@premiumtech.com.np</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a onclick="navigate('cbs')">Premium CBS</a></li>
+          <li><a onclick="navigate('mobile')">Mobile Banking</a></li>
+          <li><a onclick="navigate('atm')">ATM Banking</a></li>
+          <li><a onclick="navigate('sms')">SMS Banking</a></li>
+          <li><a onclick="navigate('tablet')">Tablet Banking</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a onclick="navigate('about','about-us')">About Us</a></li>
+          <li><a onclick="navigate('about','our-team')">Our Team</a></li>
+          <li><a onclick="navigate('about','clients')">Clients</a></li>
+          <li><a onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get Started</div>
+        <ul class="footer-links">
+          <li><a onclick="navigate('contact')">Request a Demo</a></li>
+          <li><a onclick="navigate('contact')">Talk to Sales</a></li>
+          <li><a onclick="navigate('contact')">Support Portal</a></li>
+          <li><a onclick="navigate('contact')">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Premium Technologies Pvt. Ltd. All rights reserved.</div>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── LANGUAGE SYSTEM ──
+const TRANSLATIONS = {
+  en: {
+    'nav-home': 'Home', 'nav-products': "Products <span class='nav-caret'>▾</span>", 'nav-cbs': 'Premium CBS', 'nav-about': 'About Us', 'nav-contact': 'Contact',
+    'hero-eyebrow': "Nepal's Trusted CBS Provider",
+    'hero-title': "The Banking OS<br><span class='accent'>Built for Nepal's</span><br>Financial Institutions.",
+    'hero-desc': "Premium Technologies powers cooperatives, microfinances, and credit unions across all 7 provinces — with a complete suite of core banking, mobile, ATM, and digital channel solutions.",
+    'hero-demo': 'Schedule a Demo →', 'hero-products': 'View Products',
+    'stat1-label': 'Years of Industry Experience', 'stat1-sub': 'Est. 2015 · Kathmandu',
+    'stat2-label': 'Institutions Served Nationwide', 'stat2-sub': 'Cooperatives · MFIs · Credit Unions',
+    'stat3-label': 'Provinces Covered', 'stat3-sub': 'Full nationwide coverage',
+    'cta-title': 'Ready to modernize your institution?',
+    'cta-desc': 'Join 450+ cooperatives and microfinances across Nepal who have upgraded to Premium CBS.',
+    'cta-demo': 'Schedule a Free Demo', 'cta-phone': '📞 +977 9801-130700',
+  },
+  ne: {
+    'nav-home': 'गृहपृष्ठ', 'nav-products': "उत्पादनहरू <span class='nav-caret'>▾</span>", 'nav-cbs': 'प्रिमियम CBS', 'nav-about': 'हाम्रोबारे', 'nav-contact': 'सम्पर्क',
+    'hero-eyebrow': 'नेपालको विश्वसनीय CBS प्रदायक',
+    'hero-title': "नेपालका वित्तीय<br><span class='accent'>संस्थाहरूको लागि</span><br>निर्मित ब्याङ्किङ प्रणाली।",
+    'hero-desc': 'प्रिमियम टेक्नोलोजीजले सहकारी, लघुवित्त र क्रेडिट युनियनहरूलाई सबै ७ प्रदेशमा सञ्चालन गर्दछ।',
+    'hero-demo': 'डेमो तालिका गर्नुहोस् →', 'hero-products': 'उत्पादनहरू हेर्नुहोस्',
+    'stat1-label': 'वर्षको उद्योग अनुभव', 'stat1-sub': 'स्थापना २०१२ · काठमाडौं',
+    'stat2-label': 'देशभर सेवा गरिएका संस्थाहरू', 'stat2-sub': 'सहकारी · लघुवित्त · क्रेडिट युनियन',
+    'stat3-label': 'प्रदेशहरू समेटिएका', 'stat3-sub': 'पूर्ण राष्ट्रव्यापी कवरेज',
+    'cta-title': 'आफ्नो संस्था आधुनिकीकरण गर्न तयार हुनुहुन्छ?',
+    'cta-desc': 'नेपालभरका ५००+ सहकारी र लघुवित्तहरूसँग सामेल हुनुहोस् जसले Premium CBS मा अपग्रेड गरेका छन्।',
+    'cta-demo': 'नि:शुल्क डेमो तालिका गर्नुहोस्', 'cta-phone': '📞 +977 9801-130700',
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ne').classList.toggle('active', lang === 'ne');
+  document.body.classList.toggle('ne', lang === 'ne');
+
+  // Translate all data-en / data-ne elements
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.innerHTML = val;
+  });
+
+  // Specific keyed translations
+  const t = TRANSLATIONS[lang];
+  const set = (sel, key) => { const el = document.querySelector(sel); if (el && t[key]) el.innerHTML = t[key]; };
+  set('[data-page="home"]', 'nav-home');
+  set('[data-page="products"]', 'nav-products');
+  set('[data-page="cbs"]', 'nav-cbs');
+  set('[data-page="about"]', 'nav-about');
+  set('[data-page="contact"]', 'nav-contact');
+}
+
+// ── ROUTER ──
+const PRODUCT_PAGES = ['products', 'cbs', 'mobile', 'atm', 'sms', 'tablet'];
+
+function toggleMenu() {
+  document.querySelector('nav').classList.toggle('menu-open');
+}
+
+function toggleDropdown(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const item = event.currentTarget.closest('.nav-item');
+  const willOpen = !item.classList.contains('open');
+  document.querySelectorAll('.nav-item.open').forEach(n => n.classList.remove('open'));
+  item.classList.toggle('open', willOpen);
+}
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.nav-item.open').forEach(n => n.classList.remove('open'));
+});
+
+function fillAboutClients() {
+  const track = document.getElementById('logoTrack');
+  const dest = document.getElementById('aboutClients');
+  if (!track || !dest || dest.childElementCount) return;
+  [...track.children].slice(0, 12).forEach(chip => dest.appendChild(chip.cloneNode(true)));
+}
+
+function navigate(page, section) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const key = a.dataset.page;
+    const active = key === 'products' ? PRODUCT_PAGES.includes(page) : key === page;
+    a.classList.toggle('active', active);
+  });
+  document.querySelector('nav').classList.remove('menu-open');
+  document.querySelectorAll('.nav-item.open').forEach(n => n.classList.remove('open'));
+  if (page === 'about') fillAboutClients();
+  const sectionEl = section ? document.getElementById(section) : null;
+  if (sectionEl) sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── STAT COUNTERS ──
+function animateCounters() {
+  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:450,s:'+'},{id:'s3',t:7,s:'/7'}];
+  data.forEach(c => {
+    const el = document.getElementById(c.id); if(!el) return;
+    let cur=0; const inc=c.t/60;
+    const iv=setInterval(()=>{
+      cur=Math.min(cur+inc,c.t);
+      el.innerHTML=`${Math.floor(cur)}<span class="plus">${c.s}</span>`;
+      if(cur>=c.t) clearInterval(iv);
+    },16);
+  });
+}
+const statsObs = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){animateCounters();statsObs.disconnect();}
+},{threshold:0.5});
+const sb=document.querySelector('.stats-bar'); if(sb) statsObs.observe(sb);
+
+// ── FEATURE TABS ──
+function showTab(id) {
+  document.querySelectorAll('.feature-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.feature-panel').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// ── FORM ──
+function submitForm(e) {
+  if (e) e.preventDefault();
+  const form = document.getElementById('demoForm');
+  const name = form.querySelector('[name="name"]').value.trim();
+  const phone = form.querySelector('[name="phone"]').value.trim();
+  const inst = form.querySelector('[name="institution"]').value.trim();
+  if (!name || !phone || !inst) {
+    alert(currentLang === 'ne' ? 'कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्।' : 'Please fill in all required fields.');
+    return;
+  }
+  // POST to Formspree (replace YOUR_FORM_ID with actual Formspree endpoint)
+  const data = new FormData(form);
+  fetch('https://formspree.io/f/xpwzgnjp', { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    .catch(() => {}); // silently handle - always show success for demo
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+function toggleCheck(label) {
+  label.classList.toggle('checked');
+}
+
+function updateProgress() {
+  const form = document.getElementById('demoForm');
+  if (!form) return;
+  const name = form.querySelector('[name="name"]').value.trim();
+  const inst = form.querySelector('[name="institution"]').value.trim();
+  const phone = form.querySelector('[name="phone"]').value.trim();
+  const type = form.querySelector('[name="institution_type"]').value;
+  const filled = [name, inst, phone, type].filter(Boolean).length;
+  document.getElementById('sd1').className = 'form-step-dot done';
+  document.getElementById('sd2').className = 'form-step-dot ' + (filled >= 2 ? 'done' : 'active');
+  document.getElementById('sd3').className = 'form-step-dot ' + (filled >= 4 ? 'done' : filled >= 2 ? 'active' : '');
+}
+
+// ── HERO MAP ──
+let heroMapTimer = null;
+function initHeroMap() {
+  const nodes = document.querySelectorAll('.hero-prov');
+  const label = document.getElementById('heroProvinceName');
+  if (!nodes.length || !label) return;
+  let i = 0;
+  const tick = () => {
+    nodes.forEach(n => n.classList.remove('is-active'));
+    nodes[i].classList.add('is-active');
+    label.textContent = nodes[i].dataset.name;
+    i = (i + 1) % nodes.length;
+  };
+  tick();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (heroMapTimer) clearInterval(heroMapTimer);
+  heroMapTimer = setInterval(tick, 1600);
+}
+window.addEventListener('load', initHeroMap);
+</script>
+</body>
+</html>
