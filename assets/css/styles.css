@@ -802,32 +802,8 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
   .why-cbs-grid { grid-template-columns: 1fr; }
 }
 
-/* About Us photo */
-.about-us-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-.about-us-photo { margin: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 50px rgba(6,26,95,0.15); aspect-ratio: 4 / 3; }
-.about-us-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; }
-@media (max-width: 900px) {
-  .about-us-grid { grid-template-columns: 1fr; gap: 2rem; }
-}
-
-/* About hero with photo */
-.about-hero { min-height: 560px; display: flex; align-items: center; padding: 8rem 2rem 5rem; }
-.about-hero-media { position: absolute; top: 68px; right: 0; bottom: 0; left: 0; overflow: hidden; }
-.about-hero-media img {
-  position: absolute; top: 0; right: 0; height: 100%; width: auto; min-width: 58%; object-fit: cover; object-position: right top;
-  transform-origin: 80% 30%; animation: about-hero-zoom 18s ease-out both;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%); mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
-}
-.about-hero-media::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(6,26,95,0.9) 0%, rgba(6,26,95,0.6) 40%, rgba(6,26,95,0.1) 75%, transparent 100%),
-              linear-gradient(0deg, rgba(6,26,95,0.55) 0%, transparent 30%);
-}
-.about-hero-shine {
-  position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
-  transform: translateX(-100%); animation: about-hero-shine 7s ease-in-out 1.2s infinite;
-}
+/* About hero */
+.about-hero { display: flex; align-items: center; padding: 8rem 2rem 5rem; }
 .about-hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: 0 auto; }
 .about-hero-text { max-width: 720px; }
 .about-hero-text > * { animation: hero-rise 0.8s ease both; }
@@ -845,17 +821,11 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
 .about-hero-chip:nth-child(1) { animation-delay: 0.55s, 1.4s; }
 .about-hero-chip:nth-child(2) { animation-delay: 0.7s, 2.2s; }
 .about-hero-chip:nth-child(3) { animation-delay: 0.85s, 3s; }
-@keyframes about-hero-zoom { from { transform: scale(1.15); } to { transform: scale(1); } }
-@keyframes about-hero-shine { 0% { transform: translateX(-100%); } 35%, 100% { transform: translateX(100%); } }
 @media (max-width: 768px) {
-  .about-hero { min-height: 0; padding: 7rem 1.25rem 3.5rem; }
-  .about-hero-media { top: 0; }
-  .about-hero-media img { width: 100%; min-width: 0; object-position: 70% top; -webkit-mask-image: none; mask-image: none; }
-  .about-hero-media::after { background: linear-gradient(180deg, rgba(6,26,95,0.7) 0%, rgba(6,26,95,0.92) 60%); }
+  .about-hero { padding: 7rem 1.25rem 3.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .about-hero-media img, .about-hero-shine, .about-hero-text > *, .about-hero-chip { animation: none; }
-  .about-hero-shine { display: none; }
+  .about-hero-text > *, .about-hero-chip { animation: none; }
 }
 
 /* Client cards */
