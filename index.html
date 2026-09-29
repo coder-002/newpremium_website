@@ -20,12 +20,12 @@
       <a href="#" onclick="toggleDropdown(event)" data-page="products" data-en="Products <span class='nav-caret'>▾</span>" data-ne="उत्पादनहरू <span class='nav-caret'>▾</span>">Products <span class="nav-caret">▾</span></a>
       <ul class="nav-dropdown">
         <li class="nav-dropdown-panel">
-          <a onclick="navigate('cbs')" data-page="cbs" data-en="Premium CBS" data-ne="प्रिमियम CBS">Premium CBS</a>
-          <a onclick="navigate('cbs-lite')" data-page="cbs-lite" data-en="Premium CBS Lite <span class='nav-chip'>New</span>" data-ne="प्रिमियम CBS Lite <span class='nav-chip'>नयाँ</span>">Premium CBS Lite <span class="nav-chip">New</span></a>
-          <a onclick="navigate('mobile')" data-page="mobile" data-en="Mobile Banking" data-ne="मोबाइल ब्याङ्किङ">Mobile Banking</a>
-          <a onclick="navigate('atm')" data-page="atm" data-en="ATM Banking" data-ne="एटीएम ब्याङ्किङ">ATM Banking</a>
-          <a onclick="navigate('sms')" data-page="sms" data-en="SMS Banking" data-ne="एसएमएस ब्याङ्किङ">SMS Banking</a>
-          <a onclick="navigate('tablet')" data-page="tablet" data-en="Premium Mobile Collector" data-ne="प्रिमियम मोबाइल कलेक्टर">Premium Mobile Collector</a>
+          <a onclick="navigate('cbs')" data-page="cbs" data-en="Premium CBS" data-ne="Premium CBS">Premium CBS</a>
+          <a onclick="navigate('cbs-lite')" data-page="cbs-lite" data-en="Premium CBS Lite <span class='nav-chip'>New</span>" data-ne="Premium CBS Lite <span class='nav-chip'>नयाँ</span>">Premium CBS Lite <span class="nav-chip">New</span></a>
+          <a onclick="navigate('mobile')" data-page="mobile" data-en="Mobile Banking" data-ne="Mobile Banking">Mobile Banking</a>
+          <a onclick="navigate('atm')" data-page="atm" data-en="ATM Banking" data-ne="ATM Banking">ATM Banking</a>
+          <a onclick="navigate('sms')" data-page="sms" data-en="SMS Banking" data-ne="SMS Banking">SMS Banking</a>
+          <a onclick="navigate('tablet')" data-page="tablet" data-en="Premium Mobile Collector" data-ne="Premium Mobile Collector">Premium Mobile Collector</a>
         </li>
       </ul>
     </li>
@@ -244,8 +244,9 @@
     <div class="clients-inner">
       <div class="clients-label" data-en="Trusted by 500+ institutions across all 7 provinces of Nepal" data-ne="नेपालका सबै ७ प्रदेशका ४५०+ संस्थाहरूद्वारा विश्वसनीय">Trusted by 500+ institutions across all 7 provinces of Nepal</div>
     </div>
-    <div class="logo-bar-wrap" style="padding:0 0 0.5rem;">
+    <div class="logo-bar-wrap">
       <div class="logo-bar-track" id="logoTrack"></div>
+      <div class="logo-bar-track logo-bar-track-reverse" id="logoTrack2"></div>
     </div>
   </section>
 
@@ -894,23 +895,33 @@
 <!-- ═══════════════════════════════ PAGE: ABOUT ═══════════════════════════════ -->
 <div id="page-about" class="page">
 
-  <section class="page-hero" style="padding-bottom:4rem;">
-    <div class="page-hero-bg"></div>
-    <div class="page-hero-grid"></div>
-    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
-      <div class="page-hero-badge">🇳🇵 Kathmandu, Nepal · Est. 2015</div>
-      <h1 class="page-hero-title" style="max-width:820px;">Transforming Financial Institutions Through Smart Digital Banking Solutions</h1>
-      <p class="page-hero-lead" style="max-width:720px;">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology.</p>
+  <section class="page-hero about-hero">
+    <div class="about-hero-media" aria-hidden="true"><img src="assets/images/company/about-hero.webp" alt=""></div>
+    <div class="about-hero-shine" aria-hidden="true"></div>
+    <div class="about-hero-inner">
+      <div class="about-hero-text">
+        <div class="page-hero-badge">🇳🇵 Kathmandu, Nepal · Est. 2015</div>
+        <h1 class="page-hero-title">Transforming Financial Institutions Through Smart Digital Banking Solutions</h1>
+        <p class="page-hero-lead">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology.</p>
+      </div>
+      <div class="about-hero-chips">
+        <div class="about-hero-chip"><strong>12+</strong><span>Years of industry experience</span></div>
+        <div class="about-hero-chip"><strong>500+</strong><span>BFIs served</span></div>
+        <div class="about-hero-chip"><strong>7/7</strong><span>Provinces covered</span></div>
+      </div>
     </div>
   </section>
 
   <section id="about-us" class="section about-story">
     <div class="section-inner">
-      <div class="about-intro-text" style="max-width:900px;">
+      <div class="about-us-grid">
+      <div class="about-intro-text">
         <div class="section-eyebrow">About Us</div>
         <h2 class="section-title">Premium Technologies Pvt. Ltd.</h2>
         <p>Premium Technologies Pvt. Ltd. is a Nepal-based software product development company dedicated to delivering innovative, reliable, and customized banking and financial technology solutions. We specialize in developing digital solutions for Cooperatives, Microfinance Institutions, and Small to Medium-sized Financial Organizations, helping them modernize their operations and embrace the future of digital banking.</p>
         <p>With years of experience in the financial technology sector, we have developed and continuously enhanced our flagship product Premium CBS — Core Banking Solution, a comprehensive and cloud-based banking platform designed to meet the evolving requirements of modern financial institutions.</p>
+      </div>
+      <figure class="about-us-photo"><img src="assets/images/company/about-us.jpeg" alt="The Premium Technologies team outside the company office"></figure>
       </div>
       <div class="about-stats-row">
         <div class="about-stat-box"><div class="about-stat-num">12<span class="accent">+</span></div><div class="about-stat-label">Years of industry experience</div></div>

@@ -16,7 +16,7 @@ const TRANSLATIONS = {
     'cta-demo': 'Schedule a Free Demo', 'cta-phone': '📞 +977 9801-130700',
   },
   ne: {
-    'nav-home': 'गृहपृष्ठ', 'nav-products': "उत्पादनहरू <span class='nav-caret'>▾</span>", 'nav-cbs': 'प्रिमियम CBS', 'nav-about': 'हाम्रोबारे', 'nav-contact': 'सम्पर्क',
+    'nav-home': 'गृहपृष्ठ', 'nav-products': "उत्पादनहरू <span class='nav-caret'>▾</span>", 'nav-cbs': 'Premium CBS', 'nav-about': 'हाम्रोबारे', 'nav-contact': 'सम्पर्क',
     'hero-eyebrow': 'नेपालको विश्वसनीय CBS प्रदायक',
     'hero-title': "नेपालका वित्तीय<br><span class='accent'>संस्थाहरूको लागि</span><br>निर्मित ब्याङ्किङ प्रणाली।",
     'hero-desc': 'प्रिमियम टेक्नोलोजीजले सहकारी, लघुवित्त र क्रेडिट युनियनहरूलाई सबै ७ प्रदेशमा सञ्चालन गर्दछ।',
@@ -55,6 +55,8 @@ function setLang(lang) {
   set('[data-page="contact"]', 'nav-contact');
 
   translatePage(lang);
+  const moreBtn = document.querySelector('.clients-more-btn');
+  if (moreBtn && moreBtn.__label) moreBtn.textContent = moreBtn.__label();
 
   const eyebrow = document.querySelector('.hero-eyebrow .type-text');
   if (eyebrow) {
@@ -136,54 +138,90 @@ function clientInitials(name) {
 }
 
 function clientChip(client, i) {
-  const chip = document.createElement('div');
-  chip.className = 'client-logo-chip';
+  const card = document.createElement('div');
+  card.className = 'client-card';
   const mark = document.createElement('div');
-  mark.className = 'client-logo-icon';
+  mark.className = 'client-card-logo';
   const showInitials = () => {
+    mark.classList.remove('has-img');
+    mark.classList.add('is-initials');
     mark.textContent = clientInitials(client.name);
-    mark.style.background = CLIENT_COLORS[i % CLIENT_COLORS.length];
+    mark.style.setProperty('--client-color', CLIENT_COLORS[i % CLIENT_COLORS.length]);
   };
   if (client.logo) {
     const img = document.createElement('img');
-    img.className = 'client-logo-img';
     img.src = client.logo;
-    img.alt = '';
+    img.alt = client.name + ' logo';
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.onerror = () => { img.remove(); showInitials(); };
     mark.classList.add('has-img');
     mark.appendChild(img);
   } else {
     showInitials();
   }
-  const text = document.createElement('div');
   const name = document.createElement('div');
-  name.className = 'client-logo-name';
+  name.className = 'client-card-name';
   name.textContent = client.name;
-  text.appendChild(name);
-  const meta = [client.type, client.location].filter(Boolean).join(' · ');
+  card.append(mark, name);
+  const meta = client.address || [client.type, client.location].filter(Boolean).join(' · ');
   if (meta) {
-    const type = document.createElement('div');
-    type.className = 'client-logo-type';
-    type.textContent = meta;
-    text.appendChild(type);
+    const addr = document.createElement('div');
+    addr.className = 'client-card-meta';
+    addr.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+    addr.appendChild(document.createTextNode(meta));
+    card.appendChild(addr);
   }
-  chip.append(mark, text);
-  return chip;
+  return card;
 }
 
 function renderClients() {
-  const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name);
-  const track = document.getElementById('logoTrack');
-  if (track && !track.childElementCount) {
-    [...clients, ...clients].forEach((c, i) => track.appendChild(clientChip(c, i % clients.length)));
-  }
+  const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name && c.logo);
+  const rows = [document.getElementById('logoTrack'), document.getElementById('logoTrack2')].filter(Boolean);
+  if (!clients.length || !rows.length || rows[0].childElementCount) return;
+  rows.forEach((track, r) => {
+    const list = rows.length > 1 ? clients.filter((_, i) => i % rows.length === r) : clients;
+    [...list, ...list].forEach((c, i) => {
+      const card = clientChip(c, i + r);
+      if (i >= list.length) card.setAttribute('aria-hidden', 'true');
+      track.appendChild(card);
+    });
+    track.style.animationDuration = Math.max(40, list.length * 4) + 's';
+  });
 }
+
+const ABOUT_CLIENTS_INITIAL = 24;
 
 function fillAboutClients() {
   const dest = document.getElementById('aboutClients');
   if (!dest || dest.childElementCount) return;
-  (window.PREMIUM_CLIENTS || []).filter(c => c && c.name).forEach((c, i) => dest.appendChild(clientChip(c, i)));
+  const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name);
+  clients.forEach((c, i) => {
+    const card = clientChip(c, i);
+    if (i >= ABOUT_CLIENTS_INITIAL) card.classList.add('is-extra');
+    dest.appendChild(card);
+  });
+  if (clients.length > ABOUT_CLIENTS_INITIAL) {
+    const wrap = document.createElement('div');
+    wrap.className = 'clients-more';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'clients-more-btn';
+    const label = () => {
+      const en = dest.classList.contains('show-all') ? 'Show fewer' : 'Show all ' + clients.length + ' clients';
+      if (currentLang !== 'ne') return en;
+      return dest.classList.contains('show-all') ? 'कम देखाउनुहोस्' : 'सबै ' + clients.length.toLocaleString('ne-NP') + ' ग्राहक हेर्नुहोस्';
+    };
+    btn.textContent = label();
+    btn.addEventListener('click', () => {
+      const expanded = dest.classList.toggle('show-all');
+      btn.textContent = label();
+      if (!expanded) dest.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    btn.__label = label;
+    wrap.appendChild(btn);
+    dest.after(wrap);
+  }
   if (currentLang === 'ne') translatePage('ne', dest);
 }
 
