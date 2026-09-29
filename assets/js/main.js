@@ -157,18 +157,8 @@ function clientChip(client, i) {
   } else {
     showInitials();
   }
-  const name = document.createElement('div');
-  name.className = 'client-card-name';
-  name.textContent = client.name;
-  card.append(mark, name);
-  const meta = client.address || [client.type, client.location].filter(Boolean).join(' · ');
-  if (meta) {
-    const addr = document.createElement('div');
-    addr.className = 'client-card-meta';
-    addr.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
-    addr.appendChild(document.createTextNode(meta));
-    card.appendChild(addr);
-  }
+  card.title = client.name;
+  card.appendChild(mark);
   return card;
 }
 
@@ -192,7 +182,7 @@ const ABOUT_CLIENTS_INITIAL = 20;
 function fillAboutClients() {
   const dest = document.getElementById('aboutClients');
   if (!dest || dest.childElementCount) return;
-  const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name);
+  const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name && c.logo);
   clients.slice(0, ABOUT_CLIENTS_INITIAL).forEach((c, i) => dest.appendChild(clientChip(c, i)));
   if (currentLang === 'ne') translatePage('ne', dest);
   initCardMotion(dest);
@@ -211,9 +201,8 @@ function initCardMotion(root = document) {
   root.querySelectorAll(MOTION_CARDS).forEach(card => {
     if (card.dataset.motion) return;
     card.dataset.motion = '1';
-    const i = [...card.parentElement.children].indexOf(card);
-    card.style.setProperty('--float-delay', -((i % 5) * 0.9) + 's');
     if (card.closest('.logo-bar-track')) return;
+    const i = [...card.parentElement.children].indexOf(card);
     card.style.setProperty('--reveal-delay', (i % 6) * 0.08 + 's');
     card.classList.add('reveal-card');
     cardObserver.observe(card);
