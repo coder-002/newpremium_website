@@ -3,7 +3,7 @@
 //   name     – client name shown on the chip (required)
 //   type     – e.g. "Cooperative", "Microfinance", "SACCOS" (optional)
 //   location – city or province (optional)
-//   logo     – image URL or a file path next to index.html, e.g. "logos/kumari.png".
+//   logo     – image URL or a path relative to index.html, e.g. "assets/images/clients/kumari.png".
 //              Leave "" to show coloured initials instead.
 // Placeholder data: replace with the real client list.
 window.PREMIUM_CLIENTS = [

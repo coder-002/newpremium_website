@@ -300,10 +300,7 @@ window.NE_TEXT = {
  "Need something lighter?": "Lite संस्करण चाहिन्छ?",
  "Premium CBS Lite is the mini, cloud-based edition of Premium CBS — the same trusted core, simplified for smaller cooperatives.": "प्रिमियम CBS Lite प्रिमियम CBS को सानो, क्लाउडमा आधारित संस्करण हो — उही विश्वसनीय कोर, साना सहकारीका लागि सरल बनाइएको।",
  "Get Started with CBS": "CBS बाट सुरु गर्नुहोस्",
- "See Premium CBS in action.": "प्रिमियम CBS चलेको हेर्नुहोस्।",
- "Book a live demo with our team. We'll walk you through the system with your institution's own workflows in mind — no generic scripts.": "हाम्रो टोलीसँग प्रत्यक्ष डेमो बुक गर्नुहोस्। तपाईंको संस्थाकै कार्यप्रवाहलाई ध्यानमा राखेर हामी प्रणाली देखाउँछौं — सामान्य स्क्रिप्ट होइन।",
  "Book a Live Demo": "प्रत्यक्ष डेमो बुक गर्नुहोस्",
- "Talk to our Team": "हाम्रो टोलीसँग कुरा गर्नुहोस्",
  "We proudly announce the official launch of": "हामी गर्वका साथ आधिकारिक सार्वजनिकीकरणको घोषणा गर्दछौं",
  "✨ New product · Mini edition of Premium CBS": "✨ नयाँ उत्पादन · प्रिमियम CBS को सानो संस्करण",
  "Seamless, Efficient, and Secure Core Banking Solution for the Digital Future.": "डिजिटल भविष्यका लागि सहज, दक्ष र सुरक्षित कोर ब्याङ्किङ समाधान।",
@@ -655,7 +652,11 @@ window.NE_TEXT = {
  "Build the Future of Banking with Premium Tech": "प्रिमियम टेकसँग ब्याङ्किङको भविष्य निर्माण गर्नुहोस्",
  "Discover how Premium Tech can help your institution simplify operations, enhance security, and deliver better digital banking experiences.": "प्रिमियम टेकले तपाईंको संस्थालाई सञ्चालन सरल बनाउन, सुरक्षा बढाउन र राम्रो डिजिटल ब्याङ्किङ अनुभव दिन कसरी मद्दत गर्न सक्छ, पत्ता लगाउनुहोस्।",
  "Connect with our experts for a personalized demo and explore a banking solution designed for your institution's growth.": "व्यक्तिगत डेमोका लागि हाम्रा विज्ञहरूसँग जोडिनुहोस् र तपाईंको संस्थाको प्रगतिका लागि बनाइएको ब्याङ्किङ समाधान अन्वेषण गर्नुहोस्।",
- "Let’s create a smarter digital banking future together.": "आउनुहोस्, सँगै स्मार्ट डिजिटल ब्याङ्किङ भविष्य निर्माण गरौं।"
+ "Let’s create a smarter digital banking future together.": "आउनुहोस्, सँगै स्मार्ट डिजिटल ब्याङ्किङ भविष्य निर्माण गरौं।",
+ "See Premium CBS in Action": "प्रिमियम CBS चलेको हेर्नुहोस्",
+ "Experience how Premium CBS can simplify your banking operations, enhance efficiency, and empower your institution with secure, scalable, and future-ready digital banking solutions.": "प्रिमियम CBS ले कसरी तपाईंको ब्याङ्किङ सञ्चालन सरल बनाउन, दक्षता बढाउन र सुरक्षित, विस्तारयोग्य तथा भविष्य-तयार डिजिटल ब्याङ्किङ समाधानमार्फत तपाईंको संस्थालाई सशक्त बनाउन सक्छ, अनुभव गर्नुहोस्।",
+ "Book a personalized demo with our experts and discover how Premium CBS can support your institution’s unique workflows — with practical insights, not generic presentations.": "हाम्रा विज्ञहरूसँग व्यक्तिगत डेमो बुक गर्नुहोस् र प्रिमियम CBS ले तपाईंको संस्थाको विशिष्ट कार्यप्रवाहलाई कसरी सघाउन सक्छ, पत्ता लगाउनुहोस् — सामान्य प्रस्तुति होइन, व्यावहारिक जानकारीसहित।",
+ "Talk to Our Team": "हाम्रो टोलीसँग कुरा गर्नुहोस्"
 };
 window.NE_ATTR = {
  "alt::Premium Technologies": "प्रिमियम टेक्नोलोजिज",
@@ -666,16 +667,16 @@ window.NE_ATTR = {
  "aria-label::Nepal, all seven provinces": "नेपाल, सातै प्रदेश",
  "aria-label::Premium CBS at the center, connected in real time to Teller, Mobile, ATM, SMS, Collector, and Regulatory Reporting": "केन्द्रमा प्रिमियम CBS, टेलर, मोबाइल, एटीएम, एसएमएस, कलेक्टर र नियामकीय प्रतिवेदनसँग तत्कालै जोडिएको",
  "alt::mBank app on a phone": "फोनमा mBank एप",
- "alt::SMART digital banking app on a phone": "फोनमा SMART डिजिटल ब्याङ्किङ एप",
  "aria-label::Previous app": "अघिल्लो एप",
  "aria-label::Next app": "अर्को एप",
  "aria-label::Show mBank": "mBank देखाउनुहोस्",
- "aria-label::Show SMART": "SMART देखाउनुहोस्",
  "alt::A member inserting an SCT chip card into an ATM": "एटीएममा SCT चिप कार्ड हाल्दै गरेका सदस्य",
  "alt::SMS Banking on a phone, showing balance, transaction alert, and mini statement messages": "फोनमा एसएमएस ब्याङ्किङ, मौज्दात, कारोबार सूचना र मिनी विवरण सन्देश देखाउँदै",
  "placeholder::Rajesh Shrestha": "राजेश श्रेष्ठ",
  "placeholder::CEO / Manager / IT Head": "प्रमुख कार्यकारी / प्रबन्धक / आईटी प्रमुख",
  "placeholder::Kumari Savings & Credit Cooperative": "कुमारी बचत तथा ऋण सहकारी",
  "placeholder::Your current system, key challenges, or specific features you're looking for…": "तपाईंको हालको प्रणाली, मुख्य चुनौती वा खोजिरहेका विशेष सुविधा…",
- "title::Premium Technologies office location — Tinkune, Kathmandu": "प्रिमियम टेक्नोलोजिज कार्यालय स्थान — तिनकुने, काठमाडौं"
+ "title::Premium Technologies office location — Tinkune, Kathmandu": "प्रिमियम टेक्नोलोजिज कार्यालय स्थान — तिनकुने, काठमाडौं",
+ "alt::iSmart digital banking app on a phone": "फोनमा iSmart डिजिटल ब्याङ्किङ एप",
+ "aria-label::Show iSmart": "iSmart देखाउनुहोस्"
 };
