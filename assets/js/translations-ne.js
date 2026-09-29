@@ -678,5 +678,6 @@ window.NE_ATTR = {
  "placeholder::Your current system, key challenges, or specific features you're looking for…": "तपाईंको हालको प्रणाली, मुख्य चुनौती वा खोजिरहेका विशेष सुविधा…",
  "title::Premium Technologies office location — Tinkune, Kathmandu": "प्रिमियम टेक्नोलोजिज कार्यालय स्थान — तिनकुने, काठमाडौं",
  "alt::iSmart digital banking app on a phone": "फोनमा iSmart डिजिटल ब्याङ्किङ एप",
- "aria-label::Show iSmart": "iSmart देखाउनुहोस्"
+ "aria-label::Show iSmart": "iSmart देखाउनुहोस्",
+ "alt::Premium Mobile Collector handheld device printing a collection receipt": "सङ्कलन रसिद प्रिन्ट गर्दै गरेको प्रिमियम मोबाइल कलेक्टर उपकरण"
 };
