@@ -38,6 +38,7 @@ window.NE_TEXT = {
  "Protected by encryption architecture": "इन्क्रिप्सन संरचनाद्वारा सुरक्षित",
  "Complete cloud-based, instant access": "पूर्ण क्लाउडमा आधारित, तुरुन्त पहुँच",
  "Explore Premium CBS Lite →": "Premium CBS Lite हेर्नुहोस् →",
+ "Start Free Trial ↗": "निःशुल्क ट्रायल सुरु गर्नुहोस् ↗",
  "Product Suite": "उत्पादन शृङ्खला",
  "One Platform. Multiple Solutions. Unlimited Possibilities.": "एउटै प्लेटफर्म। अनेक समाधान। असीमित सम्भावना।",
  "Driving the future of financial services through powerful technology solutions that combine core banking, digital innovation, automation, and seamless integrations—built to help institutions transform, adapt, and thrive.": "कोर ब्याङ्किङ, डिजिटल नवप्रवर्तन, स्वचालन र सहज एकीकरणलाई जोड्ने शक्तिशाली प्रविधि समाधानमार्फत वित्तीय सेवाको भविष्यलाई अघि बढाउँदै — संस्थाहरूलाई रूपान्तरण, अनुकूलन र प्रगति गर्न मद्दत गर्न निर्मित।",
