@@ -146,8 +146,39 @@ nav .brand-logo { height: 40px; }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes hero-zoom-in { from { opacity: 0; transform: scale(0.72); } to { opacity: 1; transform: scale(1); } }
 @keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+.hero-slider { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.hero-slides { position: relative; width: 100%; aspect-ratio: 4 / 3; }
+.hero-slide {
+  position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  opacity: 0; transform: translateX(48px) scale(0.94); pointer-events: none;
+  transition: opacity 0.8s ease, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero-slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.hero-slide.is-leaving { opacity: 0; transform: translateX(-48px) scale(0.94); }
+.hero-slide .hero-shot { width: auto; max-width: 100%; max-height: calc(100% - 3rem); min-height: 0; object-fit: contain; }
+.hero-slide-photo img {
+  width: 100%; max-height: calc(100% - 3rem); aspect-ratio: 1577 / 997; object-fit: cover; display: block;
+  border-radius: 20px; border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 28px 60px rgba(0,0,0,0.4);
+}
+.hero-slide-photo.is-active img { animation: hero-kenburns 6s ease-out both; }
+.hero-slide figcaption {
+  font: 600 0.8rem 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.04em; color: rgba(255,255,255,0.9);
+  padding: 0.4rem 0.95rem; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(6px); opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s;
+}
+.hero-slide.is-active figcaption { opacity: 1; transform: none; }
+.hero-slider-dots { display: flex; gap: 0.5rem; }
+.hero-slider-dots button {
+  width: 8px; height: 8px; padding: 0; border: none; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,0.3); transition: width 0.35s ease, background-color 0.35s ease;
+}
+.hero-slider-dots button.is-active { width: 26px; background: var(--gold); }
+@keyframes hero-kenburns { from { transform: scale(1.06); } to { transform: scale(1); } }
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow, .hero-title, .hero-lead, .hero-desc, .hero-actions, .hero-visual, .hero-shot { animation: none; }
+  .hero-eyebrow, .hero-title, .hero-lead, .hero-desc, .hero-actions, .hero-visual, .hero-shot, .hero-slide-photo.is-active img { animation: none; }
+  .hero-slide, .hero-slide figcaption { transition: none; }
   .hero-eyebrow .type-text::after { animation: none; display: none; }
 }
 
@@ -829,4 +860,66 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
 @media (prefers-reduced-motion: reduce) {
   .logo-bar-track { animation: none; }
   .client-card, .client-card-logo, .client-card::before { transition: none; }
+}
+
+/* Card motion */
+@keyframes cardIn { from { opacity: 0; transform: translateY(34px) scale(0.96); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes iconFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes iconPop { 0% { transform: scale(1) rotate(0); } 40% { transform: scale(1.2) rotate(-8deg); } 70% { transform: scale(0.95) rotate(4deg); } 100% { transform: scale(1.1) rotate(0); } }
+@keyframes cardShine { from { background-position: 0 0, -120% 0; } to { background-position: 0 0, 220% 0; } }
+
+.reveal-card:not(.is-in) { opacity: 0; }
+.reveal-card.is-in { animation: cardIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0s) backwards; }
+
+:is(.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card) {
+  position: relative; overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+}
+:is(.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card)::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
+  background:
+    radial-gradient(circle 240px at var(--mx, 50%) var(--my, 0%), rgba(26,126,255,0.11), transparent 65%),
+    linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+  background-size: 100% 100%, 60% 100%; background-repeat: no-repeat; background-position: 0 0, -120% 0;
+}
+:is(.product-card.featured, .compliance-card, .pillar-item, .testimonial-card.feat-t)::after {
+  background:
+    radial-gradient(circle 240px at var(--mx, 50%) var(--my, 0%), rgba(125,186,255,0.18), transparent 65%),
+    linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+  background-size: 100% 100%, 60% 100%; background-repeat: no-repeat; background-position: 0 0, -120% 0;
+}
+:is(.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card):hover::after {
+  opacity: 1; animation: cardShine 0.9s ease-out;
+}
+:is(.why-cbs-card, .feature-item, .arch-card, .receipt-card, .testimonial-card, .contact-card, .integration-chip):hover {
+  transform: translateY(-6px); border-color: rgba(26,126,255,0.3); box-shadow: 0 20px 44px rgba(6,26,95,0.12);
+}
+.why-cbs-card:hover { background-color: #fff; }
+:is(.compliance-card, .pillar-item):hover {
+  transform: translateY(-6px); border-color: rgba(125,186,255,0.4); background-color: rgba(255,255,255,0.1); box-shadow: 0 20px 44px rgba(0,0,0,0.25);
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(10,37,64,0.14); }
+
+:is(.why-cbs-card, .feature-item, .arch-card)::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--gold));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+:is(.why-cbs-card, .feature-item, .arch-card):hover::before { transform: scaleX(1); }
+
+:is(.why-cbs-icon, .feature-item-icon, .compliance-icon, .product-icon, .integration-icon, .contact-card-icon, .pillar-icon, .receipt-icon) {
+  animation: iconFloat 4.5s ease-in-out var(--float-delay, 0s) infinite; will-change: transform;
+}
+.receipt-icon { display: inline-block; }
+:is(.product-card, .why-cbs-card, .feature-item, .compliance-card, .integration-chip, .contact-card, .pillar-item, .receipt-card):hover :is(.why-cbs-icon, .feature-item-icon, .compliance-icon, .product-icon, .integration-icon, .contact-card-icon, .pillar-icon, .receipt-icon) {
+  animation: iconPop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) forwards;
+}
+:is(.feature-item-icon, .contact-card-icon, .product-icon) { transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+:is(.feature-item, .contact-card):hover :is(.feature-item-icon, .contact-card-icon),
+.product-card:not(.featured):hover .product-icon:not(.product-icon-logo) { background-color: rgba(26,126,255,0.16); box-shadow: 0 8px 20px rgba(26,126,255,0.22); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-card:not(.is-in) { opacity: 1; }
+  .reveal-card.is-in, :is(.why-cbs-icon, .feature-item-icon, .compliance-icon, .product-icon, .integration-icon, .contact-card-icon, .pillar-icon, .receipt-icon) { animation: none !important; }
+  :is(.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card):hover::after { animation: none; }
 }

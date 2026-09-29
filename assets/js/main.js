@@ -12,7 +12,7 @@ const TRANSLATIONS = {
     'stat3-label': 'Provinces Covered', 'stat3-sub': 'Nationwide coverage',
     'stat4-label': 'Expert Team', 'stat4-sub': 'Specialists on the ground',
     'cta-title': 'Ready to modernize your institution?',
-    'cta-desc': 'Join 500+ cooperatives and microfinances across Nepal who have upgraded to Premium CBS.',
+    'cta-desc': 'Join 450+ cooperatives and microfinances across Nepal who have upgraded to Premium CBS.',
     'cta-demo': 'Schedule a Free Demo', 'cta-phone': '📞 +977 9801-130700',
   },
   ne: {
@@ -26,7 +26,7 @@ const TRANSLATIONS = {
     'stat3-label': 'प्रदेश समेटिएका', 'stat3-sub': 'राष्ट्रव्यापी कवरेज',
     'stat4-label': 'विशेषज्ञ टोली', 'stat4-sub': 'मैदानमा विशेषज्ञहरू',
     'cta-title': 'आफ्नो संस्था आधुनिकीकरण गर्न तयार हुनुहुन्छ?',
-    'cta-desc': 'नेपालभरका ५००+ सहकारी र लघुवित्तहरूसँग सामेल हुनुहोस् जसले Premium CBS मा अपग्रेड गरेका छन्।',
+    'cta-desc': 'नेपालभरका ४५०+ सहकारी र लघुवित्तहरूसँग सामेल हुनुहोस् जसले Premium CBS मा अपग्रेड गरेका छन्।',
     'cta-demo': 'नि:शुल्क डेमो तालिका गर्नुहोस्', 'cta-phone': '📞 +977 9801-130700',
   }
 };
@@ -195,7 +195,39 @@ function fillAboutClients() {
   const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name);
   clients.slice(0, ABOUT_CLIENTS_INITIAL).forEach((c, i) => dest.appendChild(clientChip(c, i)));
   if (currentLang === 'ne') translatePage('ne', dest);
+  initCardMotion(dest);
 }
+
+// ── CARD MOTION ──
+const MOTION_CARDS = '.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card';
+let cardObserver;
+function initCardMotion(root = document) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!cardObserver) {
+    cardObserver = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); cardObserver.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  }
+  root.querySelectorAll(MOTION_CARDS).forEach(card => {
+    if (card.dataset.motion) return;
+    card.dataset.motion = '1';
+    const i = [...card.parentElement.children].indexOf(card);
+    card.style.setProperty('--float-delay', -((i % 5) * 0.9) + 's');
+    if (card.closest('.logo-bar-track')) return;
+    card.style.setProperty('--reveal-delay', (i % 6) * 0.08 + 's');
+    card.classList.add('reveal-card');
+    cardObserver.observe(card);
+  });
+}
+document.addEventListener('pointermove', e => {
+  const card = e.target.closest && e.target.closest(MOTION_CARDS);
+  if (!card) return;
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+}, { passive: true });
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => initCardMotion());
+else initCardMotion();
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderClients);
 else renderClients();
@@ -282,6 +314,46 @@ function initAppSlider() {
   dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
 }
 
+function initHeroSlider() {
+  const root = document.querySelector('[data-hero-slider]');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = '1';
+  const slides = [...root.querySelectorAll('.hero-slide')];
+  const dotsWrap = root.querySelector('.hero-slider-dots');
+  const dots = slides.map((slide, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', slide.querySelector('figcaption').textContent);
+    dot.addEventListener('click', () => { show(i); restart(); });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+  let index = 0, timer = null;
+  const show = (n) => {
+    const next = (n + slides.length) % slides.length;
+    if (next === index && slides[index].classList.contains('is-active')) return;
+    slides[index].classList.remove('is-active');
+    slides[index].classList.add('is-leaving');
+    const prev = slides[index];
+    setTimeout(() => prev.classList.remove('is-leaving'), 1000);
+    index = next;
+    slides[index].classList.remove('is-leaving');
+    slides[index].classList.add('is-active');
+    dots.forEach((d, i) => { d.classList.toggle('is-active', i === index); d.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
+  };
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const restart = () => { clearInterval(timer); if (!reduced) timer = setInterval(() => show(index + 1), 4500); };
+  dots[0].classList.add('is-active');
+  dots[0].setAttribute('aria-selected', 'true');
+  if (reduced) return;
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restart);
+  restart();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initHeroSlider);
+else initHeroSlider();
+
 window.addEventListener('load', initCoverageBlink);
 window.addEventListener('load', typeEyebrow);
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAppSlider);
@@ -312,7 +384,7 @@ else initTimeline();
 
 // ── STAT COUNTERS ──
 function animateCounters() {
-  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:500,s:'+'},{id:'s3',t:7,s:'/7'},{id:'s4',t:30,s:'+'}];
+  const data = [{id:'s1',t:12,s:'+'},{id:'s2',t:450,s:'+'},{id:'s3',t:7,s:'/7'},{id:'s4',t:30,s:'+'}];
   data.forEach(c => {
     const el = document.getElementById(c.id); if(!el) return;
     let cur=0; const inc=c.t/60;
