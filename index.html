@@ -57,6 +57,11 @@ nav .brand-logo { height: 40px; }
 }
 .nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown, .nav-item.open .nav-dropdown { display: block; }
 .nav-dropdown a { display: block; white-space: nowrap; }
+.nav-dropdown a.nav-sub { padding-left: 1.6rem; font-size: 13px; }
+.nav-chip {
+  display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 99px;
+  background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 700; vertical-align: 1px;
+}
 .nav-toggle {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
   width: 40px; height: 40px; padding: 10px; cursor: pointer;
@@ -178,6 +183,26 @@ nav .brand-logo { height: 40px; }
 .product-card:hover::before { transform: scaleX(1); }
 .product-card.featured { grid-column: span 2; background: var(--navy); border-color: transparent; }
 .product-card.featured::before { transform: scaleX(1); background: var(--gold); height: 4px; }
+.product-card.lite::before { transform: scaleX(1); background: var(--gold); }
+.lite-badge {
+  display: inline-block; margin-bottom: 0.6rem; padding: 3px 10px; border-radius: 99px;
+  background: rgba(255,180,29,0.16); color: #9A6A00; font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+}
+.lite-strip-wrap { padding: 0 2rem 4rem; background: var(--surface); }
+.lite-strip {
+  max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  background: var(--navy); border-top: 4px solid var(--gold); border-radius: 16px; padding: 1.8rem 2.2rem;
+}
+.lite-strip-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.3rem; color: white; margin-bottom: 0.35rem; }
+.lite-strip-desc { color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 620px; }
+.lite-strip .btn-primary { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 700px) { .lite-strip { flex-direction: column; align-items: flex-start; } }
+.lite-launch { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 1rem; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+.lite-launch-tag { background: var(--gold); color: var(--navy); font-weight: 700; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; }
+.lite-quote-band { background: var(--surface); padding: 3.5rem 2rem 0; }
+.lite-quote { max-width: 900px; margin: 0 auto; text-align: center; border-left: 4px solid var(--gold); border-right: 4px solid var(--gold); border-radius: 16px; background: white; padding: 2rem 2.5rem; box-shadow: 0 10px 30px rgba(6,26,95,0.06); }
+.lite-quote-tagline { font-size: 1.9rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem; }
+.lite-quote-text { font-size: 1.1rem; line-height: 1.8; color: #334155; }
 .product-card.featured .product-desc { color: rgba(255,255,255,0.6); }
 .product-card.featured .product-title { color: white; }
 .product-card.featured .product-feature-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
@@ -219,6 +244,9 @@ nav .brand-logo { height: 40px; }
 .why-cbs-icon { font-size: 1.6rem; margin-bottom: 0.85rem; line-height: 1; }
 .why-cbs-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.98rem; margin-bottom: 0.4rem; }
 .why-cbs-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+.lite-points { margin: 0.55rem 0 0; padding: 0; list-style: none; }
+.lite-points li { position: relative; padding-left: 0.9rem; color: var(--muted); font-size: 0.85rem; line-height: 1.55; }
+.lite-points li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
 
 /* Province section */
 .province-section { background: var(--navy); padding: 5rem 2rem; }
@@ -365,6 +393,7 @@ nav .brand-logo { height: 40px; }
 .feature-item-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; }
 .feature-item-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
 .feature-item-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.feature-item-tag { font-size: 0.85rem; font-weight: 600; color: var(--blue); margin-bottom: 0.4rem; }
 .feature-list { margin: 0.35rem 0 0; padding-left: 1.1rem; }
 .feature-list li { margin-bottom: 0.2rem; }
 .page-hero-lead { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; color: rgba(255,255,255,0.92); font-size: 1.15rem; line-height: 1.45; margin: -0.35rem 0 1.15rem; }
@@ -373,6 +402,12 @@ nav .brand-logo { height: 40px; }
 /* Architecture */
 .arch-section { background: white; }
 .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.arch-diagram { width: 100%; height: auto; display: block; }
+.arch-flow { stroke-dasharray: 5 6; animation: archFlow 1.1s linear infinite; }
+.arch-pulse { transform-box: fill-box; transform-origin: center; animation: archPulse 2.6s ease-in-out infinite; }
+@keyframes archFlow { to { stroke-dashoffset: -22; } }
+@keyframes archPulse { 0%, 100% { opacity: 0.15; transform: scale(0.97); } 50% { opacity: 0.45; transform: scale(1.02); } }
+@media (prefers-reduced-motion: reduce) { .arch-flow, .arch-pulse { animation: none; } }
 
 /* Compliance */
 .compliance-section { background: var(--navy); padding: 5rem 2rem; }
@@ -639,6 +674,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
       <ul class="nav-dropdown">
         <li class="nav-dropdown-panel">
           <a onclick="navigate('cbs')" data-page="cbs" data-en="Premium CBS" data-ne="प्रिमियम CBS">Premium CBS</a>
+          <a class="nav-sub" onclick="navigate('cbs-lite')" data-page="cbs-lite" data-en="Premium CBS <span class='nav-chip'>Lite</span>" data-ne="प्रिमियम CBS <span class='nav-chip'>लाइट</span>">Premium CBS <span class="nav-chip">Lite</span></a>
           <a onclick="navigate('mobile')" data-page="mobile" data-en="Mobile Banking" data-ne="मोबाइल ब्याङ्किङ">Mobile Banking</a>
           <a onclick="navigate('atm')" data-page="atm" data-en="ATM Banking" data-ne="एटीएम ब्याङ्किङ">ATM Banking</a>
           <a onclick="navigate('sms')" data-page="sms" data-en="SMS Banking" data-ne="एसएमएस ब्याङ्किङ">SMS Banking</a>
@@ -709,6 +745,14 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
             <span class="product-link">Explore Premium CBS →</span>
             <button type="button" class="product-demo" onclick="event.stopPropagation(); navigate('contact')">Request a Demo</button>
           </div>
+        </div>
+        <div class="product-card lite" onclick="navigate('cbs-lite')">
+          <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10.2A3.8 3.8 0 0 0 17 10.5 5.2 5.2 0 0 0 7.2 12 3.2 3.2 0 0 0 7 18z"/></svg></div>
+          <div class="lite-badge">Mini edition of Premium CBS</div>
+          <div class="product-title">Premium CBS Lite</div>
+          <div class="product-desc">The lighter, cloud-first edition of Premium CBS — the same trusted core, simplified for smaller cooperatives.</div>
+          <div class="product-features"><span class="product-feature-tag">Modular</span><span class="product-feature-tag">Cloud-based</span><span class="product-feature-tag">Compliant</span></div>
+          <span class="product-link">Explore Premium CBS Lite →</span>
         </div>
         <div class="product-card" onclick="navigate('mobile')">
           <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></div>
@@ -906,7 +950,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
       <div class="page-hero-badge">Product Suite · Nepal-built</div>
       <h1 class="page-hero-title">Every channel your<br>institution needs.</h1>
-      <p class="page-hero-desc" style="max-width:640px;">Core banking, mobile, ATM, SMS, and mobile collector — each product connects to the same ledger and is built for Nepal's cooperatives, microfinances, and credit unions.</p>
+      <p class="page-hero-desc" style="max-width:640px;">Core banking, CBS Lite, mobile, ATM, SMS, and mobile collector — each product connects to the same ledger and is built for Nepal's cooperatives, microfinances, and credit unions.</p>
     </div>
   </section>
 
@@ -921,6 +965,14 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
             <span class="product-feature-tag">Multi-Branch</span><span class="product-feature-tag">Deposit & Savings</span><span class="product-feature-tag">Loan & EMI</span><span class="product-feature-tag">NCRA Reports</span>
           </div>
           <span class="product-link">Explore Premium CBS →</span>
+        </div>
+        <div class="product-card lite" onclick="navigate('cbs-lite')">
+          <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10.2A3.8 3.8 0 0 0 17 10.5 5.2 5.2 0 0 0 7.2 12 3.2 3.2 0 0 0 7 18z"/></svg></div>
+          <div class="lite-badge">Mini edition of Premium CBS</div>
+          <div class="product-title">Premium CBS Lite</div>
+          <div class="product-desc">The lighter, cloud-first edition of Premium CBS — the same trusted core, simplified for smaller cooperatives.</div>
+          <div class="product-features"><span class="product-feature-tag">Modular</span><span class="product-feature-tag">Cloud-based</span><span class="product-feature-tag">Compliant</span></div>
+          <span class="product-link">Explore Premium CBS Lite →</span>
         </div>
         <div class="product-card" onclick="navigate('mobile')">
           <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1A7EFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></div>
@@ -1047,49 +1099,91 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
           </div>
         </div>
         <div>
-          <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <svg class="arch-diagram" viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Premium CBS at the center, connected in real time to Teller, Mobile, ATM, SMS, Collector, and NCRA reporting">
             <defs>
-              <filter id="sf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <linearGradient id="archCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#061A5F"/><stop offset="1" stop-color="#0E3A8A"/></linearGradient>
+              <pattern id="archDots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1A7EFF" opacity="0.12"/></pattern>
+              <filter id="archShadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#061A5F" flood-opacity="0.08"/></filter>
+              <filter id="archGlow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1A7EFF" flood-opacity="0.35"/></filter>
             </defs>
-            <!-- Central CBS -->
-            <rect x="145" y="150" width="130" height="80" rx="12" fill="#0A2540" stroke="#1A7EFF" stroke-width="2"/>
-            <text x="210" y="183" text-anchor="middle" fill="white" font-size="13" font-family="Plus Jakarta Sans,sans-serif" font-weight="800">Premium CBS</text>
-            <text x="210" y="200" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-family="Inter,sans-serif">Core Engine</text>
-            <circle cx="210" cy="215" r="4" fill="#10B981" filter="url(#sf)"/>
-            <!-- Channel nodes -->
-            <!-- Teller -->
-            <rect x="10" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="60" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🖥️ Teller</text>
-            <text x="60" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Counter Banking</text>
-            <line x1="110" y1="47" x2="145" y2="170" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- Mobile -->
-            <rect x="155" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="205" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">📱 Mobile</text>
-            <text x="205" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Mobile Banking</text>
-            <line x1="205" y1="75" x2="210" y2="150" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- ATM -->
-            <rect x="305" y="20" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="355" y="43" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🏧 ATM</text>
-            <text x="355" y="58" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">SCT Network</text>
-            <line x1="305" y1="47" x2="275" y2="170" stroke="#1A7EFF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- SMS -->
-            <rect x="10" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="60" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">💬 SMS</text>
-            <text x="60" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Alerts & Enquiry</text>
-            <line x1="110" y1="332" x2="145" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- Tablet -->
-            <rect x="155" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="205" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">📋 Collector</text>
-            <text x="205" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Field collection</text>
-            <line x1="205" y1="305" x2="210" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- NCRA -->
-            <rect x="305" y="305" width="100" height="55" rx="10" fill="#EEF2F8" stroke="#E2E8F0" stroke-width="1.5"/>
-            <text x="355" y="328" text-anchor="middle" fill="#0A2540" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">🏛️ NCRA</text>
-            <text x="355" y="343" text-anchor="middle" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Reports & Returns</text>
-            <line x1="305" y1="332" x2="275" y2="230" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
-            <!-- Labels on lines -->
-            <text x="128" y="120" fill="#1A7EFF" font-size="8" font-family="JetBrains Mono,sans-serif" text-anchor="middle" transform="rotate(-55,128,120)">Real-time</text>
-            <text x="292" y="120" fill="#1A7EFF" font-size="8" font-family="JetBrains Mono,sans-serif" text-anchor="middle" transform="rotate(55,292,120)">Real-time</text>
+            <rect width="480" height="440" rx="22" fill="#F5F8FD"/>
+            <rect width="480" height="440" rx="22" fill="url(#archDots)"/>
+
+            <g fill="none" stroke-width="2" stroke-linecap="round">
+              <path class="arch-flow" d="M85 100 C85 140 200 130 200 168" stroke="#1A7EFF"/>
+              <path class="arch-flow" d="M240 100 L240 168" stroke="#1A7EFF"/>
+              <path class="arch-flow" d="M395 100 C395 140 280 130 280 168" stroke="#1A7EFF"/>
+              <path class="arch-flow" d="M85 320 C85 285 200 300 200 264" stroke="#10B981"/>
+              <path class="arch-flow" d="M240 320 L240 264" stroke="#10B981"/>
+              <path class="arch-flow" d="M395 320 C395 285 280 300 280 264" stroke="#10B981"/>
+            </g>
+
+            <g font-family="Plus Jakarta Sans,sans-serif">
+              <rect x="206" y="126" width="68" height="17" rx="8.5" fill="white" stroke="#1A7EFF" stroke-opacity="0.35"/>
+              <text x="240" y="138" text-anchor="middle" fill="#1A7EFF" font-size="9" font-weight="700">Real-time</text>
+              <rect x="210" y="283" width="60" height="17" rx="8.5" fill="white" stroke="#10B981" stroke-opacity="0.4"/>
+              <text x="240" y="295" text-anchor="middle" fill="#0F9F6E" font-size="9" font-weight="700">Synced</text>
+            </g>
+
+            <rect class="arch-pulse" x="150" y="158" width="180" height="116" rx="24" fill="none" stroke="#1A7EFF" stroke-width="1.5"/>
+            <rect x="160" y="168" width="160" height="96" rx="18" fill="url(#archCore)" filter="url(#archGlow)"/>
+            <path d="M184 168 H296" stroke="#FFB41D" stroke-width="3" stroke-linecap="round"/>
+            <text x="240" y="208" text-anchor="middle" fill="white" font-size="17" font-family="Plus Jakarta Sans,sans-serif" font-weight="800">Premium CBS</text>
+            <text x="240" y="226" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-family="Inter,sans-serif">Core Engine</text>
+            <circle cx="199" cy="245" r="3.5" fill="#10B981"/>
+            <text x="207" y="248.5" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Inter,sans-serif">Live &#183; Single ledger</text>
+
+            <g font-family="Plus Jakarta Sans,sans-serif">
+              <g transform="translate(20 36)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#EAF3FF"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#1A7EFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">Teller</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Counter banking</text>
+              </g>
+              <g transform="translate(175 36)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#EAF3FF"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#1A7EFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">Mobile</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Mobile banking</text>
+              </g>
+              <g transform="translate(330 36)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#EAF3FF"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#1A7EFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="10" rx="2"/><path d="M7 14v6h10v-6M10 17h4"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">ATM</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">SCT network</text>
+              </g>
+              <g transform="translate(20 320)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#E7F8F1"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">SMS</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Alerts &amp; enquiry</text>
+              </g>
+              <g transform="translate(175 320)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#E7F8F1"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h4"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">Collector</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Field collection</text>
+              </g>
+              <g transform="translate(330 320)">
+                <rect width="130" height="64" rx="14" fill="white" stroke="#E2E8F0" filter="url(#archShadow)"/>
+                <circle cx="26" cy="32" r="15" fill="#E7F8F1"/>
+                <g transform="translate(18.8 24.8) scale(0.6)" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></g>
+                <text x="50" y="29" fill="#061A5F" font-size="12" font-weight="700">NCRA</text>
+                <text x="50" y="45" fill="#6B7280" font-size="9" font-family="Inter,sans-serif">Reports &amp; returns</text>
+              </g>
+            </g>
+
+            <g font-family="Inter,sans-serif" font-size="10" fill="#6B7280">
+              <path d="M112 414 H132" stroke="#1A7EFF" stroke-width="2" stroke-linecap="round"/>
+              <text x="138" y="417.5">Customer channels</text>
+              <path d="M272 414 H292" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+              <text x="298" y="417.5">Operations &amp; reporting</text>
+            </g>
           </svg>
         </div>
       </div>
@@ -1129,6 +1223,16 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     </div>
   </section>
 
+  <section class="lite-strip-wrap">
+    <div class="lite-strip">
+      <div>
+        <div class="lite-strip-title">Need something lighter?</div>
+        <p class="lite-strip-desc">Premium CBS Lite is the mini, cloud-based edition of Premium CBS — the same trusted core, simplified for smaller cooperatives.</p>
+      </div>
+      <button class="btn-primary" onclick="navigate('cbs-lite')">Explore Premium CBS Lite →</button>
+    </div>
+  </section>
+
   <section class="cta-section">
     <div class="cta-inner">
       <div class="section-eyebrow" style="color:var(--blue-light);display:block;text-align:center;margin-bottom:1.5rem;">Get Started with CBS</div>
@@ -1140,6 +1244,74 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
       </div>
     </div>
   </section>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: CBS LITE ═══════════════════════════════ -->
+<div id="page-cbs-lite" class="page">
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-inner">
+      <div>
+        <div class="lite-launch"><span class="lite-launch-tag">A Dozen Years of Innovation</span> We proudly announce the official launch of</div>
+        <div class="page-hero-badge">Mini edition of Premium CBS</div>
+        <h1 class="page-hero-title">Premium CBS Lite</h1>
+        <p class="page-hero-lead">Seamless, Efficient, and Secure Core Banking Solution for the Digital Future.</p>
+        <p class="page-hero-desc">A lighter edition of Premium CBS, built on the same core for institutions that want to start simple.</p>
+        <p class="page-hero-desc">Designed to deliver simplicity, security, and full regulatory compliance.</p>
+      </div>
+      <div>
+        <div class="cbs-mockup">
+          <div class="cbs-mockup-bar">
+            <div class="mockup-dot" style="background:#FF5F57;"></div>
+            <div class="mockup-dot" style="background:#FFBD2E;"></div>
+            <div class="mockup-dot" style="background:#27C93F;"></div>
+            <span class="mockup-url">Premium CBS Lite · Cloud</span>
+          </div>
+          <div class="cbs-mockup-body">
+            <div class="mockup-header"><div class="mockup-title">Ready without hardware</div><div class="mockup-badge">● Live</div></div>
+            <div class="mockup-row"><span class="mockup-row-label">Modular</span><span class="mockup-row-val mockup-row-ok">Individually customizable</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Secure</span><span class="mockup-row-val mockup-row-ok">Encryption architecture</span></div>
+            <div class="mockup-row"><span class="mockup-row-label">Cloud</span><span class="mockup-row-val">No setup · Instant access</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lite-quote-band">
+    <div class="lite-quote">
+      <div class="lite-quote-tagline" data-en="Simple, strong, and secure." data-ne="सहज, सबल र सुरक्षित">Simple, strong, and secure.</div>
+      <p class="lite-quote-text" data-en="Premium CBS Lite is a modern core banking system that makes everyday operations easy and secure while fully complying with regulatory requirements. Built on the same trusted core as Premium CBS, it gives smaller cooperatives and microfinance institutions everything they need to manage members, deposits, and loans from the cloud, with no hardware to set up and nothing to install." data-ne="Premium CBS Lite — नियामक निकायका नियमहरूको पूर्ण पालना गर्दै सुरक्षा र सहजता प्रदान गर्ने आधुनिक कोर बैंकिङ प्रणाली।">Premium CBS Lite is a modern core banking system that makes everyday operations easy and secure while fully complying with regulatory requirements. Built on the same trusted core as Premium CBS, it gives smaller cooperatives and microfinance institutions everything they need to manage members, deposits, and loans from the cloud, with no hardware to set up and nothing to install.</p>
+    </div>
+  </section>
+
+  <section class="section feature-matrix">
+    <div class="section-inner">
+      <div class="section-eyebrow">What it delivers</div>
+      <h2 class="section-title">Creating real value<br>for a stronger tomorrow.</h2>
+      <div class="why-cbs-grid">
+        <div class="why-cbs-card"><div class="why-cbs-title">Member Service Excellence</div><div class="why-cbs-desc">Faster counter service, accurate balances, and instant statements, so members get answers without waiting.</div><ul class="lite-points"><li>Happier members.</li><li>Stronger cooperatives.</li></ul></div>
+        <div class="why-cbs-card"><div class="why-cbs-title">Operational Efficiency</div><div class="why-cbs-desc">Automated interest, day-end, and reports replace manual work, so staff spend less time on paperwork.</div><ul class="lite-points"><li>Simpler processes.</li><li>Greater productivity.</li></ul></div>
+        <div class="why-cbs-card"><div class="why-cbs-title">Better Governance &amp; Compliance</div><div class="why-cbs-desc">Role-based access, audit trails, and regulator-ready reports keep every transaction controlled and traceable.</div><ul class="lite-points"><li>Safer operations.</li><li>Lasting trust.</li></ul></div>
+        <div class="why-cbs-card"><div class="why-cbs-title">Scalable Digital Transformation</div><div class="why-cbs-desc">Start with the essentials and add mobile, SMS, and more branches as the cooperative grows.</div><ul class="lite-points"><li>Ready for today.</li><li>Built for tomorrow.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-eyebrow">How it is built</div>
+      <h2 class="section-title">Modular, secure, and cloud-based.</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="feature-item-icon">🧩</div><div class="feature-item-title">Modular</div><div class="feature-item-tag">Individually customizable.</div><div class="feature-item-desc">Choose only the modules you need, such as deposits, loans, or share capital, and turn on more when you're ready.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">🔒</div><div class="feature-item-title">Secure</div><div class="feature-item-tag">Protected by encryption architecture.</div><div class="feature-item-desc">Data is encrypted in transit and at rest, with user permissions and daily backups to keep member records safe.</div></div>
+        <div class="feature-item"><div class="feature-item-icon">☁️</div><div class="feature-item-title">A Complete Cloud Based</div><div class="feature-item-tag">No hardware setup &amp; installation, instant access.</div><div class="feature-item-desc">No servers to buy and nothing to install. Log in from any browser and start working the same day.</div></div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <!-- ═══════════════════════════════ PAGE: MOBILE BANKING ═══════════════════════════════ -->
@@ -1278,22 +1450,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <p class="page-hero-desc">A mobile phone is one of the most personal channels an institution has. More organizations are using text to improve how they talk to customers. In a crowded financial market, SMS gives you a faster way to exchange information and to keep that work orderly. Households and businesses both see the transactions they have done with you, quickly and in a secured way.</p>
       </div>
       <div>
-        <div class="cbs-mockup">
-          <div class="cbs-mockup-bar">
-            <div class="mockup-dot" style="background:#FF5F57;"></div>
-            <div class="mockup-dot" style="background:#FFBD2E;"></div>
-            <div class="mockup-dot" style="background:#27C93F;"></div>
-            <span class="mockup-url">SMS gateway · Alerts</span>
-          </div>
-          <div class="cbs-mockup-body">
-            <div class="mockup-header"><div class="mockup-title">Outbound messages</div><div class="mockup-badge">● Sending</div></div>
-            <div class="mockup-row"><span class="mockup-row-label">Deposit alert</span><span class="mockup-row-val mockup-row-ok">Credited</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Withdrawal alert</span><span class="mockup-row-val">Sent</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Loan due</span><span class="mockup-row-val mockup-row-ok">Receipt logged</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">FD maturity</span><span class="mockup-row-val">Scheduled</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Notice</span><span class="mockup-row-val">Wishes, news, ads</span></div>
-          </div>
-        </div>
+        <img class="cbs-detail-shot" src="smsbanking.png" alt="SMS Banking on a phone, showing balance, transaction alert, and mini statement messages">
       </div>
     </div>
   </section>
@@ -1590,6 +1747,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
                 <label class="form-label" data-en="Products you're interested in" data-ne="रुचि भएका उत्पादनहरू">Products you're interested in</label>
                 <div class="form-checkbox-group" id="productChecks">
                   <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Premium CBS"/> 🏦 Premium CBS</label>
+                  <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Premium CBS Lite"/> ☁️ Premium CBS Lite</label>
                   <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="Mobile Banking"/> 📱 Mobile Banking</label>
                   <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="ATM Banking"/> 🏧 ATM Banking</label>
                   <label class="form-checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" name="product" value="SMS Banking"/> 💬 SMS Banking</label>
@@ -1706,6 +1864,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <div class="footer-col-title">Products</div>
         <ul class="footer-links">
           <li><a onclick="navigate('cbs')">Premium CBS</a></li>
+          <li><a onclick="navigate('cbs-lite')">Premium CBS Lite</a></li>
           <li><a onclick="navigate('mobile')">Mobile Banking</a></li>
           <li><a onclick="navigate('atm')">ATM Banking</a></li>
           <li><a onclick="navigate('sms')">SMS Banking</a></li>
@@ -1797,7 +1956,7 @@ function setLang(lang) {
 }
 
 // ── ROUTER ──
-const PRODUCT_PAGES = ['products', 'cbs', 'mobile', 'atm', 'sms', 'tablet'];
+const PRODUCT_PAGES = ['products', 'cbs', 'cbs-lite', 'mobile', 'atm', 'sms', 'tablet'];
 
 function toggleMenu() {
   document.querySelector('nav').classList.toggle('menu-open');
