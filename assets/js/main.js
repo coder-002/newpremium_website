@@ -199,7 +199,7 @@ function fillAboutClients() {
 }
 
 // ── CARD MOTION ──
-const MOTION_CARDS = '.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card';
+const MOTION_CARDS = '.product-card, .why-cbs-card, .feature-item, .arch-card, .compliance-card, .receipt-card, .testimonial-card, .contact-card, .pillar-item, .integration-chip, .client-card, .team-card';
 let cardObserver;
 function initCardMotion(root = document) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

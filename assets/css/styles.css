@@ -562,11 +562,52 @@ nav .brand-logo { height: 40px; }
 /* Team */
 .team-section { background: white; }
 .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
-.team-card { text-align: center; }
-.team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 24px; color: white; }
-.team-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 3px; }
-.team-role { font-size: 0.82rem; color: var(--muted); }
-.team-dept { font-size: 11px; color: var(--blue); font-weight: 500; margin-top: 2px; }
+.team-card {
+  --team-a: var(--blue); --team-b: #0A56C8;
+  position: relative; text-align: center; background: #fff; border: 1px solid var(--border); border-radius: 22px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(6,26,95,0.04), 0 10px 30px rgba(6,26,95,0.06);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+}
+.team-card:hover { transform: translateY(-8px); border-color: color-mix(in srgb, var(--team-a) 35%, transparent); box-shadow: 0 26px 56px rgba(6,26,95,0.14); }
+.team-card-top {
+  position: relative; height: 112px;
+  background:
+    radial-gradient(circle at 85% 0%, color-mix(in srgb, var(--team-a) 55%, transparent), transparent 60%),
+    linear-gradient(135deg, #061A5F 0%, #0B2C7A 100%);
+}
+.team-card-top::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.35;
+  background-image: linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 22px 22px; -webkit-mask-image: linear-gradient(180deg, #000, transparent); mask-image: linear-gradient(180deg, #000, transparent);
+}
+.team-card-top::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 45%; left: -60%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.18), transparent); transform: skewX(-20deg);
+  transition: left 0.9s ease;
+}
+.team-card:hover .team-card-top::after { left: 130%; }
+.team-avatar {
+  position: absolute; left: 50%; bottom: -46px; transform: translateX(-50%);
+  width: 92px; height: 92px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: 0.02em; color: #fff;
+  background: linear-gradient(135deg, var(--team-a), var(--team-b));
+  border: 4px solid #fff; box-shadow: 0 0 0 2px color-mix(in srgb, var(--team-a) 45%, transparent), 0 14px 30px rgba(6,26,95,0.22);
+  transition: transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1), box-shadow 0.45s ease;
+}
+.team-card:hover .team-avatar { transform: translateX(-50%) scale(1.07); box-shadow: 0 0 0 6px color-mix(in srgb, var(--team-a) 22%, transparent), 0 18px 36px rgba(6,26,95,0.28); }
+.team-card-body { padding: 3.6rem 1.25rem 1.6rem; }
+.team-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: var(--navy); font-size: 1.12rem; letter-spacing: -0.01em; margin-bottom: 0.55rem; }
+.team-role {
+  display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; padding: 0.3rem 0.8rem; border-radius: 999px;
+  color: color-mix(in srgb, var(--team-b) 85%, #000); background: color-mix(in srgb, var(--team-a) 13%, #fff);
+  border: 1px solid color-mix(in srgb, var(--team-a) 28%, transparent);
+}
+.team-divider { width: 36px; height: 2px; border-radius: 2px; margin: 1.1rem auto 0.8rem; background: linear-gradient(90deg, var(--team-a), var(--team-b)); transition: width 0.45s ease; }
+.team-card:hover .team-divider { width: 64px; }
+.team-dept { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) {
+  .team-card, .team-avatar, .team-divider, .team-card-top::after { transition: none; }
+}
 
 /* ── PAGE: CONTACT ── */
 .contact-section { background: var(--surface); }
