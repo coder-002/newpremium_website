@@ -399,6 +399,16 @@ nav .brand-logo { height: 40px; }
 .page-hero-lead { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; color: rgba(255,255,255,0.92); font-size: 1.15rem; line-height: 1.45; margin: -0.35rem 0 1.15rem; }
 .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
 
+.solution-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
+.solution-item { display: flex; align-items: flex-start; gap: 0.65rem; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; font-size: 0.9rem; font-weight: 600; color: var(--navy); line-height: 1.45; }
+.solution-check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(26,126,255,0.12); color: var(--blue); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+.about-solution { background: white; }
+.about-journey { background: var(--surface); }
+.vision-band { background: var(--navy); padding: 4.5rem 2rem; border-top: 4px solid var(--gold); }
+.vision-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.vision-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: white; line-height: 1.2; }
+@media (max-width: 900px) { .solution-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .solution-grid { grid-template-columns: 1fr; } }
 /* Architecture */
 .arch-section { background: white; }
 .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
@@ -1381,26 +1391,7 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
         <p class="page-hero-desc">Premium CBS connects to the fintech services your members expect. Smart Choice Technologies is Nepal's ATM service provider, joined to the nationwide ATM network used by commercial banks, development banks, finance companies, and cooperatives. We have already integrated SCT ATM services for our clients. If your institution wants to offer ATM service, the platform is ready and tested.</p>
       </div>
       <div>
-        <div class="cbs-mockup">
-          <div class="cbs-mockup-bar">
-            <div class="mockup-dot" style="background:#FF5F57;"></div>
-            <div class="mockup-dot" style="background:#FFBD2E;"></div>
-            <div class="mockup-dot" style="background:#27C93F;"></div>
-            <span class="mockup-url">premiumcbs.app · Cards</span>
-          </div>
-          <div class="cbs-mockup-body">
-            <div class="mockup-header"><div class="mockup-title">Card desk — Kathmandu HQ</div><div class="mockup-badge">● SCT linked</div></div>
-            <div class="mockup-grid">
-              <div class="mockup-stat"><div class="mockup-stat-val">Debit</div><div class="mockup-stat-lbl">SCT Chip Card</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">Prepaid</div><div class="mockup-stat-lbl">SCT Chip Card</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">ATM</div><div class="mockup-stat-lbl">Nationwide Network</div></div>
-              <div class="mockup-stat"><div class="mockup-stat-val">POS</div><div class="mockup-stat-lbl">And ecommerce</div></div>
-            </div>
-            <div class="mockup-row"><span class="mockup-row-label">Daily settlement</span><span class="mockup-row-val mockup-row-ok">✓ SCT Report Portal</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Member requests</span><span class="mockup-row-val">SCT CRMS</span></div>
-            <div class="mockup-row"><span class="mockup-row-label">Disputes</span><span class="mockup-row-val mockup-row-ok">● SCT DMS</span></div>
-          </div>
-        </div>
+        <img class="cbs-detail-shot" src="atmBank.png" alt="A member inserting an SCT chip card into an ATM">
       </div>
     </div>
   </section>
@@ -1548,8 +1539,8 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     <div class="page-hero-grid"></div>
     <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 2rem;">
       <div class="page-hero-badge">🇳🇵 Kathmandu, Nepal · Est. 2015</div>
-      <h1 class="page-hero-title" style="max-width:700px;">We built Nepal's cooperative banking software from the ground up.</h1>
-      <p class="page-hero-desc" style="max-width:600px;">Premium Technologies was founded by a team of software engineers who saw firsthand how Nepal's cooperatives and microfinances were running on spreadsheets, paper ledgers, and outdated systems. We set out to change that — and have spent 12 years doing exactly that.</p>
+      <h1 class="page-hero-title" style="max-width:820px;">Transforming Financial Institutions Through Smart Digital Banking Solutions</h1>
+      <p class="page-hero-lead" style="max-width:720px;">Empowering Cooperatives &amp; Microfinance Institutions with Secure, Scalable and Innovative Technology.</p>
     </div>
   </section>
 
@@ -1557,34 +1548,79 @@ body.ne .timeline-event-title { font-family: 'Tiro Devanagari Nepali', serif; le
     <div class="section-inner">
       <div class="about-grid">
         <div class="about-intro-text">
-          <div class="section-eyebrow">Our Story</div>
-          <h2 class="section-title">12 years, 500+ institutions, one mission.</h2>
-          <p>In 2015, three engineers from Kathmandu University sat in a small office in Tinkune and wrote the first version of Premium CBS. At the time, most cooperatives in Nepal managed their members' savings in physical registers. Loan tracking was done in Excel. NCRA reporting was a quarterly nightmare.</p>
-          <div class="about-highlight"><p>"We didn't want to build a generic banking system and adapt it for Nepal. We wanted to build Nepal's banking system from scratch."</p></div>
-          <p>We started with a single cooperative in Kathmandu. Within three years, we had 50 clients across 4 provinces. Today, Premium Technologies is deployed in 500+ institutions across all 7 provinces, from Koshi to Sudurpashchim — including some of Nepal's largest cooperatives and growing microfinances.</p>
-          <p>Every feature in the system started as feedback from a client. We still answer our own phones. We still visit clients on-site when something is wrong. That hasn't changed in 12 years, and we don't plan to change it.</p>
+          <div class="section-eyebrow">About Us</div>
+          <h2 class="section-title">Premium Technologies Pvt. Ltd.</h2>
+          <p>Premium Technologies Pvt. Ltd. is a Nepal-based software product development company dedicated to delivering innovative, reliable, and customized banking and financial technology solutions. We specialize in developing digital solutions for Cooperatives, Microfinance Institutions, and Small to Medium-sized Financial Organizations, helping them modernize their operations and embrace the future of digital banking.</p>
+          <p>With years of experience in the financial technology sector, we have developed and continuously enhanced our flagship product Premium CBS — Core Banking Solution, a comprehensive and cloud-based banking platform designed to meet the evolving requirements of modern financial institutions.</p>
         </div>
         <div>
           <div class="about-stats-side">
             <div class="about-stat-box"><div class="about-stat-num">12<span class="accent">+</span></div><div class="about-stat-label">Years in operation</div></div>
-            <div class="about-stat-box"><div class="about-stat-num">500<span class="accent">+</span></div><div class="about-stat-label">Institutions served</div></div>
+            <div class="about-stat-box"><div class="about-stat-num">500<span class="accent">+</span></div><div class="about-stat-label">BFIs served</div></div>
             <div class="about-stat-box"><div class="about-stat-num">7<span class="accent">/7</span></div><div class="about-stat-label">Provinces covered</div></div>
-            <div class="about-stat-box"><div class="about-stat-num">5</div><div class="about-stat-label">Products in suite</div></div>
-          </div>
-          <div class="about-values">
-            <div class="about-value-item"><div class="about-value-icon">🎯</div><div><div class="about-value-title">Client-first, always</div><div class="about-value-desc">Every product decision starts with client feedback. We build what institutions need, not what looks good on a brochure.</div></div></div>
-            <div class="about-value-item"><div class="about-value-icon">🇳🇵</div><div><div class="about-value-title">Nepal-specific design</div><div class="about-value-desc">Our software reflects Nepal's legal, regulatory, and cultural context — not a foreign system with Nepali labels slapped on.</div></div></div>
-            <div class="about-value-item"><div class="about-value-icon">📞</div><div><div class="about-value-title">Local, responsive support</div><div class="about-value-desc">Our support team is in Kathmandu. We respond quickly, visit on-site when needed, and speak your language.</div></div></div>
-            <div class="about-value-item"><div class="about-value-icon">🔄</div><div><div class="about-value-title">Continuous improvement</div><div class="about-value-desc">We ship updates regularly. The system your institution uses today is better than the one you started with — and the one you'll use next year will be better still.</div></div></div>
+            <div class="about-stat-box"><div class="about-stat-num">2015</div><div class="about-stat-label">Established</div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="section about-journey">
+    <div class="section-inner">
+      <div class="about-intro-text" style="max-width:820px;">
+        <div class="section-eyebrow">Our Journey</div>
+        <h2 class="section-title">Building affordable, secure banking technology since 2015.</h2>
+        <p>Established in 2015, Premium Technologies has been focused on building affordable, secure, and user-friendly technology solutions for the banking and financial service industry. Our commitment to innovation, quality, and continuous improvement has enabled us to create solutions that support institutions in improving efficiency, strengthening governance, and delivering better services to their members and customers.</p>
+        <div class="about-highlight"><p>Today, we proudly serve 500+ BFIs through our digital banking solutions, including Premium Core Banking Solution, SMS Banking, Mobile Banking, and Mobile Collector solutions.</p></div>
+        <p>We support financial institutions in their journey toward digital transformation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-solution">
+    <div class="section-inner">
+      <div class="section-eyebrow">Our Solution</div>
+      <h2 class="section-title">Premium CBS, a complete Core Banking Solution.</h2>
+      <p class="section-desc">At the heart of our offerings is Premium CBS, a complete Core Banking Solution designed to cover the diverse requirements of financial institutions. The platform provides comprehensive support for:</p>
+      <div class="solution-grid">
+        <div class="solution-item"><span class="solution-check">✓</span>Customer and member profile management</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Deposit and savings management</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Loan and credit management</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Shares and dividend management</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Teller and cash management</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Core accounting and reporting</div>
+        <div class="solution-item"><span class="solution-check">✓</span>Multi-branch banking</div>
+        <div class="solution-item"><span class="solution-check">✓</span>SMS Banking, Mobile Banking, and ATM Banking services</div>
+      </div>
+      <p class="section-desc" style="margin-top:2rem;">Built with a focus on flexibility and scalability, Premium CBS helps institutions adopt secure cloud-based banking operations while reducing operational complexity and improving service delivery.</p>
+    </div>
+  </section>
+
+  <section class="section about-commitment">
+    <div class="section-inner">
+      <div class="section-eyebrow">Our Commitment</div>
+      <h2 class="section-title">Technology that creates meaningful value.</h2>
+      <p class="section-desc">At Premium Technologies, we believe technology should not only automate processes but also create meaningful value for financial institutions and their customers. Our solutions are built around:</p>
+      <div class="why-cbs-grid">
+        <div class="why-cbs-card"><div class="why-cbs-icon">💡</div><div class="why-cbs-title">Innovation</div><div class="why-cbs-desc">Continuously adopting modern technologies and improving our products to meet changing industry requirements.</div></div>
+        <div class="why-cbs-card"><div class="why-cbs-icon">🔒</div><div class="why-cbs-title">Security</div><div class="why-cbs-desc">Providing reliable and secure digital banking environments for financial operations.</div></div>
+        <div class="why-cbs-card"><div class="why-cbs-icon">🤝</div><div class="why-cbs-title">Customer Partnership</div><div class="why-cbs-desc">Building long-term relationships by understanding customer needs and delivering practical solutions.</div></div>
+        <div class="why-cbs-card"><div class="why-cbs-icon">🏆</div><div class="why-cbs-title">Excellence</div><div class="why-cbs-desc">Maintaining quality, reliability, and performance across every solution we provide.</div></div>
+      </div>
+      <p class="section-desc" style="margin-top:2rem;">Our management team brings extensive experience and expertise in financial technology solutions, software product development, and banking platforms, enabling us to understand the unique challenges of the financial sector.</p>
+    </div>
+  </section>
+
+  <section class="vision-band">
+    <div class="vision-inner">
+      <div class="section-eyebrow" style="color:var(--gold);display:block;text-align:center;margin-bottom:1rem;">Our Vision</div>
+      <h2 class="vision-title">Driving innovation, excellence &amp; digital growth.</h2>
+    </div>
+  </section>
+
   <section class="section timeline-section">
     <div class="section-inner">
-      <div style="text-align:center;margin-bottom:1rem;"><div class="section-eyebrow" style="display:inline-block;">Our Journey</div></div>
+      <div style="text-align:center;margin-bottom:1rem;"><div class="section-eyebrow" style="display:inline-block;">Milestones</div></div>
       <h2 class="section-title" style="text-align:center;">From one cooperative to a nationwide platform.</h2>
       <div class="timeline">
         <div class="timeline-item">
