@@ -21,6 +21,7 @@ window.NE_TEXT = {
  "Premium Technologies Pvt. Ltd. is a Nepal-based software solution provider specializing in customized banking and financial technology solutions for Cooperatives, Microfinance Institutions, and Small to Medium Financial Organizations.": "प्रिमियम टेक्नोलोजिज प्रा. लि. नेपालमा आधारित सफ्टवेयर समाधान प्रदायक हो, जसले सहकारी, लघुवित्त संस्था तथा साना र मझौला वित्तीय संस्थाहरूका लागि अनुकूलित ब्याङ्किङ तथा वित्तीय प्रविधि समाधानमा विशेषज्ञता राख्छ।",
  "Schedule a Demo →": "डेमो तालिका गर्नुहोस् →",
  "View Products": "उत्पादनहरू हेर्नुहोस्",
+ "and many more…": "र अन्य धेरै…",
  "Years of Experience": "वर्षको अनुभव",
  "Est. 2015 · Kathmandu": "स्थापना २०१५ · काठमाडौं",
  "Clients": "ग्राहकहरू",

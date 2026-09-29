@@ -55,9 +55,6 @@ function setLang(lang) {
   set('[data-page="contact"]', 'nav-contact');
 
   translatePage(lang);
-  const moreBtn = document.querySelector('.clients-more-btn');
-  if (moreBtn && moreBtn.__label) moreBtn.textContent = moreBtn.__label();
-
   const eyebrow = document.querySelector('.hero-eyebrow .type-text');
   if (eyebrow) {
     if (!eyebrow.dataset.textEn) eyebrow.dataset.textEn = eyebrow.getAttribute('data-text') || '';
@@ -190,38 +187,13 @@ function renderClients() {
   });
 }
 
-const ABOUT_CLIENTS_INITIAL = 24;
+const ABOUT_CLIENTS_INITIAL = 20;
 
 function fillAboutClients() {
   const dest = document.getElementById('aboutClients');
   if (!dest || dest.childElementCount) return;
   const clients = (window.PREMIUM_CLIENTS || []).filter(c => c && c.name);
-  clients.forEach((c, i) => {
-    const card = clientChip(c, i);
-    if (i >= ABOUT_CLIENTS_INITIAL) card.classList.add('is-extra');
-    dest.appendChild(card);
-  });
-  if (clients.length > ABOUT_CLIENTS_INITIAL) {
-    const wrap = document.createElement('div');
-    wrap.className = 'clients-more';
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'clients-more-btn';
-    const label = () => {
-      const en = dest.classList.contains('show-all') ? 'Show fewer' : 'Show all ' + clients.length + ' clients';
-      if (currentLang !== 'ne') return en;
-      return dest.classList.contains('show-all') ? 'कम देखाउनुहोस्' : 'सबै ' + clients.length.toLocaleString('ne-NP') + ' ग्राहक हेर्नुहोस्';
-    };
-    btn.textContent = label();
-    btn.addEventListener('click', () => {
-      const expanded = dest.classList.toggle('show-all');
-      btn.textContent = label();
-      if (!expanded) dest.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    btn.__label = label;
-    wrap.appendChild(btn);
-    dest.after(wrap);
-  }
+  clients.slice(0, ABOUT_CLIENTS_INITIAL).forEach((c, i) => dest.appendChild(clientChip(c, i)));
   if (currentLang === 'ne') translatePage('ne', dest);
 }
 
