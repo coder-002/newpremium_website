@@ -118,7 +118,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
             </ul>
             <div className="lite-banner-actions">
               <Link href={href(lang, "cbs-lite")} className="btn-primary">{t(lang, "Explore Premium CBS Lite →")}</Link>
-              <a className="btn-ghost" href="https://premiumcbs.com/" target="_blank" rel="noopener">{t(lang, "Start Free Trial ↗")}</a>
+              <a className="btn-ghost" href="https://premiumcbs.com/register-trial" target="_blank" rel="noopener">{t(lang, "Start Free Trial ↗")}</a>
             </div>
           </div>
         </NavArea>

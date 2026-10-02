@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Plus_Jakarta_Sans, Tiro_Devanagari_Hindi } from "next/font/google";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { LANGS, hasLang, pick } from "@/lib/i18n";
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLang(lang)) notFound();
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <html lang={lang} className={`${jakarta.variable} ${inter.variable} ${mono.variable} ${tiro.variable}`}>
@@ -44,6 +46,17 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <Navbar lang={lang} />
         {children}
         <Footer lang={lang} />
+        {gaId && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

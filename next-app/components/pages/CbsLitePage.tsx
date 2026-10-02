@@ -5,7 +5,7 @@ import { type Lang, pick, t, ta } from "@/lib/i18n";
 import { href } from "@/lib/routes";
 import PageEffects from "@/components/PageEffects";
 
-const TRIAL_URL = "http://premiumcbs.com/";
+const TRIAL_URL = "http://premiumcbs.com/register-trial";
 
 type Feature = { icon: string; title: string; desc: string };
 type Module = { id: string; icon: string; label: string; summary: string; features: Feature[] };
