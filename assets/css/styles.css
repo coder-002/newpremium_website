@@ -262,6 +262,7 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .product-card.featured .product-feature-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
 .product-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(26,126,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 1.25rem; }
 .product-icon svg { width: 26px; height: 26px; display: block; }
+.product-icon img { width: 30px; height: 30px; display: block; }
 .product-card.featured .product-icon { background: rgba(26,126,255,0.2); }
 .product-card.featured .product-icon.product-icon-logo { width: fit-content; height: auto; display: inline-flex; background: transparent; padding: 0; border-radius: 0; }
 .product-icon-logo .product-logo { height: 46px; width: auto; display: block; }
@@ -297,6 +298,12 @@ nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .why-cbs-grid.values-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 .why-cbs-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
 .why-cbs-icon { font-size: 1.6rem; margin-bottom: 0.85rem; line-height: 1; }
+.why-cbs-icon img { width: 36px; height: 36px; display: block; }
+.feature-item-icon img { width: 24px; height: 24px; }
+.compliance-icon img { width: 36px; height: 36px; display: block; margin: 0 auto; filter: brightness(0) invert(1); }
+.integration-icon img { width: 32px; height: 32px; display: block; margin: 0 auto; }
+.contact-card-icon:has(img) { background: var(--blue); }
+.contact-card-icon img { width: 20px; height: 20px; }
 .why-cbs-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.98rem; margin-bottom: 0.4rem; }
 .why-cbs-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
 .lite-points { margin: 0.55rem 0 0; padding: 0; list-style: none; }
