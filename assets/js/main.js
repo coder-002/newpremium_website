@@ -111,9 +111,27 @@ function translatePage(lang, root) {
 // ── ROUTER ──
 const PRODUCT_PAGES = ['products', 'cbs', 'cbs-lite', 'mobile', 'atm', 'sms', 'tablet'];
 
-function toggleMenu() {
-  document.querySelector('nav').classList.toggle('menu-open');
+function setMenuOpen(open) {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('menu-open', open);
+  const btn = nav.querySelector('.nav-toggle');
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
+
+function toggleMenu(event) {
+  if (event) event.stopPropagation();
+  setMenuOpen(!document.querySelector('nav').classList.contains('menu-open'));
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav')) setMenuOpen(false);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') setMenuOpen(false);
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) setMenuOpen(false);
+});
 
 function toggleDropdown(event) {
   event.preventDefault();
@@ -230,7 +248,7 @@ function navigate(page, section) {
     const active = key === 'products' ? PRODUCT_PAGES.includes(page) : key === page;
     a.classList.toggle('active', active);
   });
-  document.querySelector('nav').classList.remove('menu-open');
+  setMenuOpen(false);
   document.querySelectorAll('.nav-item.open').forEach(n => n.classList.remove('open'));
   if (page === 'about') fillAboutClients();
   const sectionEl = section ? document.getElementById(section) : null;

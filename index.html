@@ -31,9 +31,10 @@
     </li>
     <li><a onclick="navigate('about')" data-page="about" data-en="About Us" data-ne="हाम्रोबारे">About Us</a></li>
     <li><a onclick="navigate('contact')" data-page="contact" data-en="Contact" data-ne="सम्पर्क">Contact</a></li>
+    <li class="nav-mobile-cta"><button class="nav-cta" onclick="navigate('contact')" data-en="Request Demo" data-ne="डेमो अनुरोध">Request Demo</button></li>
   </ul>
   <div class="nav-right">
-    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" onclick="toggleMenu(event)" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
       <button class="lang-btn" onclick="setLang('ne')" id="btn-ne">नेपाली</button>
