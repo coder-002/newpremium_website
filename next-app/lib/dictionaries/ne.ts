@@ -1,8 +1,7 @@
-/* Nepali translations for the EN / नेपाली toggle.
-   Keys are the English text exactly as shown on the page (whitespace collapsed).
-   NE_ATTR keys are "attribute::English value" for alt, placeholder, aria-label and title.
-   Add or correct entries here; text without an entry stays in English. */
-window.NE_TEXT = {
+// Nepali dictionary. Keys are the English text exactly as rendered (whitespace collapsed).
+// NE_ATTR keys are "attribute::English value" for alt, placeholder, aria-label and title.
+// Text without an entry falls back to English.
+export const NE_TEXT: Record<string, string> = {
  "Frequently Asked Questions": "बारम्बार सोधिने प्रश्नहरू",
  "About the Product": "उत्पादनबारे",
  "What is Premium CBS?": "Premium CBS के हो?",
@@ -762,7 +761,8 @@ window.NE_TEXT = {
  "Book a personalized demo with our experts and discover how Premium CBS can support your institution’s unique workflows — with practical insights, not generic presentations.": "हाम्रा विज्ञहरूसँग व्यक्तिगत डेमो बुक गर्नुहोस् र Premium CBS ले तपाईंको संस्थाको विशिष्ट कार्यप्रवाहलाई कसरी सघाउन सक्छ, पत्ता लगाउनुहोस् — सामान्य प्रस्तुति होइन, व्यावहारिक जानकारीसहित।",
  "Talk to Our Team": "हाम्रो टोलीसँग कुरा गर्नुहोस्"
 };
-window.NE_ATTR = {
+
+export const NE_ATTR: Record<string, string> = {
  "alt::Premium Technologies": "प्रिमियम टेक्नोलोजिज",
  "aria-label::Menu": "मेनु",
  "alt::Premium CBS dashboard on a laptop, tablet, and phone": "ल्यापटप, ट्याब्लेट र फोनमा Premium CBS ड्यासबोर्ड",

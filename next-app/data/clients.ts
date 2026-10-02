@@ -1,0 +1,1025 @@
+export type Client = { name: string; address: string; logo: string };
+
+// Clients with a logo are listed first; only those appear in the logo bars.
+export const CLIENTS: Client[] = [
+ {
+  "name": "Simrik Saving & Credit Co-operative Ltd.",
+  "address": "Birtamod 4, Jhapa",
+  "logo": "/assets/images/clients/simrik.webp"
+ },
+ {
+  "name": "Chandragiri Saving & Credit Co-operative Ltd.",
+  "address": "Chandragiri",
+  "logo": "/assets/images/clients/chandragiri.webp"
+ },
+ {
+  "name": "Pokhara Royal Saving & Credit Co-operative Society Ltd.",
+  "address": "Pokhara",
+  "logo": "/assets/images/clients/royal.webp"
+ },
+ {
+  "name": "KASCCUN Kathmandu District Savings & Credit Co-operative Union Ltd.",
+  "address": "Kathmandu",
+  "logo": "/assets/images/clients/kasccun.webp"
+ },
+ {
+  "name": "Bhaktapur District Saving & Credit Co-operative Union Ltd.",
+  "address": "Suryabinayak, Bhaktapur",
+  "logo": "/assets/images/clients/bhaktapurdu.webp"
+ },
+ {
+  "name": "Mechinagar Saving & Credit Co-operative Ltd.",
+  "address": "Sidhartha Chowk, Dhulabari",
+  "logo": "/assets/images/clients/mechinagar.webp"
+ },
+ {
+  "name": "Purbanepal Multipurpose Co-operative Ltd.",
+  "address": "Topgachi, Jhapa",
+  "logo": "/assets/images/clients/purbanepal.webp"
+ },
+ {
+  "name": "Sadasya Sewa Saving & Credit Co-operative Ltd.",
+  "address": "Koteshwor",
+  "logo": "/assets/images/clients/sadasyasewa.webp"
+ },
+ {
+  "name": "Kanak Laxmi Saving and Co-operative Ltd.",
+  "address": "Gachiya-6, Morang",
+  "logo": "/assets/images/clients/kanaklaxmi.webp"
+ },
+ {
+  "name": "Kalyankari Saving & Credit Co-operative Ltd.",
+  "address": "Lubhu, Lalitpur",
+  "logo": "/assets/images/clients/kalyankari.webp"
+ },
+ {
+  "name": "Grihalaxmi Saving & Credit Co-operative Ltd.",
+  "address": "Mechinagar-9, Jhapa",
+  "logo": "/assets/images/clients/grihalaxmi.webp"
+ },
+ {
+  "name": "Adhunik Saving & Credit Co-operative Ltd.",
+  "address": "Kakarvitta, Jhapa",
+  "logo": "/assets/images/clients/adhunik.webp"
+ },
+ {
+  "name": "Mega Saving & Credit Co-operative Ltd.",
+  "address": "Kanchanpur",
+  "logo": "/assets/images/clients/megasaccos.webp"
+ },
+ {
+  "name": "Nawajagaran Saving & Credit Co-operative Ltd.",
+  "address": "Manthali, Ramechhap",
+  "logo": "/assets/images/clients/nawajagaran.webp"
+ },
+ {
+  "name": "Babiyakharka Saving & Credit Co-operative Ltd.",
+  "address": "Kathmandu 31, Shantinagar",
+  "logo": "/assets/images/clients/babiyakharka.webp"
+ },
+ {
+  "name": "Unnati Saving & Credit Co-operative Limited",
+  "address": "Pokhara-9, Nayabazar",
+  "logo": "/assets/images/clients/unnati.webp"
+ },
+ {
+  "name": "Teenkhole Saving & Credit Co-operative Ltd.",
+  "address": "Khairenitar, Pokhara",
+  "logo": "/assets/images/clients/teenkhole.webp"
+ },
+ {
+  "name": "Taudolchhap Saving & Credit Co-operative Ltd.",
+  "address": "Jagati",
+  "logo": "/assets/images/clients/taudolchhap.webp"
+ },
+ {
+  "name": "Swarnalaxmi (Jhapa) Saving and Co-operative Ltd.",
+  "address": "Jhapa, Dhulabari",
+  "logo": "/assets/images/clients/swarnalaxmi.webp"
+ },
+ {
+  "name": "Suryadarshan Saving & Credit Co-operative Ltd.",
+  "address": "Damak, Jhapa",
+  "logo": "/assets/images/clients/suryadarshan.webp"
+ },
+ {
+  "name": "Survey Shulav Multipurpose Co-operative Ltd.",
+  "address": "Darche, Gorkha",
+  "logo": "/assets/images/clients/surveysulav.webp"
+ },
+ {
+  "name": "Sukuna Saving & Credit Co-operative Ltd.",
+  "address": "Sundarharaicha-12, Morang",
+  "logo": "/assets/images/clients/sukuna.webp"
+ },
+ {
+  "name": "Shree Sudeshwor Saving & Credit Co-operative Ltd.",
+  "address": "Banepa-08, Kathmandu",
+  "logo": "/assets/images/clients/sudeshwor.webp"
+ },
+ {
+  "name": "Sthapit Yojana Saving & Credit Co-operative",
+  "address": "Nayabazaar, Kathmandu",
+  "logo": "/assets/images/clients/sthapit.webp"
+ },
+ {
+  "name": "Souvenir Saving & Credit Co-operative Ltd.",
+  "address": "Basundhara-3 Kathmandu",
+  "logo": "/assets/images/clients/souvenir.webp"
+ },
+ {
+  "name": "Shree Duwagadi Sana Kisan Krishi Sahakari Sanstha Ltd.",
+  "address": "Jhapa",
+  "logo": "/assets/images/clients/skduwagadi.webp"
+ },
+ {
+  "name": "Shreenidhi Saving & Credit Co-operative Ltd.",
+  "address": "Parsa, Birgunj",
+  "logo": "/assets/images/clients/shreenidhi.webp"
+ },
+ {
+  "name": "Shivam Saving & Credit Co-operative Ltd.",
+  "address": "Chabahil, Kathmandu",
+  "logo": "/assets/images/clients/shivam.webp"
+ },
+ {
+  "name": "Shikshak Hit Saving & Credit Co-operative Ltd.",
+  "address": "Prithivichowk-8, Pokhara",
+  "logo": "/assets/images/clients/shikshak.webp"
+ },
+ {
+  "name": "Satlok Saving & Credit Co-operative Ltd.",
+  "address": "Birtamode",
+  "logo": "/assets/images/clients/satlok.webp"
+ },
+ {
+  "name": "Satashi Multipurpose Co-operative Ltd.",
+  "address": "Birtamode",
+  "logo": "/assets/images/clients/satashi.webp"
+ },
+ {
+  "name": "Sajjan Mahila Saving & Credit Co-operative Ltd.",
+  "address": "Kathmandu-6, Bauddha",
+  "logo": "/assets/images/clients/sajjanmahila.webp"
+ },
+ {
+  "name": "Sahara Saving & Credit Co-operative Ltd.",
+  "address": "Manthali, Ramechhap",
+  "logo": "/assets/images/clients/sahara.webp"
+ },
+ {
+  "name": "Sahakari Rin Kosh Bachat Tatha Rin Sahakari Sanstha Ltd.",
+  "address": "Kupondol, Lalitpur",
+  "logo": "/assets/images/clients/sahakaririn.webp"
+ },
+ {
+  "name": "Sagarmatha Saving & Credit Co-operative Ltd.",
+  "address": "Parijatpath, Makhwanpur",
+  "logo": "/assets/images/clients/sagarmatha.webp"
+ },
+ {
+  "name": "Sadbhab Saving & Credit Co-operative Ltd.",
+  "address": "",
+  "logo": "/assets/images/clients/sadbhav.webp"
+ },
+ {
+  "name": "Prithivi Multipurpose Co-operative Ltd.",
+  "address": "Prithivichowk-8, Pokhara",
+  "logo": "/assets/images/clients/prithvi.webp"
+ },
+ {
+  "name": "Neo Saving & Credit Co-operative Ltd.",
+  "address": "Newroad, Kathmandu",
+  "logo": "/assets/images/clients/neo.webp"
+ },
+ {
+  "name": "Neju Guru Saving & Credit Co-operative Ltd.",
+  "address": "Bhotahiti, Kathmandu",
+  "logo": "/assets/images/clients/nejuguru.webp"
+ },
+ {
+  "name": "Nayamilan Saving & Credit Co-operative Ltd.",
+  "address": "Biratmode, Jhapa",
+  "logo": "/assets/images/clients/nayamilan.webp"
+ },
+ {
+  "name": "Nawabishwas Saving & Credit Co-operative Ltd.",
+  "address": "Indrachwok-25 Kathmandu",
+  "logo": "/assets/images/clients/nawabishwas.webp"
+ },
+ {
+  "name": "Nafin Saving & Credit Co-operative Ltd.",
+  "address": "Bangemuda, Kathmandu",
+  "logo": "/assets/images/clients/nafin.webp"
+ },
+ {
+  "name": "Nabin Saving & Credit Co-operative Ltd.",
+  "address": "Pokhara",
+  "logo": "/assets/images/clients/nabin.webp"
+ },
+ {
+  "name": "Lord Buddha Saving & Credit Co-operative Ltd.",
+  "address": "Patharisanischare, Morang",
+  "logo": "/assets/images/clients/lordbuddha.webp"
+ },
+ {
+  "name": "Lekhnath Community Saving & Credit Co-operative Ltd.",
+  "address": "Pokhara, 27, Talchowk, Pokhara",
+  "logo": "/assets/images/clients/lekhnath.webp"
+ },
+ {
+  "name": "Kumbeshwor Saving & Credit Co-operative Ltd.",
+  "address": "Khumbeshwor-11, Lalitpur",
+  "logo": "/assets/images/clients/kumbeshwor.webp"
+ },
+ {
+  "name": "Kuber Saving & Credit Co-operative Ltd.",
+  "address": "Bhujauwa, Nawalparasi",
+  "logo": "/assets/images/clients/kuber.webp"
+ },
+ {
+  "name": "Kamal Multipurpose Co-operative Ltd.",
+  "address": "Newroad, Kathmandu",
+  "logo": "/assets/images/clients/kamal.webp"
+ },
+ {
+  "name": "Himchuli Saving & Credit Co-operative Ltd.",
+  "address": "Gorkha",
+  "logo": "/assets/images/clients/himchuli.webp"
+ },
+ {
+  "name": "Hatemalo Saving & Credit Co-operative",
+  "address": "Jhapa",
+  "logo": "/assets/images/clients/hatemalo.webp"
+ },
+ {
+  "name": "Hardford Saving & Credit Co-operative Ltd.",
+  "address": "Gopikrishnanagar, Kathmandu",
+  "logo": "/assets/images/clients/hardford.webp"
+ },
+ {
+  "name": "Gyanjyoti Mahila Utthaan Saving & Credit Co-operative Ltd.",
+  "address": "Sankhamul-31, Kathmandu",
+  "logo": "/assets/images/clients/gyanjyoti.webp"
+ },
+ {
+  "name": "Everytime Saving & Credit Co-operative Ltd.",
+  "address": "Kalopul, Kathmandu",
+  "logo": "/assets/images/clients/everytime.webp"
+ },
+ {
+  "name": "Chinari Saving & Credit Co-operative Ltd.",
+  "address": "Gokarna, Kathmandu",
+  "logo": "/assets/images/clients/chinari.webp"
+ },
+ {
+  "name": "Charaali Saving & Credit Co-operative Ltd.",
+  "address": "Charaali-4, Jhapa",
+  "logo": "/assets/images/clients/charali.webp"
+ },
+ {
+  "name": "Chandradarshan Saving & Credit Co-operative Ltd.",
+  "address": "Padajungi, Kamal-5, Jhapa",
+  "logo": "/assets/images/clients/chandradarshan.webp"
+ },
+ {
+  "name": "Buddha Shanti Saving & Credit Co-operative Ltd.",
+  "address": "Buddhabare, Jhapa",
+  "logo": "/assets/images/clients/bsc.webp"
+ },
+ {
+  "name": "Bheri Bittiya Co-operative Ltd.",
+  "address": "Nepalgunj-2, Surkhetroad",
+  "logo": "/assets/images/clients/bheri.webp"
+ },
+ {
+  "name": "Vaishnodevi Saving & Credit Co-operative Ltd.",
+  "address": "Birgunj",
+  "logo": "/assets/images/clients/baishnudevi.webp"
+ },
+ {
+  "name": "Akhanda Saving & Credit Co-operative Ltd.",
+  "address": "Kalanki, Kathmandu",
+  "logo": "/assets/images/clients/akhanda.webp"
+ },
+ {
+  "name": "Aarati",
+  "address": "",
+  "logo": "/assets/images/clients/aarati.webp"
+ },
+ {
+  "name": "Aama Saving & Credit Co-operative Ltd.",
+  "address": "Boudha, Kathmandu",
+  "logo": "/assets/images/clients/aama.webp"
+ },
+ {
+  "name": "1800 Khola Saving & Credit Co-operative Ltd.",
+  "address": "Samakhusi, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Aadarsha Economic Saving & Credit Co-operative Ltd.",
+  "address": "Banepa-8, Kavre",
+  "logo": ""
+ },
+ {
+  "name": "Aaradhya Saving & Credit Co-operative Ltd.",
+  "address": "Jyamirgadi, Mechinagar",
+  "logo": ""
+ },
+ {
+  "name": "Aatmanirbhar Saving & Credit Co-operative",
+  "address": "Sarlahi",
+  "logo": ""
+ },
+ {
+  "name": "Abiral Saving & Credit Co-operative Ltd.",
+  "address": "Itahari, Sunsari",
+  "logo": ""
+ },
+ {
+  "name": "Amarapur Saving & Credit Co-operative Ltd.",
+  "address": "Tapasthalee-22, Lalitpur",
+  "logo": ""
+ },
+ {
+  "name": "Anandapur Saving & Credit Co-operative Ltd.",
+  "address": "Kageshwori Manohara - 5, Thali, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Anmol Saving & Credit Co-operative Ltd.",
+  "address": "Gabhal-20, Lalitpur",
+  "logo": ""
+ },
+ {
+  "name": "Asian Saving & Credit Co-operative Ltd.",
+  "address": "Pulchok, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Bagmati Province Federation Saving & Credit Co-operative Union Ltd. (Proscun)",
+  "address": "Banepa, Kavre",
+  "logo": ""
+ },
+ {
+  "name": "Bhabisya Nirman Sanakisan Krishi Sahakari Sanstha Ltd.",
+  "address": "Dakshinkali, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Bhadrabas Saving & Credit Co-operative Ltd.",
+  "address": "Kageshwori Manohara",
+  "logo": ""
+ },
+ {
+  "name": "Bijayashanti Saving & Credit Co-operative Ltd.",
+  "address": "Paropakarmarg, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Bijayee Bhawah Saving & Credit Co-operative Ltd.",
+  "address": "Balambhu-5, Chandragiri",
+  "logo": ""
+ },
+ {
+  "name": "Birat Saving & Credit Co-operative Ltd.",
+  "address": "Birtamode-9, Sainikmode, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Bittiya Multipurpose Co-operative Ltd.",
+  "address": "Kumaripati, Lalitpur",
+  "logo": ""
+ },
+ {
+  "name": "Buddha Mahila Saving & Credit Co-operative Ltd.",
+  "address": "Golbazar-7, Siraha",
+  "logo": ""
+ },
+ {
+  "name": "Budhatwo Multipurpose Co-operative Ltd.",
+  "address": "Mahabaudha",
+  "logo": ""
+ },
+ {
+  "name": "Carina Saving & Credit Co-operative Ltd.",
+  "address": "Chamati-15, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Chakreshwor Saving & Credit Co-operative Society Ltd.",
+  "address": "Bethanchok, Kavre",
+  "logo": ""
+ },
+ {
+  "name": "Cheli Krishi Saving & Credit Co-operative Ltd.",
+  "address": "Mithilanagar, Birgunj",
+  "logo": ""
+ },
+ {
+  "name": "Chimeki Saving & Credit Co-operative Ltd.",
+  "address": "Jhiljhile, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "City Village Saving & Credit Co-operative Ltd.",
+  "address": "New Road, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Devdarshan Saving & Credit Co-operative Ltd.",
+  "address": "Chandragiri",
+  "logo": ""
+ },
+ {
+  "name": "Dhanalaxmi Saving & Credit Co-operative",
+  "address": "Mahottari",
+  "logo": ""
+ },
+ {
+  "name": "Ekikrit Friendship Saving & Credit Co-operative",
+  "address": "Jiri",
+  "logo": ""
+ },
+ {
+  "name": "Everest Saving & Credit Co-operative Society Ltd.",
+  "address": "Sunderbajjar, Lamjung",
+  "logo": ""
+ },
+ {
+  "name": "Gold Star Saving & Credit Co-operative Ltd.",
+  "address": "Chandragiri-14",
+  "logo": ""
+ },
+ {
+  "name": "Grandstar Multipurpose Co-operative Ltd.",
+  "address": "Chabahil, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Hamro Nepal Saving & Credit Co-operative Ltd.",
+  "address": "Birtamode, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Hamro Saving & Credit Co-operative Ltd.",
+  "address": "Sunderbajar-04, Lamjung",
+  "logo": ""
+ },
+ {
+  "name": "Hamro Sewa Multipurpose Co-operative Ltd.",
+  "address": "New Road, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Hamro Super Saving & Credit Co-operative Ltd.",
+  "address": "Badarghat, Nawalparasi",
+  "logo": ""
+ },
+ {
+  "name": "Hasana Bhastipur Saving & Credit Co-operative Ltd.",
+  "address": "Balambhu-5, Chandragiri",
+  "logo": ""
+ },
+ {
+  "name": "Indreni Saving & Credit Co-operative Ltd.",
+  "address": "Banepa, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Jan Samudayik Saving & Credit Co-operative Ltd.",
+  "address": "Janakpurdham, Dhanusha",
+  "logo": ""
+ },
+ {
+  "name": "Janaakanshyamahila Saving & Credit Co-operative Ltd.",
+  "address": "Aadamghat-15, Dhading",
+  "logo": ""
+ },
+ {
+  "name": "Janahit Multipurpose Co-operative Ltd.",
+  "address": "Chandranigharpur, Rautahat",
+  "logo": ""
+ },
+ {
+  "name": "Janapriya Saving & Credit Co-operative Ltd. (Jana)",
+  "address": "Dhulabari",
+  "logo": ""
+ },
+ {
+  "name": "Janasachetana Saving & Credit Co-operative Ltd.",
+  "address": "Meghnath Gorahawa-7 Mahottari",
+  "logo": ""
+ },
+ {
+  "name": "Janata Saving & Credit Co-operative Ltd.",
+  "address": "Aurahi Mahottari",
+  "logo": ""
+ },
+ {
+  "name": "Kailashkut Saving & Credit Co-operative Ltd.",
+  "address": "Hadigaun, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Kakarvitta Saving & Credit Co-operative Ltd.",
+  "address": "Kakarvitta, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Kalash Saving & Credit Co-operative Ltd.",
+  "address": "Benighat, Dhading",
+  "logo": ""
+ },
+ {
+  "name": "Kalidevi Mahila Bikash Multipurpose Co-operative Ltd.",
+  "address": "Naubise, Dhading",
+  "logo": ""
+ },
+ {
+  "name": "Kalpabrikshya Saving & Credit Co-operative Ltd.",
+  "address": "Mechinagar-3, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Kalpabrishya Saving & Credit Co-operative Ltd.",
+  "address": "Nagarpalika Cheu, Itahari",
+  "logo": ""
+ },
+ {
+  "name": "Kalyan Kosh Multipurpose Co-operative Ltd.",
+  "address": "Mid-Baneshwor, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Kalyan Saving & Credit Co-operative Ltd.",
+  "address": "Jalthal-3, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Kantipur Saving & Credit Co-operative Ltd.",
+  "address": "Birgunj, Parsa",
+  "logo": ""
+ },
+ {
+  "name": "Karmana Saving & Credit Co-operative Ltd.",
+  "address": "Satdobato, Lalitpur",
+  "logo": ""
+ },
+ {
+  "name": "Karmashil Multipurpose Co-operative Ltd.",
+  "address": "Baneshwor, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Kasturi Multipurpose Co-operative Ltd.",
+  "address": "Bheri, Punama, Jajarkot",
+  "logo": ""
+ },
+ {
+  "name": "Kopila Mahila Saving & Credit Co-operative Ltd.",
+  "address": "Golbajar, Siraha",
+  "logo": ""
+ },
+ {
+  "name": "Kukhurechaur Krishi Co-operative Ltd.",
+  "address": "Dhunbesi, Khanikhola",
+  "logo": ""
+ },
+ {
+  "name": "Lakshya Saving & Credit Co-operative Ltd.",
+  "address": "Itache-2, Bhaktapur",
+  "logo": ""
+ },
+ {
+  "name": "Manthali Saving & Credit Co-operative Ltd.",
+  "address": "Manthali, Ramechhap",
+  "logo": ""
+ },
+ {
+  "name": "Margadarshan Agriculture Co-operative Ltd.",
+  "address": "Budibazar, Pokhara",
+  "logo": ""
+ },
+ {
+  "name": "Mero Saving & Credit Co-operative Ltd.",
+  "address": "Biratchowk, Morang",
+  "logo": ""
+ },
+ {
+  "name": "Milijuli Saving & Credit Co-operative Ltd.",
+  "address": "Haraicha, Morang",
+  "logo": ""
+ },
+ {
+  "name": "Moon Drop Saving",
+  "address": "Baneshwor, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Nabahi Saving & Credit Co-operative Ltd.",
+  "address": "Ombahal, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Nabin Saving & Credit Co-operative Ltd.",
+  "address": "Dhangadi-10, Siraha",
+  "logo": ""
+ },
+ {
+  "name": "Nagbeli Supari Utpadan Sahakari Sanstha Ltd.",
+  "address": "BuddhaShanti -05",
+  "logo": ""
+ },
+ {
+  "name": "Namaste Buddha Investment Pvt Ltd.",
+  "address": "Patharisanischare, Morang",
+  "logo": ""
+ },
+ {
+  "name": "Namaste Nepal Multipurpose Co-operative Ltd.",
+  "address": "Gairidhara, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Namaste Saving & Credit Co-operative Ltd.",
+  "address": "Kohalpur, Nepalgunj",
+  "logo": ""
+ },
+ {
+  "name": "Namuna Yogya Multipurpose Co-operative Ltd.",
+  "address": "Bhaktapur",
+  "logo": ""
+ },
+ {
+  "name": "Nasala Saving & Credit Co-operative Ltd.",
+  "address": "Bhimsenthan, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "National Agro Saving & Credit Co-operative Ltd.",
+  "address": "Laxminiya, Dhanusha Janakpur",
+  "logo": ""
+ },
+ {
+  "name": "Nawabuddha Multipurpose Co-operative Ltd.",
+  "address": "Bakhaabazaar-6, Madhyapur Thimi",
+  "logo": ""
+ },
+ {
+  "name": "Nawakiran Saving & Credit Co-operative Ltd.",
+  "address": "Banepa, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Nawaprayas Saving & Credit Co-operative Ltd.",
+  "address": "Sarlahi",
+  "logo": ""
+ },
+ {
+  "name": "Nawauphar Saving & Credit Co-operative Ltd.",
+  "address": "Sambhumarga-09, Sinamangal",
+  "logo": ""
+ },
+ {
+  "name": "Neela Saving & Credit Co-operative Ltd.",
+  "address": "Nhyokha-25, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Nepal Finance Co-operative Ltd.",
+  "address": "Chitwan",
+  "logo": ""
+ },
+ {
+  "name": "Nepal Finance Co-operative Ltd.",
+  "address": "Birgunj",
+  "logo": ""
+ },
+ {
+  "name": "Nepal Multipurpose Co-operative",
+  "address": "Mechinagar-6",
+  "logo": ""
+ },
+ {
+  "name": "New Purbanchal Yatayat Co-operative Ltd.",
+  "address": "Pathari Sanischare, Morang",
+  "logo": ""
+ },
+ {
+  "name": "Newapucha Saving & Credit Co-operative Ltd.",
+  "address": "Banepa-8, Kavre",
+  "logo": ""
+ },
+ {
+  "name": "Oasis Saving & Credit Co-operative Ltd.",
+  "address": "Kathmandu-10, Newbaneshwor",
+  "logo": ""
+ },
+ {
+  "name": "Omsainag Laxmi Saving & Credit Co-operative Ltd.",
+  "address": "Mahabaudha, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Panchadevi Saving & Credit Co-operative Ltd.",
+  "address": "Pepsicola, New Road",
+  "logo": ""
+ },
+ {
+  "name": "Phoolbari Saving & Credit Co-operative Ltd.",
+  "address": "Itahari-9, Sunsari",
+  "logo": ""
+ },
+ {
+  "name": "Pratifal Saving & Credit Co-operative",
+  "address": "Pepsicola, Bhaktapur",
+  "logo": ""
+ },
+ {
+  "name": "Prayag Saving & Credit Co-operative Ltd.",
+  "address": "Prayagpokhari",
+  "logo": ""
+ },
+ {
+  "name": "Prerana Krishi Co-operative Ltd.",
+  "address": "Bahadurgunj, Mechinagar",
+  "logo": ""
+ },
+ {
+  "name": "Purbidwar Saving & Credit Co-operative Ltd.",
+  "address": "Dhulabari, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Raghushree Saving & Credit Co-operative Ltd.",
+  "address": "Raghunathpur-5, Dhanusha",
+  "logo": ""
+ },
+ {
+  "name": "Rastriya Samriddhi Awash Bisitkrit Sahakari Sangh Ltd.",
+  "address": "Baneshwor, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Rato Rani Saving & Credit Co-operative Ltd.",
+  "address": "Birgunj",
+  "logo": ""
+ },
+ {
+  "name": "Sajha Saving & Credit Co-operative Ltd.",
+  "address": "Aurahi-03, Mahottari",
+  "logo": ""
+ },
+ {
+  "name": "Samajik Multipurpose Co-operative Ltd.",
+  "address": "Suryabinayak, Bhaktapur",
+  "logo": ""
+ },
+ {
+  "name": "Sambriddhi Sunsine Saving & Credit Co-operative Ltd.",
+  "address": "Bhadrapur-2, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Sammunat Saving & Credit Co-operative Ltd.",
+  "address": "Birdamode-5, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Samriddhi Samudayik Bikash Sahakari Co-operative Ltd.",
+  "address": "Gurju Dhara, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Samriddhi Saving & Credit Co-operative Ltd.",
+  "address": "Chandragadi, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Sanjiwani Saving & Credit Co-operative Ltd.",
+  "address": "Birtamode",
+  "logo": ""
+ },
+ {
+  "name": "Sauraha Saving & Credit Co-operative Ltd.",
+  "address": "Sauraha, Chitwan",
+  "logo": ""
+ },
+ {
+  "name": "Shikhar Saving & Credit Co-operative Ltd.",
+  "address": "Birtamode, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Shoyam Saving & Credit Co-operative Ltd.",
+  "address": "Asan-25, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Shraddha Mahila Saving & Credit Co-operative Ltd.",
+  "address": "Balaju, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Shramjiwi Multipurpose Co-operative Ltd.",
+  "address": "Kalaiya",
+  "logo": ""
+ },
+ {
+  "name": "Shree Bhanu Multipurpose Co-operative Ltd.",
+  "address": "Mechinagar Dhulabari",
+  "logo": ""
+ },
+ {
+  "name": "Shree Bhimsen Saving & Credit Co-operative Ltd.",
+  "address": "Surunga, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Chhaya Saving & Credit Co-operative Society Ltd.",
+  "address": "Bara",
+  "logo": ""
+ },
+ {
+  "name": "Shree Fulbari Saving & Credit Co-operative Ltd.",
+  "address": "Besisahar, Lamjung",
+  "logo": ""
+ },
+ {
+  "name": "Shree Jinnadbaba Krishi Co-operative Ltd.",
+  "address": "Pasauni-05, Parsa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Kismat Kanchan Multipurpose Co-operative Ltd.",
+  "address": "Tikapur, Kailali",
+  "logo": ""
+ },
+ {
+  "name": "Shree Krishak Jagaran Falful Tatha Tarkari Sahakari Co-operative Ltd.",
+  "address": "Nikantha, Dhading",
+  "logo": ""
+ },
+ {
+  "name": "Shree Laxmi Multipurpose Co-operative Ltd.",
+  "address": "Birdamode-4, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Prakriti Supari Multipurpose Co-operative Ltd.",
+  "address": "Mechinagar-10, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Saune Padheri Saving & Credit Co-operative Ltd.",
+  "address": "Banepa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Shrijansil Saving & Credit Co-operative Ltd.",
+  "address": "Birtamod N.P.-1, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Shree Siddha Multipurpose Co-operative Ltd.",
+  "address": "Bhimad-6, Tanahun",
+  "logo": ""
+ },
+ {
+  "name": "Shree Sopan Saving & Credit Co-operative Ltd.",
+  "address": "Jamal, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Shree Sundarbazar Multipurpose Co-operative Ltd.",
+  "address": "Sundarbazar, Lamjung",
+  "logo": ""
+ },
+ {
+  "name": "Shreeya Saving & Credit Co-operative Ltd.",
+  "address": "Mid Baneshwor",
+  "logo": ""
+ },
+ {
+  "name": "Shrijanshil Mahila Co-operative Ltd.",
+  "address": "Anarmani-5, Birtamode",
+  "logo": ""
+ },
+ {
+  "name": "Shrot Parichalan Saving & Credit Co-operative Ltd.",
+  "address": "Nilkantha",
+  "logo": ""
+ },
+ {
+  "name": "Sidhibinayek Saving & Credit Co-operative Ltd.",
+  "address": "Pokhara, Kaski",
+  "logo": ""
+ },
+ {
+  "name": "Simarbana Saving & Credit Co-operative Ltd.",
+  "address": "Itahari",
+  "logo": ""
+ },
+ {
+  "name": "Sonamai Krishi Saving & Credit Co-operative Ltd.",
+  "address": "Aaurahi-3, Mahottari",
+  "logo": ""
+ },
+ {
+  "name": "Subhalabh Saving & Credit Co-operative Ltd.",
+  "address": "Itahari-06, Saptahari",
+  "logo": ""
+ },
+ {
+  "name": "Subhjyoti Saving & Credit Co-operative Ltd.",
+  "address": "Kamalbinayak-10, Bhaktapur",
+  "logo": ""
+ },
+ {
+  "name": "Sunaulo Aayam Saving & Credit Co-operative Ltd.",
+  "address": "Kalanki, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Sunaulo Bhabisya Saving & Credit Co-operative Ltd.",
+  "address": "Makhantole",
+  "logo": ""
+ },
+ {
+  "name": "Sunbarsi Multipurpose Co-operative Ltd.",
+  "address": "Samahushi, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Sunlight Saving & Credit Co-operative Ltd.",
+  "address": "Banepa, Kavre",
+  "logo": ""
+ },
+ {
+  "name": "Sunshine Co-operative",
+  "address": "Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Surakshit Saving & Credit Co-operative Ltd.",
+  "address": "Mithilanagar, Birgunj",
+  "logo": ""
+ },
+ {
+  "name": "Surya Bachat Tatha Rin Sahakari Sanstha Ltd.",
+  "address": "",
+  "logo": ""
+ },
+ {
+  "name": "Suryatara Saving & Credit Co-operative Ltd.",
+  "address": "Geetanjali Chowk Khushibu Nayabazar, Kathmandu-16",
+  "logo": ""
+ },
+ {
+  "name": "Suryodaya Saving & Credit Co-operative Ltd.",
+  "address": "Bharatpur-11, Gaushala",
+  "logo": ""
+ },
+ {
+  "name": "Swarnalaxmi(Chitwan) Saving & Credit Co-operative Ltd.",
+  "address": "Bharatpur, Chitwan",
+  "logo": ""
+ },
+ {
+  "name": "Swoyam Saving & Credit Co-operative Ltd.",
+  "address": "Asan-25, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Thalani Saving & Credit Co-operative Ltd.",
+  "address": "Battisputali-9, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Tripura Sundari Saving & Credit Co-operative Ltd.",
+  "address": "Sindhupalchowk",
+  "logo": ""
+ },
+ {
+  "name": "Uddhyam Bikash Saving & Credit Co-operative Ltd.",
+  "address": "Damak, Jhapa",
+  "logo": ""
+ },
+ {
+  "name": "Utkrista Sathi Bhai Saving & Credit Co-operative Ltd.",
+  "address": "Budhanilkanth-8, Kathmandu",
+  "logo": ""
+ },
+ {
+  "name": "Vargaw Saving & Credit Co-operative Ltd.",
+  "address": "Samakhushi, Golkopakha",
+  "logo": ""
+ },
+ {
+  "name": "Youth Vision Saving & Credit Co-operative Ltd.",
+  "address": "Kathmandu, Dolakha",
+  "logo": ""
+ }
+];
